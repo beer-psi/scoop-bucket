@@ -15,6 +15,7 @@
             "bin": [[ "EVKey32.exe", "evkey" ]]
         }
     },
+    "persist": "setting.ini",
     "checkver": {
         "url": "https://evkeyvn.com/",
         "regex": ".+Windows.+\n.+v([\\d.]+)"
