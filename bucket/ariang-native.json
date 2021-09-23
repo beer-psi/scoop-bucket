@@ -16,6 +16,12 @@
             "ariang-native"
         ]
     ],
+    "shortcuts": [
+        [
+            "AriaNg Native.exe",
+            "AriaNg Native"
+        ]
+    ],
     "depends": "",
     "homepage": "https://github.com/mayswind/AriaNg-Native",
     "checkver": {
