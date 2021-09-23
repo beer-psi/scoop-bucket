@@ -1,25 +1,36 @@
-﻿{
-    "version":  "4.3.7",
-    "license":  "Unknown",
-    "extract_to":  "",
-    "url":  "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip",
-    "depends":  "",
-    "homepage":  "https://evkeyvn.com/",
-    "notes": "EVKey's autoupdater will not work, it has been removed.\nSettings will also not persist after updates, sorry for the inconvenience.",
-    "hash":  "3EB55A672E308AC897E78001AC4793992EDB4E3521B1C3D591C4D1BC23818929",
+{
+    "version": "4.3.7",
+    "license": "Unknown",
+    "extract_to": "",
+    "url": "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip",
+    "depends": "",
+    "homepage": "https://evkeyvn.com/",
+    "notes": [
+        "EVKey's autoupdater will not work, it has been removed.",
+        "Settings will also not persist after updates, sorry for the inconvenience."
+    ],
+    "hash": "3EB55A672E308AC897E78001AC4793992EDB4E3521B1C3D591C4D1BC23818929",
     "architecture": {
         "64bit": {
-            "bin": [[ "EVKey64.exe", "evkey" ]]
+            "bin": [
+                [
+                    "EVKey64.exe",
+                    "evkey"
+                ]
+            ]
         },
         "32bit": {
-            "bin": [[ "EVKey32.exe", "evkey" ]]
+            "bin": [
+                [
+                    "EVKey32.exe",
+                    "evkey"
+                ]
+            ]
         }
     },
     "checkver": {
         "url": "https://evkeyvn.com/",
         "regex": ".+Windows.+\n.+v([\\d.]+)"
     },
-    "post_install": [
-        "Remove-Item -Path $dir\\evkau.exe"
-    ]
+    "post_install": "Remove-Item -Path $dir\\evkau.exe"
 }
