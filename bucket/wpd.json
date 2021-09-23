@@ -1,0 +1,25 @@
+﻿{
+    "version":  "1.4.1834",
+    "license":  "Freeware",
+    "extract_to":  "",
+    "url":  "https://wpd.app/get/latest.zip",
+    "hash":  "A862E21FFB344DDBE1DE2CB9C4E550ABA81929D18C56E46FD355DF25E73E29DF",
+    "bin": [
+        [
+            "WPD.exe",
+            "wpd"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "WPD.exe",
+            "WPD"
+        ]
+    ],
+    "depends":  "",
+    "homepage":  "https://wpd.app",
+    "checkver": {
+        "url": "https://wpd.app",
+        "regex": "Stable <strong>([\\d.]+)"
+    }
+}
