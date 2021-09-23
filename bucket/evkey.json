@@ -5,6 +5,7 @@
     "url":  "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip",
     "depends":  "",
     "homepage":  "https://evkeyvn.com/",
+    "notes": "EVKey's autoupdater will not work, it has been removed.",
     "hash":  "3EB55A672E308AC897E78001AC4793992EDB4E3521B1C3D591C4D1BC23818929",
     "architecture": {
         "64bit": {
@@ -17,5 +18,8 @@
     "checkver": {
         "url": "https://evkeyvn.com/",
         "regex": ".+Windows.+\n.+v([\\d.]+)"
-    }
+    },
+    "post_install": [
+        "Remove-Item -Path $dir\\evkau.exe"
+    ]
 }
