@@ -17,5 +17,5 @@
     "checkver": {
         "url": "https://github.com/lamquangminh/EVKey/releases",
         "regex": "Windows ([\\d.]+)"
-    },
+    }
 }
