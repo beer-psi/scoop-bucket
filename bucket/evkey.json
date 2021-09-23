@@ -1,6 +1,6 @@
 ﻿{
     "version":  "4.3.7",
-    "license":  "",
+    "license":  "Unknown",
     "extract_to":  "",
     "url":  "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip",
     "depends":  "",
@@ -15,7 +15,7 @@
         }
     },
     "checkver": {
-        "url": "https://github.com/lamquangminh/EVKey/releases",
-        "regex": "Windows ([\\d.]+)"
+        "url": "https://evkeyvn.com/",
+        "regex": ".+Windows.+\n.+v([\\d.]+)"
     }
 }
