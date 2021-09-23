@@ -4,10 +4,12 @@
     "extract_to": "",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x64.7z"
+            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x64.7z",
+            "hash": "b10813a1c5194280f91a4712042b478b72bbbe6ded8f4d1cf12de3ddb38c50ef"
         },
         "32bit": {
-            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x86.7z"
+            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x86.7z",
+            "hash": "D725C6CEDFDDBAAD793CA7BA3CA8E55AB84EAE9A330DFD8428F9490E6EACDE85"
         }
     },
     "bin": [
