@@ -1,0 +1,34 @@
+{
+    "version": "1.2.2",
+    "license": "MIT",
+    "extract_to": "",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x64.7z"
+        },
+        "32bit": {
+            "url": "https://github.com/mayswind/AriaNg-Native/releases/download/1.2.2/AriaNg_Native-1.2.2-Windows-x86.7z"
+        }
+    },
+    "bin": [
+        [
+            "AriaNg Native.exe",
+            "ariang-native"
+        ]
+    ],
+    "depends": "",
+    "homepage": "https://github.com/mayswind/AriaNg-Native",
+    "checkver": {
+        "github": "https://github.com/mayswind/AriaNg-Native"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/mayswind/AriaNg-Native/releases/download/$version/AriaNg_Native-$version-Windows-x64.7z"
+            },
+            "32bit": {
+                "url": "https://github.com/mayswind/AriaNg-Native/releases/download/$version/AriaNg_Native-$version-Windows-x86.7z"
+            }
+        }
+    }
+}
