@@ -1,9 +1,9 @@
-﻿{
-    "version":  "1.4.1834",
-    "license":  "Freeware",
-    "extract_to":  "",
-    "url":  "https://wpd.app/get/latest.zip",
-    "hash":  "A862E21FFB344DDBE1DE2CB9C4E550ABA81929D18C56E46FD355DF25E73E29DF",
+{
+    "version": "1.5.2042 RC 1",
+    "license": "Freeware",
+    "extract_to": "",
+    "url": "https://wpd.app/get/latest.zip",
+    "hash": "8c9105cc81ac94f291a8d18b4ac0a88b51488bf49aa9a076490b1c42aacabe09",
     "bin": [
         [
             "WPD.exe",
@@ -16,10 +16,13 @@
             "WPD"
         ]
     ],
-    "depends":  "",
-    "homepage":  "https://wpd.app",
+    "depends": "",
+    "homepage": "https://wpd.app",
     "checkver": {
         "url": "https://wpd.app",
-        "regex": "Stable <strong>([\\d.]+)"
+        "regex": "WPD: <span id=\"version\">([\\d.]+\\s?(?:RC [\\d])?)</span>"
+    },
+    "autoupdate": {
+        "url": "https://wpd.app/get/latest.zip"
     }
 }
