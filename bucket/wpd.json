@@ -1,5 +1,5 @@
 {
-    "version": "1.5.2042 RC 1",
+    "version": "1.5.2042",
     "license": "Freeware",
     "extract_to": "",
     "url": "https://wpd.app/get/latest.zip",
@@ -20,7 +20,7 @@
     "homepage": "https://wpd.app",
     "checkver": {
         "url": "https://wpd.app",
-        "regex": "WPD: <span id=\"version\">([\\d.]+\\s?(?:RC [\\d])?)</span>"
+        "regex": "WPD: <span id=\"version\">([\\d.]+)"
     },
     "autoupdate": {
         "url": "https://wpd.app/get/latest.zip"
