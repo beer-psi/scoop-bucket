@@ -22,7 +22,7 @@
     "shortcuts": [
         [
             "processhacker.exe",
-            "Process Hacker"
+            "Process Hacker (Nightly)"
         ]
     ],
     "checkver": {
