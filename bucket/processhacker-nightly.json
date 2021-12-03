@@ -12,7 +12,7 @@
         "32bit": {
             "url": "https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v3.0.4399/processhacker-3.0.4399-bin.zip",
             "hash": "05D380271749B9B268F9605E4B69715F23429648AEF474E463C236B6DDF47DCA",
-            "extract_dir": "x86"
+            "extract_dir": "32bit"
         }
     },
     "bin": [
