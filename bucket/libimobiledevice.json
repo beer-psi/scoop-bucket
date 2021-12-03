@@ -14,12 +14,10 @@
         }
     },
     "bin": [
-        "idevice_id.exe",
         "ideviceactivation.exe",
         "idevicebackup.exe",
         "idevicebackup2.exe",
         "idevicecrashreport.exe",
-        "idevicedate.exe",
         "idevicedebug.exe",
         "idevicedebugserverproxy.exe",
         "idevicediagnostics.exe",
@@ -33,12 +31,15 @@
         "ideviceprovision.exe",
         "idevicerestore.exe",
         "idevicescreenshot.exe",
-        "idevicesetlocation.exe",
         "idevicesyslog.exe",
-        "inetcat.exe",
+        "idevice_id.exe",
+        "ios_webkit_debug_proxy.exe",
         "iproxy.exe",
         "irecovery.exe",
-        "plistutil.exe"
+        "plistutil.exe",
+        "plist_cmp.exe",
+        "plist_test.exe",
+        "usbmuxd.exe"
     ],
     "checkver": {
         "url": "https://github.com/libimobiledevice-win32/imobiledevice-net/releases",
