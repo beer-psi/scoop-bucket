@@ -1,17 +1,11 @@
 {
-    "hash": "",
-    "depends": "",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-or-later",
     "extract_to": "",
     "version": "20210923",
-    "bin": [
-        [
-            "ntfs2btrfs.exe",
-            "ntfs2btrfs"
-        ]
-    ],
+    "bin": "ntfs2btrfs.exe",
     "homepage": "https://github.com/maharmstone/ntfs2btrfs",
     "url": "https://github.com/maharmstone/ntfs2btrfs/releases/download/20210923/ntfs2btrfs-20210923.zip",
+    "hash": "0a9e21139d473aaf50152a9cc4eba230d639e3eb04d582f615c61534acd2822c",
     "checkver": {
         "github": "https://github.com/maharmstone/ntfs2btrfs"
     },

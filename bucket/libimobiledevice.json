@@ -1,7 +1,7 @@
 {
     "version": "1.3.17",
     "homepage": "https://github.com/libimobiledevice-win32/imobiledevice-net",
-    "license": "LGPL-2.1-only",
+    "license": "LGPL-2.1-or-later",
     "url": "https://github.com/libimobiledevice-win32/imobiledevice-net",
     "architecture": {
         "64bit": {

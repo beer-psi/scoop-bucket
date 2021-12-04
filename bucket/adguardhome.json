@@ -1,7 +1,7 @@
 {
     "version": "0.106.3",
     "homepage": "https://github.com/AdguardTeam/AdGuardHome",
-    "license": "GPL-3.0-only",
+    "license": "GPL-3.0-or-later",
     "extract_dir": "AdGuardHome",
     "architecture": {
         "64bit": {
@@ -14,10 +14,7 @@
         }
     },
     "bin": [
-        [
-            "AdGuardHome.exe",
-            "adguardhome"
-        ]
+        "AdGuardHome.exe"
     ],
     "checkver": {
         "github": "https://github.com/AdguardTeam/AdGuardHome"
