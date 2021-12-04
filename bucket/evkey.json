@@ -12,6 +12,12 @@
                     "EVKey64.exe",
                     "evkey"
                 ]
+            ],
+            "shortcuts": [
+                [
+                    "EVKey64.exe",
+                    "EVKey"
+                ]
             ]
         },
         "32bit": {
@@ -19,6 +25,12 @@
                 [
                     "EVKey32.exe",
                     "evkey"
+                ]
+            ],
+            "shortcuts": [
+                [
+                    "EVKey32.exe",
+                    "EVKey"
                 ]
             ]
         }
