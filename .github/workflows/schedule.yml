@@ -1,24 +1,18 @@
+name: Excavator
 on:
   schedule:
   - cron: '16 11 * * *'
   push:
-
-name: Excavator
+  
 jobs:
   excavate:
-    name: Excavate
+    name: Excavator
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@main
-    - name: Setting up Scoop
-      run: |
-        iwr -useb get.scoop.sh | iex
-    - name: Run checkver.ps1
-      run:
-        .\bin\checkver.ps1 * -u
-    - name: Update changed files
-      uses: EndBug/add-and-commit@v7
-      if: always()
-      with:
-        message: 'Update manifests'
-        signoff: true
+    - name: Excavator
+      uses: shovel-org/GithubActions@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SKIP_UPDATED: '1'
+        EVENT_TYPE: schedule
