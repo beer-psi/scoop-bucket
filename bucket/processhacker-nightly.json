@@ -1,10 +1,10 @@
 {
-    "version": "3.0.4399",
+    "version": "3.0.4517",
     "description": "A powerful, multi-purpose tool that helps you monitor system resources, debug software and detect malware. (nightly version)",
     "homepage": "https://processhacker.sourceforge.io/nightly.php",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v3.0.4399/processhacker-3.0.4399-bin.zip",
-    "hash": "05d380271749b9b268f9605e4b69715f23429648aef474e463c236b6ddf47dca",
+    "url": "https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v3.0.4517/processhacker-3.0.4517-bin.zip",
+    "hash": "445bb508edda84bbd24703b830e713ce5009fc2254caa0e4d1de025f2e07a265",
     "architecture": {
         "64bit": {
             "extract_dir": "64bit"
