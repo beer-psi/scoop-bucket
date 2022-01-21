@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: Excavate
-      uses: shovel-org/GithubActions@1.5.0.6
+      uses: shovel-org/GithubActions@main
       env:
         GITH_EMAIL: lacvtg.a1.2023@gmail.com
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
