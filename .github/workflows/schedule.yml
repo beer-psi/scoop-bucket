@@ -7,9 +7,9 @@ name: Excavator
 jobs:
   excavate:
     name: Excavate
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: Excavate
       uses: shovel-org/GithubActions@1.5.0.6
       env:
