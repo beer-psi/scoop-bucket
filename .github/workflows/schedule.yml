@@ -10,10 +10,15 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@main
-    - name: Excavate
-      uses: shovel-org/GithubActions@main
-      env:
-        GITH_EMAIL: lacvtg.a1.2023@gmail.com
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SKIP_UPDATED: '1'
-        SCOOP_BRANCH: main
+    - name: Setting up Scoop
+      run: |
+        iwr -useb get.scoop.sh | iex
+    - name: Run checkver.ps1
+      run:
+        .\bin\checkver.ps1 * -u
+    - name: Update changed files
+      uses: EndBug/add-and-commit@v7
+      if: always()
+      with:
+        message: 'Update manifests'
+        signoff: true
