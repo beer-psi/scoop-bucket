@@ -1,6 +1,8 @@
 on:
   schedule:
   - cron: '16 11 * * *'
+  push:
+
 name: Excavator
 jobs:
   excavate:
@@ -9,8 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Excavate
-      uses: Ash258/Scoop-GithubActions@stable
+      uses: shovel-org/GithubActions@1.5.0.6
       env:
         GITH_EMAIL: lacvtg.a1.2023@gmail.com
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SKIP_UPDATED: '1'
+        SCOOP_BRANCH: main
