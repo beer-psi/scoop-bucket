@@ -15,4 +15,5 @@ jobs:
       uses: shovel-org/GithubActions@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITH_EMAIL: github-actions[bot]@users.noreply.github.com
         SKIP_UPDATED: '1'
