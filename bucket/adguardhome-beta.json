@@ -1,16 +1,16 @@
 {
-    "version": "0.107.6",
+    "version": "0.108.0-b.6",
     "homepage": "https://github.com/AdguardTeam/AdGuardHome",
     "license": "GPL-3.0-or-later",
     "extract_dir": "AdGuardHome",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.6/AdGuardHome_windows_amd64.zip",
-            "hash": "4cda411f9cc1cf6903b67176a0d8237410041b5eccee7016697b6e3c9a17fc07"
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.6/AdGuardHome_windows_amd64.zip",
+            "hash": "fbe686f5ea4386e830327cf4882c0a723c26ac11957339525b814e9d8c01c306"
         },
         "32bit": {
-            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.6/AdGuardHome_windows_386.zip",
-            "hash": "da4848a33f609972fb0a80a96ed5c3babe2d15d8344539c9e410b8727468b837"
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.6/AdGuardHome_windows_386.zip",
+            "hash": "25b0bc6ed973caa5ac6eb3376f2cfed18447fbfa73129e3fcec95553f173fdca"
         }
     },
     "bin": "AdGuardHome.exe",
