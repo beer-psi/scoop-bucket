@@ -1,10 +1,10 @@
 {
-    "version": "4.3.7",
+    "version": "5.0.1",
     "license": "Unknown",
     "url": "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip",
     "homepage": "https://evkeyvn.com/",
     "pre_install": "if (!(Test-Path \"$persist_dir\\setting.ini\")) { New-Item \"$dir\\setting.ini\" | Out-Null }",
-    "hash": "3eb55a672e308ac897e78001ac4793992edb4e3521b1c3d591c4d1bc23818929",
+    "hash": "9671472133e5561eeff67ad7237c927d2acaa779e158c02c97d1504deee46734",
     "architecture": {
         "64bit": {
             "bin": [
