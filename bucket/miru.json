@@ -24,6 +24,12 @@
     "checkver": {
         "github": "https://github.com/ThaUnknown/miru"
     },
+    "shortcuts": [
+        [
+            "Miru.exe",
+            "Miru"
+        ]
+    ],
     "depends": "7zip",
     "autoupdate": {
         "architecture": {
