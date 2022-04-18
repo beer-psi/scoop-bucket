@@ -1,5 +1,6 @@
 {
     "version": "1.6.0",
+    "description": "Bittorrent streaming software for cats",
     "homepage": "https://github.com/ThaUnknown/miru",
     "license": "GPL-3.0-or-later",
     "architecture": {

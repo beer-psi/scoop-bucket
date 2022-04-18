@@ -1,5 +1,6 @@
 {
     "version": "1.2.3",
+    "description": "A better aria2 desktop frontend than AriaNg, containing all features of AriaNg and more features for desktop.",
     "license": "MIT",
     "extract_to": "",
     "architecture": {

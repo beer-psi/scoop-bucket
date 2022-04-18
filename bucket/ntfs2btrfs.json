@@ -1,5 +1,6 @@
 {
     "license": "GPL-2.0-or-later",
+    "description": "A tool that converts Microsoft's NTFS filesystem to the open-source filesystem Btrfs in-place",
     "extract_to": "",
     "version": "20210923",
     "bin": "ntfs2btrfs.exe",
