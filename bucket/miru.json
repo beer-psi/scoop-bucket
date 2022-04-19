@@ -14,7 +14,7 @@
                     "$extract_to = $(Join-Path $cachedir $cachefilenoext)",
                     "Expand-7zipArchive -Path $cachefile -DestinationPath $extract_to",
                     "Expand-7zipArchive -Path $(Join-Path $(Join-Path $extract_to '$PLUGINSDIR') 'app-64.7z') -DestinationPath $original_dir",
-                    "Remove-Item -Path $(Join-Path $original_dir '$PLUGINSDIR') -Recurse"
+                    "Remove-Item -Path $(Join-Path $original_dir '$PLUGINSDIR') -Recurse -ErrorAction SilentlyContinue"
                 ]
             }
         }
