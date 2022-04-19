@@ -1,19 +1,23 @@
 {
-    "version": "1.6.0",
+    "version": "1.7.0",
     "description": "Bittorrent streaming software for cats",
     "homepage": "https://github.com/ThaUnknown/miru",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/ThaUnknown/miru/releases/download/v1.6.0/Miru-win-x64-1.6.0.exe#/dl.7z",
-    "hash": "73a54630eccd41e0ca1917ec2254e8815001cac961e3d7a19a660a741afc8bc7",
-    "installer": {
-        "script": [
-            "$cachefile = $(cache_path miru $manifest.version $(arch_specific 'url' $manifest '64bit'))",
-            "$cachefilenoext = [System.IO.Path]::GetFileNameWithoutExtension($cachefile)",
-            "$extract_to = $(Join-Path $cachedir $cachefilenoext)",
-            "Expand-7zipArchive -Path $cachefile -DestinationPath $extract_to",
-            "Expand-7zipArchive -Path $(Join-Path $(Join-Path $extract_to '$PLUGINSDIR') 'app-64.7z') -DestinationPath $original_dir",
-            "Remove-Item -Path $(Join-Path $original_dir '$PLUGINSDIR') -Recurse"
-        ]
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/ThaUnknown/miru/releases/download/v1.7.0/Miru-win-x64-1.7.0.exe",
+            "hash": "0feacbca6bbd39d9a79d0ff740334630668576e7952d04120ab5470da7e309d5",
+            "installer": {
+                "script": [
+                    "$cachefile = $(cache_path miru $manifest.version $(arch_specific 'url' $manifest '64bit'))",
+                    "$cachefilenoext = [System.IO.Path]::GetFileNameWithoutExtension($cachefile)",
+                    "$extract_to = $(Join-Path $cachedir $cachefilenoext)",
+                    "Expand-7zipArchive -Path $cachefile -DestinationPath $extract_to",
+                    "Expand-7zipArchive -Path $(Join-Path $(Join-Path $extract_to '$PLUGINSDIR') 'app-64.7z') -DestinationPath $original_dir",
+                    "Remove-Item -Path $(Join-Path $original_dir '$PLUGINSDIR') -Recurse"
+                ]
+            }
+        }
     },
     "checkver": {
         "github": "https://github.com/ThaUnknown/miru"
@@ -26,6 +30,10 @@
     ],
     "depends": "7zip",
     "autoupdate": {
-        "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe"
+            }
+        }
     }
 }
