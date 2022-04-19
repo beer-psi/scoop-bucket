@@ -1,18 +1,21 @@
 {
-    "version": "nightly-56998b4",
+    "version": "0.1.0-15-ga9cd65e",
     "description": "Enmity debugger",
     "license": "Unknown",
-    "url": "https://github.com/beerpiss/legacy_enmity_debugger/releases/download/nightly-56998b4/enmitydebugger-windows.zip",
-    "homepage": "https://github.com/beerpiss/legacy_enmity_debugger",
-    "hash": "7986b2576f98d12a754d0d68ce72ef613a4ffc9618dc0147ce3be8153daab6fc",
+    "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v0.1.0-15-ga9cd65e/enmitydebugger-windows.zip",
+    "homepage": "https://github.com/beerpiss/enmitydebugger",
+    "hash": "7d638b5df4a1d8c633f726334dd908c1a3ed7c8d0801ab7fa6ce6d24e2ac48ae",
     "shortcuts": [
         [
-            "legacy_enmity_debugger.exe",
+            "enmitydebugger.exe",
             "Enmity Debugger"
         ]
     ],
     "checkver": {
-        "url": "https://github.com/beerpiss/legacy_enmity_debugger/releases",
-        "regex": "/releases/tag/(nightly-[0-9a-f]+)"
+        "url": "https://github.com/beerpiss/enmitydebugger/releases",
+        "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d\\-.]+\\-g[0-9a-f]+)"
+    },
+    "autoupdate": {
+        "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v$version/enmitydebugger-windows.zip"
     }
 }
