@@ -19,6 +19,7 @@
         "url": "https://github.com/AdguardTeam/AdGuardHome/releases",
         "regex": "/releases/tag/(?:v|V)?([\\d\\-b.]+)"
     },
+    "persist": "data",
     "autoupdate": {
         "architecture": {
             "64bit": {

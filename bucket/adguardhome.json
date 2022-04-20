@@ -18,6 +18,7 @@
     "checkver": {
         "github": "https://github.com/AdguardTeam/AdGuardHome"
     },
+    "persist": "data",
     "autoupdate": {
         "architecture": {
             "64bit": {
