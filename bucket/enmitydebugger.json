@@ -1,10 +1,10 @@
 {
-    "version": "0.1.0-15-ga9cd65e",
+    "version": "0.1.0-18-g2b69cd9",
     "description": "Enmity debugger",
     "license": "Unknown",
-    "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v0.1.0-15-ga9cd65e/enmitydebugger-windows.zip",
+    "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v0.1.0-18-g2b69cd9/enmitydebugger-windows.zip",
     "homepage": "https://github.com/beerpiss/enmitydebugger",
-    "hash": "7d638b5df4a1d8c633f726334dd908c1a3ed7c8d0801ab7fa6ce6d24e2ac48ae",
+    "hash": "c9d7adb9de0e3417e98d520e87dc6ebcdda631e0de20270bc290143b39efee0d",
     "shortcuts": [
         [
             "enmitydebugger.exe",
@@ -16,6 +16,9 @@
         "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d\\-.]+\\-g[0-9a-f]+)"
     },
     "autoupdate": {
-        "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v$version/enmitydebugger-windows.zip"
+        "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v$version/enmitydebugger-windows.zip",
+        "hash": {
+            "url": "$url.sha256"
+        }
     }
 }
