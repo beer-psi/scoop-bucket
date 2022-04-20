@@ -29,7 +29,6 @@
             "Miru"
         ]
     ],
-    "depends": "7zip",
     "autoupdate": {
         "architecture": {
             "64bit": {
