@@ -14,7 +14,7 @@
                     "EVKey"
                 ]
             ],
-            "post_install": "Remove-Item -Path $dir\\EVKey32.exe"
+            "post_install": "Remove-Item $original_dir\\EVKey32.exe; Remove-Item $original_dir\\evkau.exe"
         },
         "32bit": {
             "shortcuts": [
@@ -23,7 +23,7 @@
                     "EVKey"
                 ]
             ],
-            "post_install": "Remove-Item -Path $dir\\EVKey64.exe"
+            "post_install": "Remove-Item $original_dir\\EVKey64.exe; Remove-Item $original_dir\\evkau.exe"
         }
     },
     "persist": "setting.ini",
@@ -33,6 +33,5 @@
     },
     "autoupdate": {
         "url": "https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip"
-    },
-    "post_install": "Remove-Item -Path $dir\\evkau.exe"
+    }
 }
