@@ -1,0 +1,25 @@
+name: Build app index
+on:
+  push:
+    paths:
+    - '**.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      -
+        uses: actions/checkout@v3
+      -
+        run: python3 makeindex.py
+      - 
+        uses: EndBug/add-and-commit@v9
+        with: 
+          add: README.md
+          default_author: github_actions
+          message: 'Update package index'
+          push: true
+          commit: --signoff
+
