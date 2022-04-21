@@ -519,7 +519,7 @@ def do_version(js):
         version = "<i>%s</i>" % version
     if url == "":
         return version
-    return '[%s](%s "%s")' % (version, url, url)
+    return '[%s](%s "%s")' % (version[0:21], url, url)
 
 
 # pylint: disable=R0912 # Too many branches (22/12) (too-many-branches)
@@ -608,7 +608,7 @@ def main():
     for (name, row) in newlist:
         table.append(
             '|[%s](%s "%s")|%s|%s|%s|'
-            % (name, row["homepage"], row["homepage"], row["version"][0:21], row["description"], row["license"])
+            % (name, row["homepage"], row["homepage"], row["version"], row["description"], row["license"])
         )
 
     out = []
