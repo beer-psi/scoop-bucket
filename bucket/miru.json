@@ -1,12 +1,12 @@
 {
-    "version": "1.7.5",
+    "version": "1.7.6",
     "description": "Bittorrent streaming software for cats",
     "homepage": "https://github.com/ThaUnknown/miru",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ThaUnknown/miru/releases/download/v1.7.5/Miru-win-x64-1.7.5.exe",
-            "hash": "1aac0bdb7aca5ca4eba3902f571d46b5f82bc04880b41945de1da698e23eda16"
+            "url": "https://github.com/ThaUnknown/miru/releases/download/v1.7.6/Miru-win-x64-1.7.6.exe",
+            "hash": "2ee8133a53c8a8a476098b78ebcb3e82726e702ae43c938e0a96ebe3b8774400"
         }
     },
     "installer": {
