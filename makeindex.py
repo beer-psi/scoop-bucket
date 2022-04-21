@@ -22,7 +22,6 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-""" @todo add docstring """
 
 # ### imports ###
 
@@ -609,7 +608,7 @@ def main():
     for (name, row) in newlist:
         table.append(
             '|[%s](%s "%s")|%s|%s|%s|'
-            % (name, row["homepage"], row["homepage"], row["version"], row["description"], row["license"])
+            % (name, row["homepage"], row["homepage"], row["version"][0:21], row["description"], row["license"])
         )
 
     out = []
