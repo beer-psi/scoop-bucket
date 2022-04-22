@@ -26,7 +26,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe",
+                "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe#/dl.7z",
                 "hash": {
                     "url": "$baseurl/latest.yml",
                     "regex": "sha512:\\s+$base64"
