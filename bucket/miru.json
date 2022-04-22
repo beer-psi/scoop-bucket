@@ -5,24 +5,18 @@
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ThaUnknown/miru/releases/download/v1.8.0/Miru-win-x64-1.8.0.exe",
-            "hash": "2f4aabb2c737d5ec8e134e1d291e02c8a3c03f85b73a46999883c319e83358cb"
+            "url": "https://github.com/ThaUnknown/miru/releases/download/v1.8.0/Miru-win-x64-1.8.0.exe#/dl.7z",
+            "hash": "2f4aabb2c737d5ec8e134e1d291e02c8a3c03f85b73a46999883c319e83358cb",
+            "installer": {
+                "script": [
+                    "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+                ]
+            } 
         }
     },
-    "installer": {
-        "script": [
-            "$cachefile = $(cache_path miru $manifest.version $(arch_specific 'url' $manifest $architecture))",
-            "$cachefilenoext = [System.IO.Path]::GetFileNameWithoutExtension($cachefile)",
-            "$extract_to = $(Join-Path $cachedir $cachefilenoext)",
-            "Remove-Item -Path $extract_to -Recurse -ErrorAction SilentlyContinue",
-            "Expand-7zipArchive -Path $cachefile -DestinationPath $extract_to",
-            "Expand-7zipArchive -Path $(Join-Path $(Join-Path $extract_to '$PLUGINSDIR') 'app-*.7z') -DestinationPath $original_dir",
-            "Remove-Item -Path $extract_to,$(Join-Path $original_dir '$PLUGINSDIR') -Recurse -ErrorAction SilentlyContinue"
-        ]
-    },
-    "checkver": {
-        "github": "https://github.com/ThaUnknown/miru"
-    },
+    
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Recurse -Force",
+    "checkver": "github",
     "shortcuts": [
         [
             "Miru.exe",
@@ -32,7 +26,11 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe"
+                "url": "https://github.com/ThaUnknown/miru/releases/download/v$version/Miru-win-x64-$version.exe",
+                "hash": {
+                    "url": "$baseurl/latest.yml",
+                    "regex": "sha512:\\s+$base64"
+                }
             }
         }
     }
