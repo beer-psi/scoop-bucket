@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
     "version": "1.4.1",
-    "description": "Turns your Synaptics touchpad into a tablet. Kind of.",
+    "description": "Synaptics \"absolute mode\" emulation in software",
     "license": "MIT",
     "homepage": "https://github.com/apsun/AbsoluteTouch",
     "url": "https://github.com/apsun/AbsoluteTouch/releases/download/v1.4.1/AbsoluteTouch.exe",

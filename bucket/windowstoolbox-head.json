@@ -1,6 +1,6 @@
 {
     "version": "fbcbd5c24cffb1d012764ea3469eb598cc40e51b",
-    "description": "A powerful but simple, easy to use toolbox for Windows 10 / 11",
+    "description": "A powerful but simple, easy to use toolbox for Windows 10/11 (HEAD version)",
     "homepage": "https://github.com/WinTweakers/WindowsToolbox",
     "license": "MIT,Beerware",
     "url": "https://github.com/WinTweakers/WindowsToolbox/archive/fbcbd5c24cffb1d012764ea3469eb598cc40e51b.zip",
@@ -12,11 +12,13 @@
             "windowstoolbox"
         ]
     ],
+    "notes": "Does not work with PowerShell Core.",
     "checkver": {
         "url": "https://api.github.com/repos/WinTweakers/WindowsToolbox/git/refs",
         "jsonpath": "$[0].object.sha"
     },
     "autoupdate": {
-        "url": "https://github.com/WinTweakers/WindowsToolbox/archive/$version.zip"
+        "url": "https://github.com/WinTweakers/WindowsToolbox/archive/$version.zip",
+        "extract_dir": "WindowsToolbox-$version"
     }
 }

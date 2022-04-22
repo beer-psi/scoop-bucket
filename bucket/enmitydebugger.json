@@ -1,6 +1,6 @@
 {
     "version": "0.1.0-18-g2b69cd9",
-    "description": "Enmity debugger",
+    "description": "Debugger for Enmity, a Discord client mod for iOS (legacy version)",
     "license": "Unknown",
     "url": "https://github.com/beerpiss/enmitydebugger/releases/download/v0.1.0-18-g2b69cd9/enmitydebugger-windows.zip",
     "homepage": "https://github.com/beerpiss/enmitydebugger",

@@ -1,6 +1,6 @@
 {
     "version": "1.0.4",
-    "description": "A powerful but simple, easy to use toolbox for Windows 10 / 11",
+    "description": "A powerful but simple, easy to use toolbox for Windows 10/11",
     "homepage": "https://github.com/WinTweakers/WindowsToolbox",
     "license": "MIT,Beerware",
     "url": "https://github.com/WinTweakers/WindowsToolbox/archive/1.0.4.zip",
@@ -12,6 +12,7 @@
             "windowstoolbox"
         ]
     ],
+    "notes": "Does not work with PowerShell Core.",
     "checkver": {
         "github": "https://github.com/WinTweakers/WindowsToolbox"
     },
