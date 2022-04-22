@@ -2,7 +2,7 @@ name: Build app index
 on:
   push:
     paths:
-    - '**.json'
+    - 'bucket/*.json'
     - 'makeindex.py'
     - '.github/workflows/index.yaml'
 
