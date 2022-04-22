@@ -1,6 +1,6 @@
 {
     "version": "1.8.0",
-    "description": "Bittorrent streaming software for cats",
+    "description": "Stream anime torrents, real-time with no waiting for downloads",
     "homepage": "https://github.com/ThaUnknown/miru",
     "license": "GPL-3.0-or-later",
     "architecture": {
