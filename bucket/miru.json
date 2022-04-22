@@ -11,10 +11,10 @@
                 "script": [
                     "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
                 ]
-            } 
+            }
         }
     },
-    
+
     "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Recurse -Force",
     "checkver": "github",
     "shortcuts": [
