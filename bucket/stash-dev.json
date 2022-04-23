@@ -11,9 +11,7 @@
     },
     "url": "https://github.com/stashapp/stash/releases/download/latest_develop/stash-win.exe",
     "hash": "sha1:0f04caaffd28e711a61f9119bb3e96585e70cba6",
-    "pre_install": "if (!(Test-Path \"$persist_dir\\config.yml\")) { New-Item \"$dir\\config.yml\" | Out-Null }",
     "bin": "stash-win.exe",
-    "persist": "config.yml",
     "checkver": {
         "url": "https://github.com/stashapp/stash/releases/tag/latest_develop",
         "regex": "(?:v|V)?([\\d\\-.]+\\-g[0-9a-f]+)"
