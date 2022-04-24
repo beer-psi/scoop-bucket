@@ -1,5 +1,8 @@
 import { DOMParser, NodeList, HTMLElement } from "https://esm.sh/linkedom";
-import { existsSync } from "https://deno.land/std@0.114.0/fs/mod.ts";
+import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
+
+const lru = new LRU(1);
+
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
 
@@ -86,25 +89,18 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
   })
   if (respHead.headers.get('last-modified')) {
     // @ts-ignore: Already checked for nullness
-    const lastModified = new Date(respHead.headers.get('last-modified')).getTime()
-    if (!existsSync(`cache/${lastModified}.html`)) {
-      try {
-        await Deno.remove('cache', { recursive: true })
-      } catch {
-        // We don't care if the directory doesn't already exists
-      } finally {
-        await Deno.mkdir('cache')
-      }
+    const lastModified = String(new Date(respHead.headers.get('last-modified')).getTime())
+    if (!lru.has(lastModified)) {
       const resp = await fetch(url, {
         method: 'GET',
         headers: {
           'user-agent': 'Deno/1.0 (Deno Deploy)'
         }
       });
-      await Deno.writeTextFile(`cache/${lastModified}.html`, await resp.text())
+      lru.set(lastModified, await resp.text())
     }
     return new Response(
-      await Deno.readTextFile(`cache/${lastModified}.html`),
+      <string>lru.get(lastModified),
       {
         status: 200,
         statusText: 'OK',
