@@ -1,4 +1,5 @@
 import { DOMParser, NodeList, HTMLElement } from "https://esm.sh/linkedom";
+import { existsSync } from "https://deno.land/std@0.114.0/fs/mod.ts";
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
 
@@ -76,13 +77,50 @@ function getVersionsMacOS(document: HTMLDocument, type: Tables): ITunesVersion[]
   });
 }
 
-export default async function handleRequest(request: Request): Promise<Response> {
-  const resp = await fetch(ITUNES_VERSIONS_TABLE, {
+async function fetchWikiWithCache(url: string): Promise<Response> {
+  const respHead = await fetch(url, {
+    method: 'HEAD',
+    headers: {
+      'user-agent': 'Deno/1.0 (Deno Deploy)'
+    }
+  })
+  if (respHead.headers.get('last-modified')) {
+    // @ts-ignore: Already checked for nullness
+    const lastModified = new Date(respHead.headers.get('last-modified')).getTime()
+    if (!existsSync(`cache/${lastModified}.html`)) {
+      try {
+        await Deno.remove('cache', { recursive: true })
+      } catch {
+        // We don't care if the directory doesn't already exists
+      } finally {
+        await Deno.mkdir('cache')
+      }
+      const resp = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'user-agent': 'Deno/1.0 (Deno Deploy)'
+        }
+      });
+      await Deno.writeTextFile(`cache/${lastModified}.html`, await resp.text())
+    }
+    return new Response(
+      await Deno.readTextFile(`cache/${lastModified}.html`),
+      {
+        status: 200,
+        statusText: 'OK',
+      }
+    )
+  }
+  return fetch(url, {
     method: 'GET',
     headers: {
       'user-agent': 'Deno/1.0 (Deno Deploy)'
     }
   });
+}
+
+export default async function handleRequest(request: Request): Promise<Response> {
+  const resp = await fetchWikiWithCache(ITUNES_VERSIONS_TABLE);
   if (resp.ok) {
     const document = new DOMParser().parseFromString(await resp.text(), "text/html")
     const sp = new URL(request.url).searchParams
