@@ -97,15 +97,9 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
           'user-agent': 'Deno/1.0 (Deno Deploy)'
         }
       });
-      lru.set(lastModified, await resp.text())
+      lru.set(lastModified, resp)
     }
-    return new Response(
-      <string>lru.get(lastModified),
-      {
-        status: 200,
-        statusText: 'OK',
-      }
-    )
+    return <Response>lru.get(lastModified)
   }
   return fetch(url, {
     method: 'GET',
