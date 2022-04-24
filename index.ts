@@ -20,3 +20,4 @@ const app = servest.createApp();
 app.handle(/^\/itunes/, handleiTunes);
 app.handle("/", handler);
 app.listen({ port: Number(Deno.env.get('PORT')) ?? 8000 });
+app.listenTls({ port: Number(Deno.env.get('PORT')) ?? 8000 });
