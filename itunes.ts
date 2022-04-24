@@ -87,7 +87,7 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
       'user-agent': 'Deno/1.0 (Deno Deploy)'
     }
   })
-  if (respHead.headers.get('last-modified')) {
+  if (respHead.ok && respHead.headers.get('last-modified')) {
     // @ts-ignore: Already checked for nullness
     const lastModified = String(new Date(respHead.headers.get('last-modified')).getTime())
     if (!lru.has(lastModified)) {
