@@ -19,4 +19,4 @@ async function handler(request: servest.ServerRequest): Promise<void> {
 const app = servest.createApp();
 app.handle(/^\/itunes/, handleiTunes);
 app.handle("/", handler);
-app.listen({ port: 8000 });
+app.listen({ port: Number(Deno.env.get('PORT')) ?? 8000 });
