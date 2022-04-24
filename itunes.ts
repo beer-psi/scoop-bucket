@@ -1,6 +1,4 @@
 import { DOMParser, NodeList, HTMLElement } from "https://esm.sh/linkedom";
-import * as servest from "https://deno.land/x/servest@v1.3.1/mod.ts";
-
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
 
@@ -78,7 +76,7 @@ function getVersionsMacOS(document: HTMLDocument, type: Tables): ITunesVersion[]
   });
 }
 
-export default async function handleRequest(request: servest.ServerRequest): Promise<void> {
+export default async function handleRequest(request: Request): Promise<Response> {
   const resp = await fetch(ITUNES_VERSIONS_TABLE, {
     method: 'GET',
     headers: {
@@ -87,7 +85,7 @@ export default async function handleRequest(request: servest.ServerRequest): Pro
   });
   if (resp.ok) {
     const document = new DOMParser().parseFromString(await resp.text(), "text/html")
-    const sp = new URLSearchParams(request.url.split('?', 2)[1])
+    const sp = new URL(request.url).searchParams
     console.log(sp)
     if (Array.from(sp.keys()).length === 0) {
       const response = {
@@ -98,13 +96,15 @@ export default async function handleRequest(request: servest.ServerRequest): Pro
         },
         macos: getVersionsMacOS(document, Tables.MACOS)
       }
-      return await request.respond({
-        status: 200,
-        headers: new Headers({
-          'content-type': 'application/json; charset=utf-8',
-        }),
-        body: JSON.stringify(response)
-      });
+      return new Response(
+        JSON.stringify(response),
+        {
+          status: 200,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',
+          }
+        }
+      );
     }
     const os: string | null = sp.get('os')
     const type: string | null = sp.get('type')
@@ -116,55 +116,83 @@ export default async function handleRequest(request: servest.ServerRequest): Pro
         data = getVersionsWindows(document, Tables.WINDOWS_64BIT)
       } else if (type === 'older_video_cards') {
         data = getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS)
+      } else if (type === null) {
+        data = { 
+          x86: getVersionsWindows(document, Tables.WINDOWS_32BIT),
+          x64: getVersionsWindows(document, Tables.WINDOWS_64BIT),
+          older_video_cards: getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS),
+        }
       } else {
-        return await request.respond({
-          status: 400,
-          headers: new Headers({
-            'content-type': 'application/json; charset=utf-8',
-          }),
-          body: JSON.stringify({ message: "invalid type for os windows", valid: ["x86", "x64", "older_video_cards"] })
-        })
+        return new Response(
+          JSON.stringify({ message: "invalid type for os windows", valid: ["x86", "x64", "older_video_cards"] }),
+          {
+            status: 400,
+            headers: {
+              'content-type': 'application/json; charset=utf-8',
+            }
+          }
+        )
       }
     } else if (os === 'macos') {
       data = getVersionsMacOS(document, Tables.MACOS)
     } else {
-      return await request.respond({
-        status: 400,
-        headers: new Headers({
-          'content-type': 'application/json; charset=utf-8',
-        }),
-        body: JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] })
-      })
+      return new Response(
+        JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] }),
+        {
+          status: 400,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',  
+          }
+        }
+      )
     }
     if (sp.has('dl')) {
+      if (os === 'windows' && !sp.has('type')) {
+        return new Response(
+          JSON.stringify({ message: "cannot download without a type", valid: ["x86", "x64", "older_video_cards"] }),
+          {
+            status: 400,
+            headers: {
+              'content-type': 'application/json; charset=utf-8',  
+            }
+          }
+        )
+      }
       const version = sp.get('dl');
-      const url = version ? data.filter((value) => value.version === version)[0].url : data[data.length - 1].url;
+      const versions = <ITunesVersion[]>data;
+      const url = version ? versions.filter((value) => value.version === version)[0].url : versions.map(value => value.url).filter(value => value).at(-1);
       if (url) {
-        return await request.redirect(url)
+        return Response.redirect(url, 302)
       } else {
-        return await request.respond({
-          status: 404,
-          headers: new Headers({
-            'content-type': 'application/json; charset=utf-8',
-          }),
-          body: JSON.stringify({ message: "download link not found" })
-        })
+        return new Response(
+          JSON.stringify({ message: "download link not found" }),
+          {
+            status: 404,
+            headers: {
+              'content-type': 'application/json; charset=utf-8',  
+            }
+          }
+        )
       }
     } else {
-      return await request.respond({
-        status: 200,
-        headers: new Headers({
-          'content-type': 'application/json; charset=utf-8',
-        }),
-        body: JSON.stringify(data)
-      });
+      return new Response(
+        JSON.stringify(data),
+        {
+          status: 200,
+          headers: {
+            'content-type': 'application/json; charset=utf-8',
+          }
+        }
+      )
     }
   }
-  return await request.respond({
-    status: 500,
-    headers: new Headers({
-      'content-type': 'application/json; charset=utf-8',
-    }),
-    body: JSON.stringify({ message: 'couldn\'t process your request '}),
-  });
+  return new Response(
+    JSON.stringify({ message: 'couldn\'t process your request '}),
+    {
+      status: 500,
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
+      }
+    }
+  )
 }
