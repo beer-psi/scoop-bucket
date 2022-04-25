@@ -188,6 +188,17 @@ export default async function handleRequest(request: Request): Promise<Response>
       )
     }
     if (sp.has('dl')) {
+      if (!os) {
+        return new Response(
+          JSON.stringify({ message: "cannot download without os", valid: ["windows", "macos"] }),
+          {
+            status: 400,
+            headers: {
+              'content-type': 'application/json; charset=utf-8',  
+            }
+          }
+        )
+      }
       if (os === 'windows' && !sp.has('type')) {
         return new Response(
           JSON.stringify({ message: "cannot download without a type", valid: ["x86", "x64", "older_video_cards"] }),
