@@ -5,14 +5,22 @@ The Deno API that powers my scoop bucket. Hosted on [Deno Deploy](https://deno.c
 Base URL: `https://beerpsi-scoop.deno.dev`
 
 <details>
-    <summary>`GET /itunes`</summary>
+    <summary>GET /itunes</summary>
 
 Information source: [The iPhone Wiki](https://www.theiphonewiki.com/wiki/ITunes)
 
 Query parameters:
-- `os` (`windows | macos`) 
-- `type` (`x86 | x64 | older_video_cards`) Required if using `dl` and `os` is Windows
-- `dl`: Leave blank to download latest version **with a download**, or specify a version yourself
+```ts
+interface Parameters {
+    os: 'windows' | 'macos';
+
+    // Required if using `dl` and `os` is Windows
+    type?: 'x86' | 'x64' | 'older_video_cards';
+
+    // Leave blank to download latest version **with a download**, or specify a version yourself
+    dl?: string
+}
+```
 
 If `dl` isn't specified, return JSON with information about iTunes versions, filtered by `os` and `type`:
 ```ts
@@ -68,14 +76,14 @@ interface Parameters {
     lang: 'en-US';
 
     // Filtering returned results
-    id: string;
-    version: string;
-    arch: string;
-    name: string;
-    extension: string;
+    id?: string;
+    version?: string;
+    arch?: string;
+    name?: string;
+    extension?: string;
 
     // Download
-    dl: any;
+    dl?: any;
 }
 ```
 
