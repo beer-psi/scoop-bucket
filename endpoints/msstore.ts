@@ -83,6 +83,7 @@ export default async function handleRequest(request: Request): Promise<Response>
         statusText: ReasonPhrases.BAD_REQUEST,
         headers: {
           'content-type': 'application/json; charset=utf-8',
+          'access-control-allow-origin': '*',
         }
       }
     )
@@ -124,6 +125,7 @@ export default async function handleRequest(request: Request): Promise<Response>
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
             headers: {
               'content-type': 'application/json; charset=UTF-8',
+              'access-control-allow-origin': '*',
             }
           }
         )
@@ -136,6 +138,7 @@ export default async function handleRequest(request: Request): Promise<Response>
             statusText: ReasonPhrases.NOT_FOUND,
             headers: {
               'content-type': 'application/json; charset=utf-8',  
+              'access-control-allow-origin': '*',
             }
           }
         )
@@ -147,6 +150,7 @@ export default async function handleRequest(request: Request): Promise<Response>
       {
         headers: {
           'content-type': 'application/json; charset=UTF-8',
+          'access-control-allow-origin': '*',
         }
       }
     )
@@ -158,6 +162,7 @@ export default async function handleRequest(request: Request): Promise<Response>
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
       headers: {
         'content-type': 'application/json; charset=utf-8',
+        'access-control-allow-origin': '*',
       }
     }
   )

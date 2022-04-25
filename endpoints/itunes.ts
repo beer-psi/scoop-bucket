@@ -156,6 +156,7 @@ export default async function handleRequest(request: Request): Promise<Response>
           statusText: ReasonPhrases.OK,
           headers: {
             'content-type': 'application/json; charset=utf-8',
+            'access-control-allow-origin': '*',
           }
         }
       );
@@ -176,6 +177,7 @@ export default async function handleRequest(request: Request): Promise<Response>
             statusText: ReasonPhrases.BAD_REQUEST,
             headers: {
               'content-type': 'application/json; charset=utf-8',
+              'access-control-allow-origin': '*',
             }
           }
         )
@@ -188,6 +190,7 @@ export default async function handleRequest(request: Request): Promise<Response>
           statusText: ReasonPhrases.BAD_REQUEST,
           headers: {
             'content-type': 'application/json; charset=utf-8',  
+            'access-control-allow-origin': '*',
           }
         }
       )
@@ -200,7 +203,8 @@ export default async function handleRequest(request: Request): Promise<Response>
             status: StatusCodes.MULTIPLE_CHOICES,
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
             headers: {
-              'content-type': 'application/json; charset=utf-8',  
+              'content-type': 'application/json; charset=utf-8', 
+              'access-control-allow-origin': '*', 
             }
           }
         )
@@ -218,6 +222,7 @@ export default async function handleRequest(request: Request): Promise<Response>
             statusText: ReasonPhrases.NOT_FOUND,
             headers: {
               'content-type': 'application/json; charset=utf-8',  
+              'access-control-allow-origin': '*',
             }
           }
         )
@@ -230,6 +235,7 @@ export default async function handleRequest(request: Request): Promise<Response>
           statusText: ReasonPhrases.OK,
           headers: {
             'content-type': 'application/json; charset=utf-8',
+            'access-control-allow-origin': '*',
           }
         }
       )
@@ -242,6 +248,7 @@ export default async function handleRequest(request: Request): Promise<Response>
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
       headers: {
         'content-type': 'application/json; charset=utf-8',
+        'access-control-allow-origin': '*',
       }
     }
   )
