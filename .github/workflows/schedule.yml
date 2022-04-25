@@ -2,9 +2,6 @@ on:
   schedule:
   - cron: '*/20 4 * * *'
   workflow_dispatch:
-  push:
-    paths:
-    - '.github/workflows/schedule.yml'
 name: Excavator
 jobs:
   excavate:
