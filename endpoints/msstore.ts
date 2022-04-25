@@ -1,4 +1,6 @@
-import { DOMParser, NodeList, HTMLElement } from 'https://esm.sh/linkedom';
+import { DOMParser, NodeList } from 'https://esm.sh/linkedom';
+import { HTMLDocument } from 'https://cdn.esm.sh/v78/linkedom@0.14.7/types/html/document.d.ts';
+import { StatusCodes, ReasonPhrases } from 'https://esm.sh/http-status-codes@2.2.0';
 
 const UPSTREAM_API = 'https://store.rg-adguard.net/api/GetFiles'
 
@@ -68,10 +70,17 @@ export default async function handleRequest(request: Request): Promise<Response>
           'url': 'string',
           'ring': "'Fast' | 'Slow' | 'RP' | 'Retail'",
           'lang': 'en-US',
+          'id': '?string',
+          'version': '?string',
+          'arch': '?string',
+          'name': '?string',
+          'extension': '?string',
+          'dl': 'any',
         }
       }, null, 2),
       {
-        status: 400,
+        status: StatusCodes.BAD_REQUEST,
+        statusText: ReasonPhrases.BAD_REQUEST,
         headers: {
           'content-type': 'application/json; charset=utf-8',
         }
@@ -111,7 +120,8 @@ export default async function handleRequest(request: Request): Promise<Response>
             filters: ['id', 'version', 'arch', 'name', 'extension'],
           }, null, 2),
           {
-            status: 300,
+            status: StatusCodes.MULTIPLE_CHOICES,
+            statusText: ReasonPhrases.MULTIPLE_CHOICES,
             headers: {
               'content-type': 'application/json; charset=UTF-8',
             }
@@ -122,14 +132,15 @@ export default async function handleRequest(request: Request): Promise<Response>
         return new Response(
           JSON.stringify({ message: 'download link not found' }),
           {
-            status: 404,
+            status: StatusCodes.NOT_FOUND,
+            statusText: ReasonPhrases.NOT_FOUND,
             headers: {
               'content-type': 'application/json; charset=utf-8',  
             }
           }
         )
       }
-      return Response.redirect(ret[0].file.url, 302)
+      return Response.redirect(ret[0].file.url, StatusCodes.TEMPORARY_REDIRECT)
     }
     return new Response(
       JSON.stringify(ret),
@@ -143,7 +154,8 @@ export default async function handleRequest(request: Request): Promise<Response>
   return new Response(
     JSON.stringify({ message: 'couldn\'t process your request'}),
     {
-      status: 500,
+      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       }

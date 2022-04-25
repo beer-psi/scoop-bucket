@@ -1,5 +1,7 @@
 import { DOMParser, NodeList, HTMLElement } from 'https://esm.sh/linkedom';
+import { HTMLDocument } from 'https://cdn.esm.sh/v78/linkedom@0.14.7/types/html/document.d.ts';
 import { LRU } from 'https://deno.land/x/lru@1.0.2/mod.ts';
+import { StatusCodes, ReasonPhrases } from 'https://esm.sh/http-status-codes@2.2.0';
 
 const lru = new LRU(1);
 const lruJSON = new LRU(1);
@@ -108,8 +110,8 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
     return new Response(
       <string>lru.get(lastModified),
       {
-        status: 200,
-        statusText: 'OK',
+        status: StatusCodes.OK,
+        statusText: ReasonPhrases.OK,
         headers: new Headers({
           'last-modified': new Date(Number(lastModified)).toISOString()
         })
@@ -150,7 +152,8 @@ export default async function handleRequest(request: Request): Promise<Response>
       return new Response(
         JSON.stringify(allVersions),
         {
-          status: 200,
+          status: StatusCodes.OK,
+          statusText: ReasonPhrases.OK,
           headers: {
             'content-type': 'application/json; charset=utf-8',
           }
@@ -169,7 +172,8 @@ export default async function handleRequest(request: Request): Promise<Response>
         return new Response(
           JSON.stringify({ message: 'invalid type for os', valid: os === 'windows' ? ['x86', 'x64', 'older_video_cards'] : [] }),
           {
-            status: 400,
+            status: StatusCodes.BAD_REQUEST,
+            statusText: ReasonPhrases.BAD_REQUEST,
             headers: {
               'content-type': 'application/json; charset=utf-8',
             }
@@ -180,7 +184,8 @@ export default async function handleRequest(request: Request): Promise<Response>
       return new Response(
         JSON.stringify({ message: 'invalid os', valid: ['windows', 'macos'] }),
         {
-          status: 400,
+          status: StatusCodes.BAD_REQUEST,
+          statusText: ReasonPhrases.BAD_REQUEST,
           headers: {
             'content-type': 'application/json; charset=utf-8',  
           }
@@ -190,9 +195,10 @@ export default async function handleRequest(request: Request): Promise<Response>
     if (sp.has('dl')) {
       if (os === 'windows' && !sp.has('type')) {
         return new Response(
-          JSON.stringify({ message: 'cannot download without a type', valid: ['x86', 'x64', 'older_video_cards'] }),
+          JSON.stringify({ message: 'Need to specify a build type', valid: ['x86', 'x64', 'older_video_cards'] }),
           {
-            status: 400,
+            status: StatusCodes.MULTIPLE_CHOICES,
+            statusText: ReasonPhrases.MULTIPLE_CHOICES,
             headers: {
               'content-type': 'application/json; charset=utf-8',  
             }
@@ -203,12 +209,13 @@ export default async function handleRequest(request: Request): Promise<Response>
       const versions = <ITunesVersion[]>data;
       const url = version ? versions.filter((value) => value.version === version)[0].url : versions.map(value => value.url).filter(value => value).at(-1);
       if (url) {
-        return Response.redirect(url, 302)
+        return Response.redirect(url, StatusCodes.TEMPORARY_REDIRECT)
       } else {
         return new Response(
           JSON.stringify({ message: 'download link not found' }),
           {
-            status: 404,
+            status: StatusCodes.NOT_FOUND,
+            statusText: ReasonPhrases.NOT_FOUND,
             headers: {
               'content-type': 'application/json; charset=utf-8',  
             }
@@ -219,7 +226,8 @@ export default async function handleRequest(request: Request): Promise<Response>
       return new Response(
         JSON.stringify(data),
         {
-          status: 200,
+          status: StatusCodes.OK,
+          statusText: ReasonPhrases.OK,
           headers: {
             'content-type': 'application/json; charset=utf-8',
           }
@@ -230,7 +238,8 @@ export default async function handleRequest(request: Request): Promise<Response>
   return new Response(
     JSON.stringify({ message: 'couldn\'t process your request'}),
     {
-      status: 500,
+      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       }

@@ -1,6 +1,7 @@
 import handleiTunes from './endpoints/itunes.ts';
 import handleStore from './endpoints/msstore.ts';
 import { serve } from 'https://deno.land/std@0.136.0/http/server.ts';
+import { StatusCodes, ReasonPhrases } from 'https://esm.sh/http-status-codes@2.2.0';
 
 async function handler(request: Request): Promise<Response> {
   const { pathname } = new URL(request.url)
@@ -21,7 +22,8 @@ async function handler(request: Request): Promise<Response> {
       ]
     }, null, 2),
     {
-      status: 200,
+      status: StatusCodes.MULTIPLE_CHOICES,
+      statusText: ReasonPhrases.MULTIPLE_CHOICES,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       }
