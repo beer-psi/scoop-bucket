@@ -1,4 +1,4 @@
-import { DOMParser, NodeList, HTMLElement } from 'https://esm.sh/linkedom';
+import { DOMParser, NodeList, HTMLElement } from 'https://esm.sh/linkedom@0.14.7';
 import { HTMLDocument } from 'https://cdn.esm.sh/v78/linkedom@0.14.7/types/html/document.d.ts';
 import { LRU } from 'https://deno.land/x/lru@1.0.2/mod.ts';
 import { StatusCodes, ReasonPhrases } from 'https://esm.sh/http-status-codes@2.2.0';
