@@ -1,0 +1,68 @@
+{
+    "version": "12.12.3.5",
+    "description": "iTunes is the easiest way to enjoy everything you need to be entertained - music, movies, and TV shows - and keep it all easily organized. Rent or buy movies, download your favorite TV shows, and more.",
+    "notes": [
+        "Currently, you will need to manually stop services before uninstalling/updating:",
+        "# Stop-Service 'Apple Mobile Device Service'",
+        "# Stop-Service 'Bonjour Service'",
+        "This is a known issue that will be fixed when ScoopInstaller/Scoop#4218 merges."
+    ],
+    "license": "Proprietary",
+    "homepage": "https://www.apple.com/itunes/",
+    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=12.12.3.5#/dl.7z",
+    "hash": "sha1:678f3336e6acde79580e885e2716b49b23bf265e",
+    "pre_install": [
+        "if (-not $global) {",
+        "   throw 'This package must be installed globally.'",
+        "}",
+        "Remove-Item \"$dir\\SetupAdmin.exe\", \"$dir\\AppleSoftwareUpdate.msi\"",
+        "Stop-Service 'Apple Mobile Device Service'",
+        "Stop-Service 'Bonjour Service'"
+    ],
+    "installer": {
+        "script": [
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\iTunes.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\", \"INSTALLDIR=$dir\") -RunAs | Out-Null",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\AppleMobileDeviceSupport.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\AppleMobileDeviceSupport\", \"INSTALLDIR=$dir\\AppleMobileDeviceSupport\") -RunAs | Out-Null",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\Bonjour.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\Bonjour\", \"INSTALLDIR=$dir\\Bonjour\") -RunAs | Out-Null",
+            "if (Test-Path \"$dir\\AppleApplicationSupport.msi\") {",
+            "    Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\AppleApplicationSupport.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\AppleApplicationSupport\", \"INSTALLDIR=$dir\\AppleApplicationSupport\") -RunAs | Out-Null",
+            "}",
+            "if (Test-Path \"$dir\\QuickTime.msi\") {",
+            "    Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\QuickTime.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\QuickTime\", \"INSTALLDIR=$dir\\QuickTime\") -RunAs | Out-Null",
+            "}"
+        ]
+    },
+    "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\iTunes\"",
+    "uninstaller": {
+        "script": [
+            "Stop-Service 'Apple Mobile Device Service'",
+            "Stop-Service 'Bonjour Service'",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\iTunes.msi\", '/qn', '/norestart') -RunAs | Out-Null",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\AppleMobileDeviceSupport.msi\", '/qn', '/norestart') -RunAs | Out-Null",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\Bonjour.msi\", '/qn', '/norestart') -RunAs | Out-Null",
+            "if (Test-Path \"$dir\\AppleApplicationSupport.msi\") {",
+            "   Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\AppleApplicationSupport.msi\", '/qn', '/norestart') -RunAs | Out-Null",
+            "}",
+            "if (Test-Path \"$dir\\QuickTime.msi\") {",
+            "    Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\QuickTime.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\QuickTime\") -RunAs | Out-Null",
+            "}"
+        ]
+    },
+    "shortcuts": [
+        [
+            "iTunes.exe",
+            "iTunes"
+        ]
+    ],
+    "checkver": {
+        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86",
+        "jsonpath": "$[-1:].version"
+    },
+    "autoupdate": {
+        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=$version#/dl.7z",
+        "hash": {
+            "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86",
+            "jsonpath": "$[-1:].sha1sum"
+        }
+    }
+}
