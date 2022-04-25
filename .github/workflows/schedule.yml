@@ -1,19 +1,19 @@
-name: Excavator
 on:
+  workflow_dispatch:
   schedule:
-  - cron: '20 */4 * * *'
-
+    # run every 4 hours
+    - cron: '20 */4 * * *'
+name: Excavator
 jobs:
   excavate:
-    name: Excavator
+    name: Excavate
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@main
-    - name: Sanity check
-      run: echo $env:GITHUB_EVENT_NAME
-    - name: Excavator
-      uses: shovel-org/GithubActions@main
+    - 
+      uses: actions/checkout@main
+    - 
+      name: Excavate
+      uses: ScoopInstaller/GithubActions@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITH_EMAIL: github-actions[bot]@users.noreply.github.com
         SKIP_UPDATED: '1'
