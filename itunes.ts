@@ -160,18 +160,14 @@ export default async function handleRequest(request: Request): Promise<Response>
     const os: string | null = sp.get('os')
     const type: string | null = sp.get('type')
     let data;
-    if (os === 'windows') {
-      if (type === 'x86') {
-        data = allVersions.windows.x86
-      } else if (type === 'x64') {
-        data = allVersions.windows.x64
-      } else if (type === 'older_video_cards') {
-        data = allVersions.windows.older_video_cards
-      } else if (type === null) {
-        data = allVersions.windows
+    if (os === 'windows' || os === 'macos') {
+      if (type === null) {
+        data = allVersions[os]
+      } else if (os === 'windows' && type !== null && Object.prototype.hasOwnProperty.call(allVersions[os], type)) {
+        data = allVersions[os][type]
       } else {
         return new Response(
-          JSON.stringify({ message: "invalid type for os windows", valid: ["x86", "x64", "older_video_cards"] }),
+          JSON.stringify({ message: "invalid type for os", valid: os === 'windows' ? ['x86', 'x64', 'older_video_cards'] : [] }),
           {
             status: 400,
             headers: {
@@ -180,8 +176,6 @@ export default async function handleRequest(request: Request): Promise<Response>
           }
         )
       }
-    } else if (os === 'macos') {
-      data = allVersions.macos
     } else {
       return new Response(
         JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] }),
