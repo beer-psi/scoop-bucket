@@ -10,9 +10,16 @@ jobs:
     steps:
     -
       uses: actions/checkout@v3
+    - 
+      name: Checkout Scoop
+      shell: pwsh
+      run: |
+        iwr -useb https://get.scoop.sh | iex
+        scoop install hub
+        echo "SCOOP_HOME=$(Join-Path $env:SCOOP 'apps\scoop\current')" > $env:GITHUB_ENV
     -
       name: Excavator
-      uses: beerpiss/GithubActions@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SKIP_UPDATED: '1'
+      shell: pwsh
+      run: |
+        & (Join-Path $env:SCOOP_HOME 'bin\auto-pr.ps1') -Upstream "$env:GITHUB_REPOSITORY:main" -OriginBranch main -Dir bucket -Push -SkipUpdated
+        & (Join-Path $env:SCOOP_HOME 'bin\auto-pr.ps1') -Upstream "$env:GITHUB_REPOSITORY:main" -OriginBranch main -Dir experimental -Push -SkipUpdated
