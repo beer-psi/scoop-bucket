@@ -6,7 +6,14 @@ interface StoreData {
   id: string;
   version: string;
   arch: string;
-  file: Record<'url' | 'name' | 'extension' | 'size' | 'sha1sum' | 'expiry', string>;
+  file: {
+    url: string;
+    name: string;
+    extension: string;
+    size: string:
+    sha1sum: string
+    expiry: string
+  };
 }
 
 function parseDocument(document: HTMLDocument): StoreData[] {
