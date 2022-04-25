@@ -1,0 +1,375 @@
+openapi: 3.0.1
+info:
+  title: beerpsi-scoop
+  description: |
+    Helper API for beerpsi's Scoop bucket, hosted on [Deno Deploy](https://deno.com/deploy).
+    
+    CORS enabled.
+  contact:
+    email: beerpsi@duck.com
+  license:
+    name: MIT
+    url: https://github.com/beerpiss/scoop-bucket/blob/api/LICENSE
+  version: 1.0.0
+externalDocs:
+  description: Check the README
+  url: https://github.com/beerpiss/scoop-bucket/blob/api/README.md
+servers:
+- url: https://beerpsi-scoop.deno.dev/
+
+paths:
+  /itunes:
+    get:
+      summary: Get iTunes download links
+      parameters:
+      - in: query
+        name: os
+        schema:
+          type: string
+          enum:
+          - windows
+          - macos
+      - in: query
+        name: type
+        schema:
+          type: string
+          enum:
+          - x86
+          - x64
+          - older_video_cards
+      - in: query
+        name: dl
+        required: false
+        schema:
+          type: string
+      responses: 
+        200:
+          description: Querying successful
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      windows:
+                        type: object
+                        properties:
+                          x86:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ITunesVersion'
+                          x64:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ITunesVersion'
+                          older_video_cards:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/ITunesVersion'
+                      macos:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ITunesVersion'
+                  - type: object
+                    properties:
+                      x86:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ITunesVersion'
+                      x64:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ITunesVersion'
+                      older_video_cards:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ITunesVersion'
+                  - type: array
+                    items:
+                      $ref: '#components/schemas/ITunesVersion'
+        300:
+          description: Need to specify build type
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Need to specify a build type'
+                  valid:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - x86
+                    - x64
+                    - older_video_cards
+        307:
+          description: Redirecting because query parameter `dl` was set
+        400:
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'invalid type for os'
+                  valid:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - x86
+                    - x64
+                    - older_video_cards
+        404:
+          description: Download link not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: download link not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: couldn't process your request
+              
+  /store:
+    get:
+      summary: Get download links for a Microsoft Store app
+      parameters:
+      - in: query
+        name: type
+        schema:
+          type: string
+          enum:
+          - ProductId
+          - CategoryId
+          - url
+          - PackageFamilyName
+        required: true
+      - in: query
+        name: url
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: ring
+        schema:
+          type: string
+          enum:
+          - Fast
+          - Slow
+          - RP
+          - Retail
+        required: true
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - en-US
+        required: true
+      - in: query
+        name: id
+        schema:
+          type: string
+        required: false
+      - in: query
+        name: version
+        schema:
+          type: string
+        required: false
+      - in: query
+        name: arch
+        schema:
+          type: string
+        required: false
+      - in: query
+        name: name
+        schema:
+          type: string
+        required: false
+      - in: query
+        name: extension
+        schema:
+          type: string
+        required: false
+      - in: query
+        name: dl
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Querying was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StoreData'
+        300:
+          description: Query paramenter `dl` was set, but more than one version was found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: There are more than one version matching criteria. Use more filters.
+                  filters:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - id
+                    - version
+                    - arch
+                    - name
+                    - extension
+        307:
+          description: Redirecting because query parameter `dl` was set
+        400:
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'invalid parameters'
+                  params:
+                    type: object
+                    example: 
+                      type: '''ProductId'' | ''CategoryId'' | ''url'' | ''PackageFamilyName'
+                      url: string
+                      ring: '''Fast'' | ''Slow'' | ''RP'' | ''Retail'''
+                      lang: en-US
+                      id: '?string'
+                      version: '?string'
+                      arch: '?string'
+                      name: '?string'
+                      extension: '?string'
+                      dl: any
+        404:
+          description: Download link not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: download link not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: couldn't process your request
+        
+      
+
+components:
+  schemas:
+    ITunesVersion:
+      type: object
+      required:
+      - version
+      - amds_version
+      properties:
+        version:
+          type: string
+          description: iTunes version
+          example: 12.12.3.5
+        qt_version:
+          type: string
+          description: QuickTime version
+          example: null
+        amds_version:
+          type: string
+          description: Apple Mobile Device Support version
+          example: 15.5.0.16
+        aas_version:
+          type: string
+          description: Apple Application Support version
+          example: null
+        url: 
+          type: string
+          description: iTunes download link
+          example: https://secure-appldnld.apple.com/itunes12/002-35070-20220304-5521E72A-137B-4F09-9844-45BEBA5C3B40/iTunes64Setup.exe
+        sha1sum:
+          type: string
+          description: SHA1 of installer
+          example: 16292cc7627ddad126e5237a0c0801f1f659e055
+        size: 
+          type: number
+          description: Installer size
+          example: 209718344
+        
+    StoreData:
+      type: object
+      required:
+      - id
+      - version
+      - ar
+      - file
+      properties:
+        id:
+          type: string
+          example: AppleInc.iCloud
+        version:
+          type: string
+          example: 13.0.201.0
+        arch:
+          type: string
+          example: x86
+        file:
+          type: object
+          required:
+          - url
+          - name
+          - extension
+          - size
+          - sha1sum
+          - expiry
+          properties:
+            url:
+              type: string
+              format: url
+              example: http://dl.delivery.mp.microsoft.com/filestreamingservice/files/029d5d56-67bb-4449-8d8e-d1bcf20fff22
+            name:
+              type: string
+              example: AppleInc.iCloud_13.0.201.0_x86__nzyj5cx40ttqa.BlockMap
+            extension:
+              type: string
+              example: BlockMap
+            size:
+              type: string
+              example: 315.63 KB
+            sha1sum:
+              type: string
+              example: 43fa28a7d2d7ac847ca530c65d299dfd6aadbddd
+            expiry:
+              type: string
+              format: date
+              example: '1970-01-01T00:00:00.000Z'
