@@ -74,10 +74,7 @@ interface StoreData {
   id: string;
   version: string;
   arch: string;
-  url: string;
-  expiry: string;
-  sha1sum: string;
-  size: number;
+  file: Record<'url' | 'name' | 'extension' | 'size' | 'sha1sum' | 'expiry', string>;
 }
 ```
 
@@ -88,19 +85,27 @@ Example: `GET /store?type=url&url=https://www.microsoft.com/en-us/p/icloud/9pktq
     "id": "AppleInc.iCloud",
     "version": "13.0.201.0",
     "arch": "x86",
-    "url": "http://dl.delivery.mp.microsoft.com/filestreamingservice/files/029d5d56-67bb-4449-8d8e-d1bcf20fff22",
-    "expiry": "1970-01-01T00:00:00.000Z",
-    "sha1sum": "43fa28a7d2d7ac847ca530c65d299dfd6aadbddd",
-    "size": "315.63 KB"
+    "file": {
+      "url": "http://dl.delivery.mp.microsoft.com/filestreamingservice/files/029d5d56-67bb-4449-8d8e-d1bcf20fff22",
+      "name": "AppleInc.iCloud_13.0.201.0_x86__nzyj5cx40ttqa.BlockMap",
+      "extension": "BlockMap",
+      "size": "315.63 KB",
+      "sha1sum": "43fa28a7d2d7ac847ca530c65d299dfd6aadbddd",
+      "expiry": "1970-01-01T00:00:00.000Z"
+    }
   },
   {
     "id": "AppleInc.iCloud",
     "version": "13.0.201.0",
     "arch": "x86",
-    "url": "http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/174bf1fc-865a-4ce2-af40-31e451020d6b?P1=1650855628&P2=404&P3=2&P4=jsdzR9I%252fCJtrjnbdszIM7LL%252bJ4hetXOxf9l0DTzotmDJFrzwkiPu0bP3netRe9x7U3Ngt3aUoY2ejoHZlfmKUw%253d%253d",
-    "expiry": "2022-04-25T03:00:28.000Z",
-    "sha1sum": "c184b17f7edf695321a70d82f2ef1dbaab9c4fa2",
-    "size": "254.87 MB"
+    "file": {
+      "url": "http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/174bf1fc-865a-4ce2-af40-31e451020d6b?P1=1650855982&P2=404&P3=2&P4=TWk7dn720hd1nXRsyaW9G56e%252b8V0eKAie7SjClJlRquGqDlrVIzi5glZ%252foP2ZCHkUuvsAnLRtX9gj7sRh2ZXMQ%253d%253d",
+      "name": "AppleInc.iCloud_13.0.201.0_x86__nzyj5cx40ttqa.appx",
+      "extension": "appx",
+      "size": "254.87 MB",
+      "sha1sum": "c184b17f7edf695321a70d82f2ef1dbaab9c4fa2",
+      "expiry": "2022-04-25T03:06:22.000Z"
+    }
   },
   // ...
 ]

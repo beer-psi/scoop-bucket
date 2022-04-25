@@ -6,10 +6,7 @@ interface StoreData {
   id: string;
   version: string;
   arch: string;
-  url: string;
-  expiry: string;
-  sha1sum: string;
-  size: number;
+  file: Record<'url' | 'name' | 'extension' | 'size' | 'sha1sum' | 'expiry', string>;
 }
 
 function parseDocument(document: HTMLDocument): StoreData[] {
@@ -23,10 +20,14 @@ function parseDocument(document: HTMLDocument): StoreData[] {
       id: groups[0],
       version: groups[1],
       arch: groups[2],
-      url: cells[0].querySelector('a')?.href,
-      expiry: new Date(cells[1].textContent.trim()).toJSON(),
-      sha1sum: cells[2].textContent.trim(),
-      size: cells[3].textContent.trim(),
+      file: {
+        url: cells[0].querySelector('a')?.href,
+        name: filename,
+        extension: filename.split('.').at(-1),
+        size: cells[3].textContent.trim(),
+        sha1sum: cells[2].textContent.trim(),
+        expiry: new Date(cells[1].textContent.trim()).toJSON(),
+      },  
     }
   })
 }
