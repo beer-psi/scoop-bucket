@@ -1,11 +1,11 @@
-import { DOMParser, NodeList, HTMLElement } from "https://esm.sh/linkedom";
-import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
+import { DOMParser, NodeList, HTMLElement } from 'https://esm.sh/linkedom';
+import { LRU } from 'https://deno.land/x/lru@1.0.2/mod.ts';
 
 const lru = new LRU(1);
 const lruJSON = new LRU(1);
 
 
-const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
+const ITUNES_VERSIONS_TABLE = 'https://www.theiphonewiki.com/wiki/ITunes';
 
 interface ITunesVersion {
   version: string;
@@ -126,7 +126,7 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
 
 function fetchTableWithCache(text: string, lastModified: string): ITunesData {
   if (!lruJSON.has(lastModified)) {
-    const document = new DOMParser().parseFromString(text, "text/html")
+    const document = new DOMParser().parseFromString(text, 'text/html')
     const response = {
       windows: {
         x86: getVersionsWindows(document, Tables.WINDOWS_32BIT),
@@ -167,7 +167,7 @@ export default async function handleRequest(request: Request): Promise<Response>
         data = allVersions[os][type]
       } else {
         return new Response(
-          JSON.stringify({ message: "invalid type for os", valid: os === 'windows' ? ['x86', 'x64', 'older_video_cards'] : [] }),
+          JSON.stringify({ message: 'invalid type for os', valid: os === 'windows' ? ['x86', 'x64', 'older_video_cards'] : [] }),
           {
             status: 400,
             headers: {
@@ -178,7 +178,7 @@ export default async function handleRequest(request: Request): Promise<Response>
       }
     } else {
       return new Response(
-        JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] }),
+        JSON.stringify({ message: 'invalid os', valid: ['windows', 'macos'] }),
         {
           status: 400,
           headers: {
@@ -190,7 +190,7 @@ export default async function handleRequest(request: Request): Promise<Response>
     if (sp.has('dl')) {
       if (os === 'windows' && !sp.has('type')) {
         return new Response(
-          JSON.stringify({ message: "cannot download without a type", valid: ["x86", "x64", "older_video_cards"] }),
+          JSON.stringify({ message: 'cannot download without a type', valid: ['x86', 'x64', 'older_video_cards'] }),
           {
             status: 400,
             headers: {
@@ -206,7 +206,7 @@ export default async function handleRequest(request: Request): Promise<Response>
         return Response.redirect(url, 302)
       } else {
         return new Response(
-          JSON.stringify({ message: "download link not found" }),
+          JSON.stringify({ message: 'download link not found' }),
           {
             status: 404,
             headers: {
