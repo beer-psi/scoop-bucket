@@ -2,6 +2,9 @@ on:
   schedule:
   - cron: '*/20 4 * * *'
   workflow_dispatch:
+  push:
+    paths:
+    - '.github/workflows/schedule.yml'
 name: Excavator
 jobs:
   excavate:
@@ -10,16 +13,27 @@ jobs:
     steps:
     -
       uses: actions/checkout@v3
-    - 
+    -
       name: Checkout Scoop
       shell: pwsh
       run: |
-        iwr -useb https://get.scoop.sh | iex
+        $env:SCOOP = Join-Path $env:USERPROFILE 'SCOOP'
+        $env:SCOOP_HOME = Join-Path $env:SCOOP 'apps\scoop\current'
+        [System.Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+        [System.Environment]::SetEnvironmentVariable('SCOOP_HOME', $env:SCOOP_HOME, 'User')
+        Write-Output "SCOOP=$env:SCOOP" >> $env:GITHUB_ENV
+        Write-Output "SCOOP_HOME=$env:SCOOP_HOME" >> $env:GITHUB_ENV
+        Write-Output "$(Join-Path $env:SCOOP 'shims')" >> $env:GITHUB_PATH
+
+        $f = Join-Path $env:USERPROFILE 'install.ps1'
+        curl -L https://get.scoop.sh -o $f
+        & $f -RunAsAdmin
         scoop install hub
-        echo "SCOOP_HOME=$(Join-Path $env:SCOOP 'apps\scoop\current')" > $env:GITHUB_ENV
     -
       name: Excavator
       shell: pwsh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        & (Join-Path $env:SCOOP_HOME 'bin\auto-pr.ps1') -Upstream "$env:GITHUB_REPOSITORY:main" -OriginBranch main -Dir bucket -Push -SkipUpdated
-        & (Join-Path $env:SCOOP_HOME 'bin\auto-pr.ps1') -Upstream "$env:GITHUB_REPOSITORY:main" -OriginBranch main -Dir experimental -Push -SkipUpdated
+        ~\scoop\apps\scoop\current\bin\auto-pr.ps1 -Upstream "$env:GITHUB_REPOSITORY`:main" -OriginBranch main -Dir bucket -Push -SkipUpdated
+        ~\scoop\apps\scoop\current\bin\auto-pr.ps1 -Upstream "$env:GITHUB_REPOSITORY`:main" -OriginBranch main -Dir experimental -Push -SkipUpdated
