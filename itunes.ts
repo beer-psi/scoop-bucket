@@ -2,6 +2,7 @@ import { DOMParser, NodeList, HTMLElement } from "https://esm.sh/linkedom";
 import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
 
 const lru = new LRU(1);
+const lruJSON = new LRU(1);
 
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
@@ -14,6 +15,11 @@ interface ITunesVersion {
   url: string | null;
   sha1sum: string | null;
   size: number | null;
+}
+
+interface ITunesData {
+  windows: Record<string, ITunesVersion[]>;
+  macos: ITunesVersion[];
 }
 
 enum Tables {
@@ -97,9 +103,18 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
           'user-agent': 'Deno/1.0 (Deno Deploy)'
         }
       });
-      lru.set(lastModified, resp)
+      lru.set(lastModified, await resp.text())
     }
-    return <Response>lru.get(lastModified)
+    return new Response(
+      <string>lru.get(lastModified),
+      {
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers({
+          'last-modified': new Date(Number(lastModified)).toISOString()
+        })
+      }
+    )
   }
   return fetch(url, {
     method: 'GET',
@@ -109,23 +124,31 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
   });
 }
 
+function fetchTableWithCache(text: string, lastModified: string): ITunesData {
+  if (!lruJSON.has(lastModified)) {
+    const document = new DOMParser().parseFromString(text, "text/html")
+    const response = {
+      windows: {
+        x86: getVersionsWindows(document, Tables.WINDOWS_32BIT),
+        x64: getVersionsWindows(document, Tables.WINDOWS_64BIT),
+        older_video_cards: getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS),
+      },
+      macos: getVersionsMacOS(document, Tables.MACOS)
+    }
+    lruJSON.set(lastModified, response)
+  }
+  return <ITunesData>lruJSON.get(lastModified)
+}
+
 export default async function handleRequest(request: Request): Promise<Response> {
   const resp = await fetchWikiWithCache(ITUNES_VERSIONS_TABLE);
-  if (resp.ok) {
-    const document = new DOMParser().parseFromString(await resp.text(), "text/html")
-    const sp = new URL(request.url).searchParams
-    console.log(sp)
+  const sp = new URL(request.url).searchParams
+  if (resp.ok && resp.headers.get('last-modified')) {
+    // @ts-ignore: Already checked for nullness
+    const allVersions = fetchTableWithCache(await resp.text(), String(new Date(resp.headers.get('last-modified')).getTime()));
     if (Array.from(sp.keys()).length === 0) {
-      const response = {
-        windows: {
-          x86: getVersionsWindows(document, Tables.WINDOWS_32BIT),
-          x64: getVersionsWindows(document, Tables.WINDOWS_64BIT),
-          older_video_cards: getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS),
-        },
-        macos: getVersionsMacOS(document, Tables.MACOS)
-      }
       return new Response(
-        JSON.stringify(response),
+        JSON.stringify(allVersions),
         {
           status: 200,
           headers: {
@@ -139,17 +162,13 @@ export default async function handleRequest(request: Request): Promise<Response>
     let data;
     if (os === 'windows') {
       if (type === 'x86') {
-        data = getVersionsWindows(document, Tables.WINDOWS_32BIT)
+        data = allVersions.windows.x86
       } else if (type === 'x64') {
-        data = getVersionsWindows(document, Tables.WINDOWS_64BIT)
+        data = allVersions.windows.x64
       } else if (type === 'older_video_cards') {
-        data = getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS)
+        data = allVersions.windows.older_video_cards
       } else if (type === null) {
-        data = { 
-          x86: getVersionsWindows(document, Tables.WINDOWS_32BIT),
-          x64: getVersionsWindows(document, Tables.WINDOWS_64BIT),
-          older_video_cards: getVersionsWindowsOlderCards(document, Tables.WINDOWS_64BIT_OLDER_VIDEO_CARDS),
-        }
+        data = allVersions.windows
       } else {
         return new Response(
           JSON.stringify({ message: "invalid type for os windows", valid: ["x86", "x64", "older_video_cards"] }),
@@ -162,7 +181,7 @@ export default async function handleRequest(request: Request): Promise<Response>
         )
       }
     } else if (os === 'macos') {
-      data = getVersionsMacOS(document, Tables.MACOS)
+      data = allVersions.macos
     } else {
       return new Response(
         JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] }),
@@ -215,7 +234,7 @@ export default async function handleRequest(request: Request): Promise<Response>
     }
   }
   return new Response(
-    JSON.stringify({ message: 'couldn\'t process your request '}),
+    JSON.stringify({ message: 'couldn\'t process your request'}),
     {
       status: 500,
       headers: {
