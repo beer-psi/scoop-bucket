@@ -1,5 +1,5 @@
-import handleiTunes from './itunes.ts';
-import handleStore from './msstore.ts';
+import handleiTunes from './endpoints/itunes.ts';
+import handleStore from './endpoints/msstore.ts';
 import { serve } from 'https://deno.land/std@0.114.0/http/server.ts';
 
 async function handler(request: Request): Promise<Response> {
