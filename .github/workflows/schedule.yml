@@ -12,8 +12,7 @@ jobs:
       uses: actions/checkout@v3
     -
       name: Excavator
-      uses: shovel-org/GithubActions@main
+      uses: beerpiss/GithubActions@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SKIP_UPDATED: '1'
-        GITHUB_EVENT_NAME: 'schedule'
