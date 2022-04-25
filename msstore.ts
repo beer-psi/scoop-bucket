@@ -28,7 +28,7 @@ function parseDocument(document: HTMLDocument): StoreData[] {
       version: groups[1],
       arch: groups[2],
       file: {
-        url: cells[0].querySelector('a')?.href,
+        url: decodeURI(cells[0].querySelector('a')?.href),
         name: filename,
         extension: filename.split('.').at(-1),
         size: cells[3].textContent.trim(),
@@ -82,12 +82,16 @@ export default async function handleRequest(request: Request): Promise<Response>
     method: 'POST',
     body: `type=${sp.get('type')}&url=${sp.get('url')}&ring=${sp.get('ring')}&lang=${sp.get('lang')}`,
     headers: {
-      'user-agent': 'Deno/1.0 (Deno Deploy)',
+      'origin': 'https://store.rg-adguard.net',
+      'referer': 'https://store.rg-adguard.net/',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 Edg/100.0.1185.50',
       'content-type': 'application/x-www-form-urlencoded',
     },
   })
   if (resp.ok) {
-    const document = new DOMParser().parseFromString(await resp.text(), 'text/html')
+    const text = await resp.text()
+    // console.log(text)
+    const document = new DOMParser().parseFromString(text, 'text/html')
     const data = parseDocument(document)
     const id = sp.get('id');
     const version = sp.get('version');
@@ -95,10 +99,10 @@ export default async function handleRequest(request: Request): Promise<Response>
     const name = sp.get('name');
     const extension = sp.get('extension');
     const ret = data.filter(value => id === null || value.id === id)
-        .filter(value => version === null || value.version === version)
-        .filter(value => arch === null || value.arch === arch)
-        .filter(value => name === null || value.file.name === name)
-        .filter(value => extension === null || value.file.extension === extension)
+                    .filter(value => version === null || value.version === version)
+                    .filter(value => arch === null || value.arch === arch)
+                    .filter(value => name === null || value.file.name === name)
+                    .filter(value => extension === null || value.file.extension === extension)
     if (sp.has('dl')) {
       if (ret.length > 1) {
         return new Response(

@@ -41,7 +41,7 @@ function getVersionsWindows(document: HTMLDocument, type: Tables): ITunesVersion
       qt_version: cells[cells.length - 7].textContent.trim() === '—' ? null : cells[cells.length - 7].textContent.trim(),
       amds_version: cells[cells.length - 6].textContent.trim(),
       aas_version: cells[cells.length - 5].textContent.trim() === '—' ? null : cells[cells.length - 5].textContent.trim(),
-      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : cells[cells.length - 4].querySelector('a')?.href,
+      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : decodeURI(cells[cells.length - 4].querySelector('a')?.href),
       sha1sum: cells[cells.length - 3].textContent.trim() === 'N/A' ? null : cells[cells.length - 3].textContent.trim(),
       size: cells[cells.length - 2].textContent.trim() === 'N/A' ? null : Number(cells[cells.length - 2].textContent.replaceAll(',', '').trim()),
     };
@@ -60,7 +60,7 @@ function getVersionsWindowsOlderCards(document: HTMLDocument, type: Tables): ITu
       qt_version: null,
       amds_version: cells[cells.length - 6].textContent.trim(),
       aas_version: cells[cells.length - 5].textContent.trim() === '—' ? null : cells[cells.length - 5].textContent.trim(),
-      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : cells[cells.length - 4].querySelector('a')?.href,
+      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : decodeURI(cells[cells.length - 4].querySelector('a')?.href),
       sha1sum: cells[cells.length - 3].textContent.trim() === 'N/A' ? null : cells[cells.length - 3].textContent.trim(),
       size: cells[cells.length - 2].textContent.trim() === 'N/A' ? null : Number(cells[cells.length - 2].textContent.replaceAll(',', '').trim()),
     };
@@ -79,7 +79,7 @@ function getVersionsMacOS(document: HTMLDocument, type: Tables): ITunesVersion[]
       qt_version: null,
       amds_version: cells[cells.length - 5].textContent.trim(),
       aas_version: null,
-      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : cells[cells.length - 4].querySelector('a')?.href,
+      url: cells[cells.length - 4].textContent.trim() === 'N/A' ? null : decodeURI(cells[cells.length - 4].querySelector('a')?.href),
       sha1sum: cells[cells.length - 3].textContent.trim() === 'N/A' ? null : cells[cells.length - 3].textContent.trim(),
       size: cells[cells.length - 2].textContent.trim() === 'N/A' ? null : Number(cells[cells.length - 2].textContent.replaceAll(',', '').trim()),
     };
