@@ -1,0 +1,22 @@
+name: Deploy API
+
+on:
+  push:
+    branches:
+      - api
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required to allow the GitHub Action to authenticate with Deno Deploy.
+      contents: read
+    steps:
+    -  
+      uses: actions/checkout@v3
+    - 
+      name: Deploy to Deno Deploy
+      uses: denoland/deployctl@v1
+      with:
+        project: beerpsi-scoop # the name of the project on Deno Deploy
+        entrypoint: index.ts # the entrypoint to deploy
