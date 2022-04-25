@@ -61,10 +61,21 @@ Information source: https://store.rg-adguard.net
 Query parameters:
 ```ts
 interface Parameters {
+    // Parameters passed upstream
     type: 'ProductId' | 'CategoryId' | 'url' | 'PackageFamilyName';
     url: string;
     ring: 'Fast' | 'Slow' | 'RP' | 'Retail';
     lang: 'en-US';
+
+    // Filtering returned results
+    id: string;
+    version: string;
+    arch: string;
+    name: string;
+    extension: string;
+
+    // Download
+    dl: any;
 }
 ```
 
@@ -74,7 +85,14 @@ interface StoreData {
   id: string;
   version: string;
   arch: string;
-  file: Record<'url' | 'name' | 'extension' | 'size' | 'sha1sum' | 'expiry', string>;
+  file: {
+    url: string;
+    name: string;
+    extension: string;
+    size: string;
+    sha1sum: string
+    expiry: string
+  };
 }
 ```
 

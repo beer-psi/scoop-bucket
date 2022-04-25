@@ -10,7 +10,7 @@ interface StoreData {
     url: string;
     name: string;
     extension: string;
-    size: string:
+    size: string;
     sha1sum: string
     expiry: string
   };
@@ -64,7 +64,7 @@ export default async function handleRequest(request: Request): Promise<Response>
       JSON.stringify({ 
         message: 'invalid parameters', 
         params: {
-          'type': "'ProductId' | 'CategoryId' | 'url' | 'PackageFamilyName'",
+          'type': "'ProductId' | 'CategoryId' | 'url' | 'PackageFamilyName",
           'url': 'string',
           'ring': "'Fast' | 'Slow' | 'RP' | 'Retail'",
           'lang': 'en-US',
@@ -80,7 +80,7 @@ export default async function handleRequest(request: Request): Promise<Response>
   }
   const resp = await fetch(UPSTREAM_API, {
     method: 'POST',
-    body: sp.toString(),
+    body: `type=${sp.get('type')}&url=${sp.get('url')}&ring=${sp.get('ring')}&lang=${sp.get('lang')}`,
     headers: {
       'user-agent': 'Deno/1.0 (Deno Deploy)',
       'content-type': 'application/x-www-form-urlencoded',
@@ -89,8 +89,46 @@ export default async function handleRequest(request: Request): Promise<Response>
   if (resp.ok) {
     const document = new DOMParser().parseFromString(await resp.text(), 'text/html')
     const data = parseDocument(document)
+    const id = sp.get('id');
+    const version = sp.get('version');
+    const arch = sp.get('arch');
+    const name = sp.get('name');
+    const extension = sp.get('extension');
+    const ret = data.filter(value => id === null || value.id === id)
+        .filter(value => version === null || value.version === version)
+        .filter(value => arch === null || value.arch === arch)
+        .filter(value => name === null || value.file.name === name)
+        .filter(value => extension === null || value.file.extension === extension)
+    if (sp.has('dl')) {
+      if (ret.length > 1) {
+        return new Response(
+          JSON.stringify({
+            message: 'There are more than one version matching criteria. Use more filters.',
+            filters: ['id', 'version', 'arch', 'name', 'extension'],
+          }, null, 2),
+          {
+            status: 300,
+            headers: {
+              'content-type': 'application/json; charset=UTF-8',
+            }
+          }
+        )
+      }
+      if (ret.length === 0) {
+        return new Response(
+          JSON.stringify({ message: 'download link not found' }),
+          {
+            status: 404,
+            headers: {
+              'content-type': 'application/json; charset=utf-8',  
+            }
+          }
+        )
+      }
+      return Response.redirect(ret[0].file.url, 302)
+    }
     return new Response(
-      JSON.stringify(data),
+      JSON.stringify(ret),
       {
         headers: {
           'content-type': 'application/json; charset=UTF-8',
