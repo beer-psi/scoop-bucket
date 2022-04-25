@@ -28,7 +28,7 @@
                     "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\Bonjour64.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\Bonjour\", \"INSTALLDIR=$dir\\Bonjour\") -RunAs | Out-Null",
                     "if (Test-Path \"$dir\\AppleApplicationSupport64.msi\") {",
                     "    Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\AppleApplicationSupport64.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\AppleApplicationSupport\", \"INSTALLDIR=$dir\\AppleApplicationSupport\") -RunAs | Out-Null",
-                    "}", 
+                    "}",
                     "if (Test-Path \"$dir\\AppleApplicationSupport.msi\") {",
                     "    Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\AppleApplicationSupport.msi\", '/qn', '/norestart', \"TARGETDIR=$dir\\AppleApplicationSupport\", \"INSTALLDIR=$dir\\AppleApplicationSupport\") -RunAs | Out-Null",
                     "}",
