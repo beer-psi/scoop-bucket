@@ -331,7 +331,7 @@ components:
       required:
       - id
       - version
-      - ar
+      - arch
       - file
       properties:
         id:
