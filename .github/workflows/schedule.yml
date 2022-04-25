@@ -25,7 +25,13 @@ jobs:
         $f = Join-Path $env:USERPROFILE 'install.ps1'
         curl -L https://get.scoop.sh -o $f
         & $f -RunAsAdmin
+    -
+      name: Configure Git
+      shell: pwsh
+      run: |
         scoop install hub
+        git config --global user.email github-actions[bot]@users.noreply.github.com
+        git config --goba user.name github-actions
     -
       name: Excavator
       shell: pwsh
