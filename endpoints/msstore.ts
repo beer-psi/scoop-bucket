@@ -1,5 +1,6 @@
 import { DOMParser, NodeList } from "https://esm.sh/linkedom@0.14.7";
 import { HTMLDocument } from "https://cdn.esm.sh/v78/linkedom@0.14.7/types/html/document.d.ts";
+import WindowsLocale from "https://esm.sh/windows-locale@1.1.2";
 import {
   ReasonPhrases,
   StatusCodes,
@@ -64,6 +65,10 @@ function validateParams(sp: URLSearchParams): string {
   // @ts-ignore: Already validated
   if (!["Fast", "Slow", "RP", "Retail"].includes(sp.get("ring"))) {
     return "invalid ring parameter";
+  }
+
+  if (sp.has("lang") && !WindowsLocale[sp.get("lang")]) {
+    return "invalid language"
   }
 
   return "";
