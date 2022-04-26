@@ -50,7 +50,7 @@ function parseDocument(document: HTMLDocument): StoreData[] {
 }
 
 function validateParams(sp: URLSearchParams): string {
-  if (!sp.has("type") || !sp.has("url") || !sp.has("ring") || !sp.has("lang")) {
+  if (!sp.has("type") || !sp.has("url") || !sp.has("ring")) {
     return "missing required parameters";
   }
   if (
@@ -105,7 +105,7 @@ export default async function handleRequest(
   const resp = await fetch(UPSTREAM_API, {
     method: "POST",
     // deno-fmt-ignore
-    body: `type=${sp.get("type")}&url=${sp.get("url")}&ring=${sp.get("ring")}&lang=${sp.get("lang")}`,
+    body: `type=${sp.get("type")}&url=${sp.get("url")}&ring=${sp.get("ring")}&lang=${sp.get("lang") ?? "en-US"}`,
     headers: {
       "origin": "https://store.rg-adguard.net",
       "referer": "https://store.rg-adguard.net/",
