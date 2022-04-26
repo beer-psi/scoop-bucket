@@ -38,8 +38,8 @@ function getVersionsWindows(document: HTMLDocument, type: Tables): ITunesVersion
     const cells: NodeList = value.querySelectorAll('td')
     return {
       version: cells.length < 8 
-                ? array[index - 1].querySelectorAll('td')[0].textContent.trim()
-                : cells[0].textContent.trim(),
+                ? array[index - 1].querySelectorAll('td')[0].textContent.trim().replaceAll(/\[\d+\]/g, '')
+                : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ''),
       qt_version: cells[cells.length - 7].textContent.trim() === '—' ? null : cells[cells.length - 7].textContent.trim(),
       amds_version: cells[cells.length - 6].textContent.trim(),
       aas_version: cells[cells.length - 5].textContent.trim() === '—' ? null : cells[cells.length - 5].textContent.trim(),
@@ -57,8 +57,8 @@ function getVersionsWindowsOlderCards(document: HTMLDocument, type: Tables): ITu
     const cells: NodeList = value.querySelectorAll('td')
     return {
       version: cells.length < 7
-                ? array[index - 1].querySelectorAll('td')[0].textContent.trim()
-                : cells[0].textContent.trim(),
+                ? array[index - 1].querySelectorAll('td')[0].textContent.trim().replaceAll(/\[\d+\]/g, '')
+                : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ''),
       qt_version: null,
       amds_version: cells[cells.length - 6].textContent.trim(),
       aas_version: cells[cells.length - 5].textContent.trim() === '—' ? null : cells[cells.length - 5].textContent.trim(),
@@ -76,8 +76,8 @@ function getVersionsMacOS(document: HTMLDocument, type: Tables): ITunesVersion[]
     const cells: NodeList = value.querySelectorAll('td')
     return {
       version: cells.length < 6
-                ? array[index - 1].querySelectorAll('td')[0].textContent.trim()
-                : cells[0].textContent.trim(),
+                ? array[index - 1].querySelectorAll('td')[0].textContent.trim().replaceAll(/\[\d+\]/g, '')
+                : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ''),
       qt_version: null,
       amds_version: cells[cells.length - 5].textContent.trim(),
       aas_version: null,
