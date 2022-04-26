@@ -14,6 +14,10 @@ const lru = new LRU(1);
 const lruJSON = new LRU(1);
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
+const CommonHeaders = {
+  "content-type": "application/json; encoding=UTF-8",
+  "access-control-allow-origin": "*",
+};
 
 interface ITunesVersion {
   version: string;
@@ -215,10 +219,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.OK,
           statusText: ReasonPhrases.OK,
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-            "access-control-allow-origin": "*",
-          },
+          headers: CommonHeaders,
         },
       );
     }
@@ -242,10 +243,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.BAD_REQUEST,
             statusText: ReasonPhrases.BAD_REQUEST,
-            headers: {
-              "content-type": "application/json; charset=utf-8",
-              "access-control-allow-origin": "*",
-            },
+            headers: CommonHeaders,
           },
         );
       }
@@ -255,10 +253,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.BAD_REQUEST,
           statusText: ReasonPhrases.BAD_REQUEST,
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-            "access-control-allow-origin": "*",
-          },
+          headers: CommonHeaders,
         },
       );
     }
@@ -272,10 +267,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.MULTIPLE_CHOICES,
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
-            headers: {
-              "content-type": "application/json; charset=utf-8",
-              "access-control-allow-origin": "*",
-            },
+            headers: CommonHeaders,
           },
         );
       }
@@ -292,10 +284,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.NOT_FOUND,
             statusText: ReasonPhrases.NOT_FOUND,
-            headers: {
-              "content-type": "application/json; charset=utf-8",
-              "access-control-allow-origin": "*",
-            },
+            headers: CommonHeaders,
           },
         );
       }
@@ -305,10 +294,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.OK,
           statusText: ReasonPhrases.OK,
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-            "access-control-allow-origin": "*",
-          },
+          headers: CommonHeaders,
         },
       );
     }
@@ -318,10 +304,7 @@ export default async function handleRequest(
     {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-        "access-control-allow-origin": "*",
-      },
+      headers: CommonHeaders,
     },
   );
 }

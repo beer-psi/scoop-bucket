@@ -6,6 +6,10 @@ import {
 } from "https://esm.sh/http-status-codes@2.2.0";
 
 const UPSTREAM_API = "https://store.rg-adguard.net/api/GetFiles";
+const CommonHeaders = {
+  "content-type": "application/json; charset=UTF-8",
+  "access-control-allow-origin": "*",
+};
 
 interface StoreData {
   id: string;
@@ -103,21 +107,29 @@ export default async function handleRequest(
   }
   const resp = await fetch(UPSTREAM_API, {
     method: "POST",
-    body: `type=${sp.get("type")}&url=${sp.get("url")}&ring=${
-      sp.get("ring")
-    }&lang=${sp.get("lang")}`,
+    // deno-fmt-ignore
+    body: `type=${sp.get("type")}&url=${sp.get("url")}&ring=${sp.get("ring")}&lang=${sp.get("lang")}`,
     headers: {
       "origin": "https://store.rg-adguard.net",
       "referer": "https://store.rg-adguard.net/",
-      "user-agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 Edg/100.0.1185.50",
       "content-type": "application/x-www-form-urlencoded",
     },
   });
   if (resp.ok) {
     const text = await resp.text();
-    // console.log(text)
     const document = new DOMParser().parseFromString(text, "text/html");
+    if (
+      document.querySelector("img").attributes.src.value === "../img/stop.png"
+    ) {
+      return new Response(
+        JSON.stringify([]),
+        {
+          status: StatusCodes.NOT_FOUND,
+          statusText: ReasonPhrases.NOT_FOUND,
+          headers: CommonHeaders,
+        },
+      );
+    }
     const data = parseDocument(document);
     const id = sp.get("id");
     const version = sp.get("version");
@@ -146,10 +158,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.MULTIPLE_CHOICES,
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
-            headers: {
-              "content-type": "application/json; charset=UTF-8",
-              "access-control-allow-origin": "*",
-            },
+            headers: CommonHeaders,
           },
         );
       }
@@ -159,10 +168,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.NOT_FOUND,
             statusText: ReasonPhrases.NOT_FOUND,
-            headers: {
-              "content-type": "application/json; charset=utf-8",
-              "access-control-allow-origin": "*",
-            },
+            headers: CommonHeaders,
           },
         );
       }
@@ -171,10 +177,7 @@ export default async function handleRequest(
     return new Response(
       JSON.stringify(ret),
       {
-        headers: {
-          "content-type": "application/json; charset=UTF-8",
-          "access-control-allow-origin": "*",
-        },
+        headers: CommonHeaders,
       },
     );
   }
@@ -183,10 +186,7 @@ export default async function handleRequest(
     {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-        "access-control-allow-origin": "*",
-      },
+      headers: CommonHeaders,
     },
   );
 }
