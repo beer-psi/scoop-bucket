@@ -1,7 +1,10 @@
 # scoop-bucket
-The Deno API that powers my scoop bucket. Hosted on [Deno Deploy](https://deno.com/deploy).
+
+The Deno API that powers my scoop bucket. Hosted on
+[Deno Deploy](https://deno.com/deploy).
 
 ## Endpoints
+
 Base URL: `https://beerpsi-scoop.deno.dev`
 
 <details>
@@ -10,19 +13,22 @@ Base URL: `https://beerpsi-scoop.deno.dev`
 Information source: [The iPhone Wiki](https://www.theiphonewiki.com/wiki/ITunes)
 
 Query parameters:
+
 ```ts
 interface Parameters {
-    os: 'windows' | 'macos';
+  os: "windows" | "macos";
 
-    // Required if using `dl` and `os` is Windows
-    type?: 'x86' | 'x64' | 'older_video_cards';
+  // Required if using `dl` and `os` is Windows
+  type?: "x86" | "x64" | "older_video_cards";
 
-    // Leave blank to download latest version **with a download**, or specify a version yourself
-    dl?: string
+  // Leave blank to download latest version **with a download**, or specify a version yourself
+  dl?: string;
 }
 ```
 
-If `dl` isn't specified, return JSON with information about iTunes versions, filtered by `os` and `type`:
+If `dl` isn't specified, return JSON with information about iTunes versions,
+filtered by `os` and `type`:
+
 ```ts
 interface ITunesVersion {
   version: string;
@@ -36,6 +42,7 @@ interface ITunesVersion {
 ```
 
 Example: `GET /itunes?os=windows&type=x64`
+
 ```json
 [
   {
@@ -55,10 +62,11 @@ Example: `GET /itunes?os=windows&type=x64`
     "url": "https://secure-appldnld.apple.com/itunes12/002-35070-20220304-5521E72A-137B-4F09-9844-45BEBA5C3B40/iTunes64Setup.exe",
     "sha1sum": "16292cc7627ddad126e5237a0c0801f1f659e055",
     "size": 209718344
-  },
+  }
   // ...
 ]
 ```
+
 </details>
 
 <details>
@@ -67,27 +75,29 @@ Example: `GET /itunes?os=windows&type=x64`
 Information source: https://store.rg-adguard.net
 
 Query parameters:
+
 ```ts
 interface Parameters {
-    // Parameters passed upstream
-    type: 'ProductId' | 'CategoryId' | 'url' | 'PackageFamilyName';
-    url: string;
-    ring: 'Fast' | 'Slow' | 'RP' | 'Retail';
-    lang: 'en-US';
+  // Parameters passed upstream
+  type: "ProductId" | "CategoryId" | "url" | "PackageFamilyName";
+  url: string;
+  ring: "Fast" | "Slow" | "RP" | "Retail";
+  lang: "en-US";
 
-    // Filtering returned results
-    id?: string;
-    version?: string;
-    arch?: string;
-    name?: string;
-    extension?: string;
+  // Filtering returned results
+  id?: string;
+  version?: string;
+  arch?: string;
+  name?: string;
+  extension?: string;
 
-    // Download
-    dl?: any;
+  // Download
+  dl?: any;
 }
 ```
 
 Response: `StoreData[]`
+
 ```ts
 interface StoreData {
   id: string;
@@ -98,13 +108,15 @@ interface StoreData {
     name: string;
     extension: string;
     size: string;
-    sha1sum: string
-    expiry: string
+    sha1sum: string;
+    expiry: string;
   };
 }
 ```
 
-Example: `GET /store?type=url&url=https://www.microsoft.com/en-us/p/icloud/9pktq5699m62&ring=Retail&lang=en-US`
+Example:
+`GET /store?type=url&url=https://www.microsoft.com/en-us/p/icloud/9pktq5699m62&ring=Retail&lang=en-US`
+
 ```json
 [
   {
@@ -132,8 +144,9 @@ Example: `GET /store?type=url&url=https://www.microsoft.com/en-us/p/icloud/9pktq
       "sha1sum": "c184b17f7edf695321a70d82f2ef1dbaab9c4fa2",
       "expiry": "2022-04-25T03:06:22.000Z"
     }
-  },
+  }
   // ...
 ]
 ```
+
 </details>
