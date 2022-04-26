@@ -68,11 +68,9 @@ function getVersionsWindows(
       sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
         : cells[cells.length - 3].textContent,
-      size: cells[cells.length - 2].textContent === "N/A"
-        ? null
-        : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", ""),
-        ),
+      size: cells[cells.length - 2].textContent === "N/A" ? null : Number(
+        cells[cells.length - 2].textContent.replaceAll(",", ""),
+      ),
     };
   });
 }
@@ -102,11 +100,9 @@ function getVersionsWindowsOlderCards(
       sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
         : cells[cells.length - 3].textContent,
-      size: cells[cells.length - 2].textContent === "N/A"
-        ? null
-        : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", ""),
-        ),
+      size: cells[cells.length - 2].textContent === "N/A" ? null : Number(
+        cells[cells.length - 2].textContent.replaceAll(",", ""),
+      ),
     };
   });
 }
@@ -134,11 +130,9 @@ function getVersionsMacOS(
       sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
         : cells[cells.length - 3].textContent,
-      size: cells[cells.length - 2].textContent === "N/A"
-        ? null
-        : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", ""),
-        ),
+      size: cells[cells.length - 2].textContent === "N/A" ? null : Number(
+        cells[cells.length - 2].textContent.replaceAll(",", ""),
+      ),
     };
   });
 }
@@ -209,7 +203,7 @@ export default async function handleRequest(
   const sp = new URL(request.url).searchParams;
   if (resp.ok && resp.headers.get("last-modified")) {
     const allVersions = fetchTableWithCache(
-      (await resp.text()).replaceAll(/\n/gm, ''),
+      (await resp.text()).replaceAll(/\n/gm, ""),
       // @ts-ignore: Already checked for nullness
       String(new Date(resp.headers.get("last-modified")).getTime()),
     );
