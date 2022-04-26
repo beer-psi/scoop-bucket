@@ -1,0 +1,46 @@
+{
+    "version": "1.4.4.1876",
+    "description": "Cross-platform Apple Music client",
+    "license": "AGPL-3.0-or-later",
+    "homepage": "https://cider.sh",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.4.1876/Cider-Setup-winget-1.4.4-beta.1876.exe#/dl.7z",
+            "hash": "sha512:abb7aa619b245fbcaf3b5ffe3f84ca82424c1dbcbf802666453efe9d61a153f2d7cee93522b892ad400617bb698ed7b746ffcfe51cf91c3aa68c861dfeac2df3",
+            "installer": {
+                "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+            }
+        }
+    },
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Recurse -Force",
+    "shortcuts": [
+        [
+            "Cider.exe",
+            "Cider"
+        ]
+    ],
+    "checkver": {
+        "url": "https://github.com/ciderapp/cider-releases/releases",
+        "script": [
+            "$url = 'https://api.github.com/repos/ciderapp/cider-releases/releases'",
+            "$content = (Invoke-WebRequest $url).Content",
+            "if (!($content -match 'Cider Version (?<stem>[\\d.]+) - Build (?<build>\\d+) \\(main\\)')) {",
+            "   break",
+            "}",
+            "$vermatches = $matches",
+            "Write-Output \"Version: $($vermatches.stem).$($vermatches.build) | Type: beta\""
+        ],
+        "regex": "Version: ((?<stem>[\\d\\.]{5})\\.(?<build>\\d+)) \\| Type: (?<type>.+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/ciderapp/cider-releases/releases/download/v$version/Cider-Setup-winget-$matchStem-$matchType.$matchBuild.exe#/dl.7z",
+                "hash": {
+                    "url": "$baseurl/latest.yml",
+                    "regex": "sha512:\\s+$base64"
+                }
+            }
+        }
+    }
+}
