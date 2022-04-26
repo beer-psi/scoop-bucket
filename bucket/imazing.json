@@ -1,0 +1,56 @@
+{
+    "version": "2.14.8",
+    "description": "Manage your iPhone. Your way.",
+    "license": "Proprietary",
+    "homepage": "https://imazing.com/",
+    "depends": "innounp",
+    "url": "https://downloads.imazing.com/windows/iMazing/2.14.8/iMazing_2.14.8.exe",
+    "hash": "b118fe326378b7f11e287858c8bd0668b67c53fddc32d32e745e8e2a766b893e",
+    "innosetup": true,
+    "architecture": {
+        "64bit": {
+            "post_install": [
+                "Get-ChildItem $dir -Recurse -Filter '*,1*' | Remove-Item",
+                "Get-ChildItem $dir -Recurse -Filter '*,2*' | ForEach-Object {",
+                "   Move-Item $_ ($_ -replace '\\,2', '')",
+                "}",
+                "Remove-Item uninst000.*"
+            ]
+        },
+        "32bit": {
+            "post_install": [
+                "Get-ChildItem $dir -Recurse -Filter '*,2*' | Remove-Item",
+                "Get-ChildItem $dir -Recurse -Filter '*,1*' | ForEach-Object {",
+                "   Move-Item $_ ($_ -replace '\\,1', '')",
+                "}",
+                "Remove-Item uninst000.*"
+            ]
+        }
+    },
+    "bin": "iMazing-CLI.exe",
+    "shortcuts": [
+        [
+            "iMazing.exe",
+            "iMazing"
+        ],
+        [
+            "iMazing HEIC Converter.exe",
+            "iMazing HEIC Converter"
+        ],
+        [
+            "iMazing Mini.exe",
+            "iMazing Mini"
+        ],
+        [
+            "iMazing Profile Editor.exe",
+            "iMazing Profile Editor"
+        ]
+    ],
+    "checkver": {
+        "url": "https://downloads.imazing.com/com.DigiDNA.iMazing2Windows.xml",
+        "xpath": "//channel/item[1]/enclosure/@sparkle:version"
+    },
+    "autoupdate": {
+        "url": "https://downloads.imazing.com/windows/iMazing/$version/iMazing_$version.exe"
+    }
+}
