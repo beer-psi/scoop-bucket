@@ -20,7 +20,6 @@
         ]
     ],
     "checkver": {
-        "url": "https://github.com/ciderapp/cider-releases/releases",
         "script": [
             "$url = 'https://api.github.com/repos/ciderapp/cider-releases/releases'",
             "$content = (Invoke-WebRequest $url).Content",
