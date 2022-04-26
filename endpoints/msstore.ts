@@ -49,9 +49,9 @@ function parseDocument(document: HTMLDocument): StoreData[] {
   });
 }
 
-function validateParams(sp: URLSearchParams): boolean {
+function validateParams(sp: URLSearchParams): string {
   if (!sp.has("type") || !sp.has("url") || !sp.has("ring") || !sp.has("lang")) {
-    return false;
+    return "missing required parameters";
   }
   if (
     !["ProductId", "CategoryId", "url", "PackageFamilyName"].includes(
@@ -59,27 +59,26 @@ function validateParams(sp: URLSearchParams): boolean {
       sp.get("type"),
     )
   ) {
-    return false;
+    return "invalid type parameter";
   }
   // @ts-ignore: Already validated
   if (!["Fast", "Slow", "RP", "Retail"].includes(sp.get("ring"))) {
-    return false;
+    return "invalid ring parameter";
   }
-  if (sp.get("lang") !== "en-US") {
-    return false;
-  }
-  return true;
+
+  return "";
 }
 
 export default async function handleRequest(
   request: Request,
 ): Promise<Response> {
   const sp = new URL(request.url).searchParams;
-  if (!validateParams(sp)) {
+  if (validateParams(sp)) {
     return new Response(
       JSON.stringify(
         {
           message: "invalid parameters",
+          reason: validateParams(sp),
           params: {
             "type": "'ProductId' | 'CategoryId' | 'url' | 'PackageFamilyName",
             "url": "string",
@@ -99,10 +98,7 @@ export default async function handleRequest(
       {
         status: StatusCodes.BAD_REQUEST,
         statusText: ReasonPhrases.BAD_REQUEST,
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-          "access-control-allow-origin": "*",
-        },
+        headers: CommonHeaders,
       },
     );
   }
