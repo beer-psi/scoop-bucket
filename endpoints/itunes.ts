@@ -52,26 +52,26 @@ function getVersionsWindows(
     const cells: NodeList = value.querySelectorAll("td");
     return {
       version: cells.length < 8
-        ? array[index - 1].querySelectorAll("td")[0].textContent.trim()
+        ? array[index - 1].querySelectorAll("td")[0].textContent
           .replaceAll(/\[\d+\]/g, "")
-        : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ""),
-      qt_version: cells[cells.length - 7].textContent.trim() === "—"
+        : cells[0].textContent.replaceAll(/\[\d+\]/g, ""),
+      qt_version: cells[cells.length - 7].textContent === "—"
         ? null
-        : cells[cells.length - 7].textContent.trim(),
-      amds_version: cells[cells.length - 6].textContent.trim(),
-      aas_version: cells[cells.length - 5].textContent.trim() === "—"
+        : cells[cells.length - 7].textContent,
+      amds_version: cells[cells.length - 6].textContent,
+      aas_version: cells[cells.length - 5].textContent === "—"
         ? null
-        : cells[cells.length - 5].textContent.trim(),
-      url: cells[cells.length - 4].textContent.trim() === "N/A"
+        : cells[cells.length - 5].textContent,
+      url: cells[cells.length - 4].textContent === "N/A"
         ? null
         : decodeURI(cells[cells.length - 4].querySelector("a")?.href),
-      sha1sum: cells[cells.length - 3].textContent.trim() === "N/A"
+      sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
-        : cells[cells.length - 3].textContent.trim(),
-      size: cells[cells.length - 2].textContent.trim() === "N/A"
+        : cells[cells.length - 3].textContent,
+      size: cells[cells.length - 2].textContent === "N/A"
         ? null
         : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", "").trim(),
+          cells[cells.length - 2].textContent.replaceAll(",", ""),
         ),
     };
   });
@@ -88,24 +88,24 @@ function getVersionsWindowsOlderCards(
     const cells: NodeList = value.querySelectorAll("td");
     return {
       version: cells.length < 7
-        ? array[index - 1].querySelectorAll("td")[0].textContent.trim()
+        ? array[index - 1].querySelectorAll("td")[0].textContent
           .replaceAll(/\[\d+\]/g, "")
-        : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ""),
+        : cells[0].textContent.replaceAll(/\[\d+\]/g, ""),
       qt_version: null,
-      amds_version: cells[cells.length - 6].textContent.trim(),
-      aas_version: cells[cells.length - 5].textContent.trim() === "—"
+      amds_version: cells[cells.length - 6].textContent,
+      aas_version: cells[cells.length - 5].textContent === "—"
         ? null
-        : cells[cells.length - 5].textContent.trim(),
-      url: cells[cells.length - 4].textContent.trim() === "N/A"
+        : cells[cells.length - 5].textContent,
+      url: cells[cells.length - 4].textContent === "N/A"
         ? null
         : decodeURI(cells[cells.length - 4].querySelector("a")?.href),
-      sha1sum: cells[cells.length - 3].textContent.trim() === "N/A"
+      sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
-        : cells[cells.length - 3].textContent.trim(),
-      size: cells[cells.length - 2].textContent.trim() === "N/A"
+        : cells[cells.length - 3].textContent,
+      size: cells[cells.length - 2].textContent === "N/A"
         ? null
         : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", "").trim(),
+          cells[cells.length - 2].textContent.replaceAll(",", ""),
         ),
     };
   });
@@ -122,22 +122,22 @@ function getVersionsMacOS(
     const cells: NodeList = value.querySelectorAll("td");
     return {
       version: cells.length < 6
-        ? array[index - 1].querySelectorAll("td")[0].textContent.trim()
+        ? array[index - 1].querySelectorAll("td")[0].textContent
           .replaceAll(/\[\d+\]/g, "")
-        : cells[0].textContent.trim().replaceAll(/\[\d+\]/g, ""),
+        : cells[0].textContent.replaceAll(/\[\d+\]/g, ""),
       qt_version: null,
-      amds_version: cells[cells.length - 5].textContent.trim(),
+      amds_version: cells[cells.length - 5].textContent,
       aas_version: null,
-      url: cells[cells.length - 4].textContent.trim() === "N/A"
+      url: cells[cells.length - 4].textContent === "N/A"
         ? null
         : decodeURI(cells[cells.length - 4].querySelector("a")?.href),
-      sha1sum: cells[cells.length - 3].textContent.trim() === "N/A"
+      sha1sum: cells[cells.length - 3].textContent === "N/A"
         ? null
-        : cells[cells.length - 3].textContent.trim(),
-      size: cells[cells.length - 2].textContent.trim() === "N/A"
+        : cells[cells.length - 3].textContent,
+      size: cells[cells.length - 2].textContent === "N/A"
         ? null
         : Number(
-          cells[cells.length - 2].textContent.replaceAll(",", "").trim(),
+          cells[cells.length - 2].textContent.replaceAll(",", ""),
         ),
     };
   });
@@ -209,7 +209,7 @@ export default async function handleRequest(
   const sp = new URL(request.url).searchParams;
   if (resp.ok && resp.headers.get("last-modified")) {
     const allVersions = fetchTableWithCache(
-      await resp.text(),
+      (await resp.text()).replaceAll(/\n/gm, ''),
       // @ts-ignore: Already checked for nullness
       String(new Date(resp.headers.get("last-modified")).getTime()),
     );

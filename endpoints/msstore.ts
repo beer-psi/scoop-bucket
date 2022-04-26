@@ -30,14 +30,15 @@ function parseDocument(document: HTMLDocument): StoreData[] {
   rows.shift();
   return rows.map((value) => {
     const cells: NodeList = value.querySelectorAll("td");
-    const filename = cells[0].querySelector("a").textContent.trim();
+    const anchorElem = cells[0].querySelector("a")
+    const filename = anchorElem.textContent;
     const groups = filename.split("_");
     return {
       id: groups[0],
       version: groups[1],
       arch: groups[2],
       file: {
-        url: decodeURI(cells[0].querySelector("a")?.href),
+        url: decodeURI(anchorElem.attributes.href.value),
         name: filename,
         extension: filename.split(".").at(-1),
         size: cells[3].textContent.trim(),
@@ -116,7 +117,7 @@ export default async function handleRequest(
     },
   });
   if (resp.ok) {
-    const text = await resp.text();
+    const text = (await resp.text()).replaceAll(/\n/gm, '');
     const document = new DOMParser().parseFromString(text, "text/html");
     if (
       document.querySelector("img").attributes.src.value === "../img/stop.png"
