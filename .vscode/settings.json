@@ -3,11 +3,12 @@
         {
             "url": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
             "fileMatch": [
-                "bucket/*.json"
+                "bucket/*.json",
+                "experimental/*.json"
             ]
         }
     ],
     "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/beerpiss/Documents/code/scoop-bucket/.github/workflows/deploy.yaml"
+        "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yaml"
     }
 }
