@@ -29,3 +29,6 @@ My personal scoop bucket that includes some (non-)portable tools not available i
 |[windowstoolbox-head](https://github.com/WinTweakers/WindowsToolbox "https://github.com/WinTweakers/WindowsToolbox")|[5d35128e5f7b280cefbb4](https://api.github.com/repos/WinTweakers/WindowsToolbox/git/refs "https://api.github.com/repos/WinTweakers/WindowsToolbox/git/refs")|A powerful but simple, easy to use toolbox for Windows 10/11 (HEAD version)|[MIT](https://spdx.org/licenses/MIT "https://spdx.org/licenses/MIT")/[Beerware](https://spdx.org/licenses/Beerware "https://spdx.org/licenses/Beerware")|
 |[wpd](https://wpd.app "https://wpd.app")|[1.5.2042](https://wpd.app "https://wpd.app")|Privacy dashboard for Windows|[Freeware](https://en.wikipedia.org/wiki/Freeware "https://en.wikipedia.org/wiki/Freeware")|
 <!-- </apps> -->
+
+## API
+This bucket is partly powered by an API on the [api](https://github.com/beerpiss/scoop-bucket/tree/api) branch. Check that branch out for more details.
