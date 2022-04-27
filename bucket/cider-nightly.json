@@ -5,7 +5,7 @@
     "homepage": "https://cider.sh",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.5.1890/Cider-Setup-winget-1.4.5-develop.1890.exe#/dl.7z",
+            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.5.1890/Cider-Setup-winget-1.4.5-alpha.1890.exe#/dl.7z",
             "hash": "sha512:b7ff459aae428ecd253e92c4a41dcb63ae0d8fde3e288410e8a6c95104308e2934b534e92e0719a89262d47229a4040b8e61e38dd954c9cfa85d0674ed8b3999",
             "installer": {
                 "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
@@ -29,6 +29,9 @@
             "$vermatches = $matches",
             "if ($vermatches.type -match 'main') {",
             "   break",
+            "}",
+            "if ($vermatches.type -match 'develop') {",
+            "   $vermatches.type = 'alpha'",
             "}",
             "Write-Output \"Version: $($vermatches.stem).$($vermatches.build) | Type: $($vermatches.type)\""
         ],
