@@ -22,7 +22,7 @@ interface Parameters {
   type?: "x86" | "x64" | "older_video_cards";
 
   // Leave blank to download latest version **with a download**, or specify a version yourself
-  dl?: string;
+  dl?: string | boolean;
 }
 ```
 
@@ -92,7 +92,7 @@ interface Parameters {
   extension?: string;
 
   // Download
-  dl?: any;
+  dl?: boolean;
 }
 ```
 

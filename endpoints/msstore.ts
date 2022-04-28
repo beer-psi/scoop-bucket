@@ -243,7 +243,7 @@ export default async function handleRequest(
       .filter((value) =>
         extension === null || value.file.extension === extension
       );
-    if (sp.has("dl")) {
+    if (sp.get("dl") === 'true') {
       if (ret.length > 1) {
         return new Response(
           JSON.stringify(
