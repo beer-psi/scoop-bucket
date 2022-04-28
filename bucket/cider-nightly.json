@@ -1,12 +1,12 @@
 {
-    "version": "1.4.5.1900",
+    "version": "1.4.5.1901",
     "description": "Cross-platform Apple Music client (alpha version)",
     "license": "AGPL-3.0-or-later",
     "homepage": "https://cider.sh",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.5.1900/Cider-Setup-winget-1.4.5-alpha.1900.exe#/dl.7z",
-            "hash": "sha512:ddc5efb941d97cb7cb96925a40574b87c70e318cd6dbd68424bceab5a7f79aa10064cd78ed2fdf16406da5ec1113751ca4b4be177aa9ec331a9a2a2d7f848377",
+            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.5.1901/Cider-Setup-winget-1.4.5-alpha.1901.exe#/dl.7z",
+            "hash": "sha512:bdb0fc84f811a754f8fe5af438b75286acc8f41f13e45c8c8fab5a7b9b50b7f54b3b7d4a1c6386fc00d63172dc58442a1699cbf8af78ac45a66037ec4078638a",
             "installer": {
                 "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
             }
