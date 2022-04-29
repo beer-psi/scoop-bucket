@@ -1,0 +1,41 @@
+{
+    "version": "4.3rc5",
+    "description": "Vietnamese keyboard",
+    "homepage": "https://unikey.org",
+    "license": "GPL-2.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.unikey.org/assets/release/unikey43RC5-200929-win64.zip",
+            "hash": "dea84f2b2ae0f2f0d24740efa67e8ded0ac51657c13cb7e123078eb27032527b"
+        },
+        "32bit": {
+            "url": "https://www.unikey.org/assets/release/unikey43RC5-200929-win32.zip",
+            "hash": "1ef89f262d5b25d2279aee12c81e1767e6e58c367ac13756d391f2cb56022b22"
+        }
+    },
+    "checkver": {
+        "script": [
+            "$xml = [xml]([regex]::replace([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline), '<(meta|link).*?>', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace 'async', '' -replace 'itemscope', '' -replace '&copy;', '')",
+            "$nsList = $xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
+            "$nsmgr = New-Object System.Xml.XmlNamespaceManager($xml.NameTable)",
+            "$nsList | ForEach-Object { $nsmgr.AddNamespace($_.LocalName, $_.Value) }",
+            "$version = ($xml.SelectSingleNode('//section/h3[1]', $nsmgr).'#text' -replace 'UniKey', '' -replace ' ', '').ToLower()",
+            "if (-not ($xml.SelectSingleNode('//section[1]/ul[1]/li[2]/a[@title=\"UniKey 64 bit\"]/@href', $nsmgr).'#text' -match '\\d+RC\\d+-\\d+')) {",
+            "   break",
+            "}",
+            "$dlVersion = $Matches[0]",
+            "Write-Output \"$version, $dlVersion\""
+        ],
+        "regex": "([\\drc.]+), (?<dl>[\\dRC\\-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.unikey.org/assets/release/unikey$matchDl-win64.zip"
+            },
+            "32bit": {
+                "url": "https://www.unikey.org/assets/release/unikey$matchDl-win32.zip"
+            }
+        }
+    }
+}
