@@ -2,7 +2,10 @@
     "version": "0.2.0.0",
     "description": "Free network sniffer for Windows that uses raw sockets",
     "homepage": "https://www.netresec.com/?page=RawCap",
-    "license": "Freeware",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.netresec.com/?page=RawCap#:~:text=License"
+    },
     "notes": [
         "- Requires .NET Framework 4.7.2+",
         "- RawCap cannot capture from IPv6 interfaces."
