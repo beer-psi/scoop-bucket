@@ -15,11 +15,11 @@
     },
     "checkver": {
         "script": [
-            "$xml = [xml]([regex]::replace([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline), '<(meta|link).*?>', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace 'async', '' -replace 'itemscope', '' -replace '&copy;', '')",
+            "$xml = [xml]([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
             "$nsList = $xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
             "$nsmgr = New-Object System.Xml.XmlNamespaceManager($xml.NameTable)",
             "$nsList | ForEach-Object { $nsmgr.AddNamespace($_.LocalName, $_.Value) }",
-            "$version = ($xml.SelectSingleNode('//section/h3[1]', $nsmgr).'#text' -replace 'UniKey', '' -replace ' ', '').ToLower()",
+            "$version = ($xml.SelectSingleNode('//section/h3[1]', $nsmgr).'#text' -replace '(UniKey| )', '').ToLower()",
             "if (-not ($xml.SelectSingleNode('//section[1]/ul[1]/li[2]/a[@title=\"UniKey 64 bit\"]/@href', $nsmgr).'#text' -match '\\d+RC\\d+-\\d+')) {",
             "   break",
             "}",
