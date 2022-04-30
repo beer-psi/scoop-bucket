@@ -1,5 +1,5 @@
 {
-    "version": "0.2.0.0",
+    "version": "4.3rc5",
     "description": "Free network sniffer for Windows that uses raw sockets",
     "homepage": "https://www.netresec.com/?page=RawCap",
     "license": {
