@@ -15,16 +15,16 @@
     },
     "checkver": {
         "script": [
-            "$xml = [xml]([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
-            "$nsList = $xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
-            "$nsmgr = New-Object System.Xml.XmlNamespaceManager($xml.NameTable)",
-            "$nsList | ForEach-Object { $nsmgr.AddNamespace($_.LocalName, $_.Value) }",
-            "$version = ($xml.SelectSingleNode('//section/h3[1]', $nsmgr).'#text' -replace '(UniKey| )', '').ToLower()",
-            "if (-not ($xml.SelectSingleNode('//section[1]/ul[1]/li[2]/a[@title=\"UniKey 64 bit\"]/@href', $nsmgr).'#text' -match '\\d+RC\\d+-\\d+')) {",
+            "$unikey_xml = [xml]([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
+            "$unikey_nsList = $unikey_xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
+            "$unikey_nsmgr = New-Object System.Xml.XmlNamespaceManager($unikey_xml.NameTable)",
+            "$unikey_nsList | ForEach-Object { $unikey_nsmgr.AddNamespace($_.LocalName, $_.Value) }",
+            "$unikey_version = ($unikey_xml.SelectSingleNode('//section/h3[1]', $unikey_nsmgr).'#text' -replace '(UniKey| )', '').ToLower()",
+            "if (-not ($unikey_xml.SelectSingleNode('//section[1]/ul[1]/li[2]/a[@title=\"UniKey 64 bit\"]/@href', $nsmgr).'#text' -match '\\d+RC\\d+-\\d+')) {",
             "   break",
             "}",
-            "$dlVersion = $Matches[0]",
-            "Write-Output \"$version, $dlVersion\""
+            "$unikey_dlVersion = $Matches[0]",
+            "Write-Output \"$unikey_version, $unikey_dlVersion\""
         ],
         "regex": "([\\drc.]+), (?<dl>[\\dRC\\-]+)"
     },
