@@ -9,22 +9,26 @@
     "innosetup": true,
     "architecture": {
         "64bit": {
-            "post_install": [
-                "Get-ChildItem $dir -Recurse -Filter '*,1*' | Remove-Item",
-                "Get-ChildItem $dir -Recurse -Filter '*,2*' | ForEach-Object {",
-                "   Move-Item $_ ($_ -replace '\\,2', '')",
-                "}",
-                "Remove-Item uninst000.*"
-            ]
+            "installer": {
+                "script": [
+                    "Get-ChildItem $dir -Recurse -Filter '*,1*' | Remove-Item",
+                    "Get-ChildItem $dir -Recurse -Filter '*,2*' | ForEach-Object {",
+                    "   Move-Item $_ ($_ -replace '\\,2', '')",
+                    "}",
+                    "Remove-Item uninst000.*"
+                ]
+            }
         },
         "32bit": {
-            "post_install": [
-                "Get-ChildItem $dir -Recurse -Filter '*,2*' | Remove-Item",
-                "Get-ChildItem $dir -Recurse -Filter '*,1*' | ForEach-Object {",
-                "   Move-Item $_ ($_ -replace '\\,1', '')",
-                "}",
-                "Remove-Item uninst000.*"
-            ]
+            "installer": {
+                "script": [
+                    "Get-ChildItem $dir -Recurse -Filter '*,2*' | Remove-Item",
+                    "Get-ChildItem $dir -Recurse -Filter '*,1*' | ForEach-Object {",
+                    "   Move-Item $_ ($_ -replace '\\,1', '')",
+                    "}",
+                    "Remove-Item uninst000.*"
+                ]
+            }
         }
     },
     "bin": "iMazing-CLI.exe",
