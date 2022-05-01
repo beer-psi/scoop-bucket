@@ -62,7 +62,7 @@
         "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=$version#/dl.7z",
         "hash": {
             "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86",
-            "jsonpath": "$[-1:].sha1sum"
+            "jsonpath": "$[?(@.version=='$version')].sha1sum"
         }
     }
 }

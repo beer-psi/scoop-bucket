@@ -74,7 +74,7 @@
                 "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards&dl=$version#/dl.7z",
                 "hash": {
                     "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards",
-                    "jsonpath": "$[-1:].sha1sum"
+                    "jsonpath": "$[?(@.version=='$version')].sha1sum"
                 }
             }
         }
