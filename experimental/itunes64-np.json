@@ -37,7 +37,10 @@
                     "}"
                 ]
             },
-            "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\iTunes\"",
+            "post_install": [
+                "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\iTunes\"",
+                "Remove-Item -Recurse \"$([Environment]::GetFolderPath('CommonDesktopDirectory'))\\iTunes.lnk\""
+            ],
             "uninstaller": {
                 "script": [
                     "Stop-Service 'Apple Mobile Device Service'",
