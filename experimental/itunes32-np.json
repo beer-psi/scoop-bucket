@@ -16,8 +16,8 @@
         "   throw 'This package must be installed globally.'",
         "}",
         "Remove-Item \"$dir\\SetupAdmin.exe\", \"$dir\\AppleSoftwareUpdate.msi\"",
-        "Stop-Service 'Apple Mobile Device Service'",
-        "Stop-Service 'Bonjour Service'"
+        "Stop-Service 'Apple Mobile Device Service' -ErrorAction SilentlyContinue",
+        "Stop-Service 'Bonjour Service' -ErrorAction SilentlyContinue"
     ],
     "installer": {
         "script": [
