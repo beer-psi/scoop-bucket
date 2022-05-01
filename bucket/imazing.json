@@ -4,6 +4,13 @@
     "license": "Proprietary",
     "homepage": "https://imazing.com/",
     "depends": "innounp",
+    "suggest": {
+        "iTunes": [
+            "beerpiss/itunes64-np",
+            "beerpiss/itunes32-np",
+            "beerpiss/itunes64-older-video-cards-np"
+        ]
+    },
     "url": "https://downloads.imazing.com/windows/iMazing/2.14.8/iMazing_2.14.8.exe",
     "hash": "b118fe326378b7f11e287858c8bd0668b67c53fddc32d32e745e8e2a766b893e",
     "innosetup": true,
