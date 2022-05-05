@@ -10,8 +10,12 @@
         "identifier": "Public Domain",
         "url": "https://github.com/mtoyoda/sl/blob/master/LICENSE"
     },
-    "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-5.02.exe#/sl.exe",
-    "hash": "53b560dc69622c0f7e75d4f2c60c7e5872535d04c94507f10d88633677b35140",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-5.02-x86_64.exe#/sl.exe",
+            "hash": "53b560dc69622c0f7e75d4f2c60c7e5872535d04c94507f10d88633677b35140"
+        }
+    },
     "bin": "sl.exe",
     "checkver": {
         "github": "https://github.com/mtoyoda/sl"
