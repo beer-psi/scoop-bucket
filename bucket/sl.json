@@ -7,7 +7,7 @@
     ],
     "homepage": "https://github.com/mtoyoda/sl",
     "license": {
-        "identifier": "Public Domain",
+        "identifier": "0BSD-like",
         "url": "https://github.com/mtoyoda/sl/blob/master/LICENSE"
     },
     "architecture": {
