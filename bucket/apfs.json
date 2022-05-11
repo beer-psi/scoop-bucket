@@ -1,0 +1,23 @@
+{
+    "version": "1.0.14",
+    "description": "APFS parser written in pure Go",
+    "homepage": "https://github.com/blacktop/go-apfs",
+    "license": {
+        "identifier": "Apache-2.0",
+        "url": "https://github.com/blacktop/go-apfs/blob/main/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/blacktop/go-apfs/releases/download/v1.0.14/apfs_1.0.14_windows_x86_64.zip",
+            "hash": "6cc801dd9ba8687dc3cf986273903727b297008146e6a69b3b562750bb467aea"
+        }
+    },
+    "bin": "apfs.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/blacktop/go-apfs/releases/download/v$version/apfs_$version_windows_x86_64.zip",
+        "hash": {
+            "url": "$baseurl/checksums.win.txt"
+        }
+    }
+}
