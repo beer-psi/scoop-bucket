@@ -9,11 +9,17 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/plutil-affa752-x86_64.zip",
-            "hash": "93a70fd097db0d1e2ca1dbe4d5c14f5784aaa8295aff27c2faa224f0e3cb048a"
+            "hash": "748896b5e32dc54bbe583bb4631b5b8f659379a529abeb474e6f74721aa26481"
         }
     },
     "bin": [
-        "plutil.exe",
-        "PlistBuddy.exe"
+        [
+            "plutil.exe",
+            "plutil"
+        ],
+        [
+            "PlistBuddy.exe",
+            "PlistBuddy"
+        ]
     ]
 }
