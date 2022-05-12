@@ -516,7 +516,7 @@ def do_version(js):
     version = js["version"]
     url = get_url(js)
     if "checkver" not in js:
-        version = "<i>%s</i>" % version
+        version = "%s ⚠" % version
     if url == "":
         return version
     return '[%s](%s "%s")' % (version[0:21], url, url)
