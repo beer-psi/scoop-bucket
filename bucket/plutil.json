@@ -8,13 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-h-3.03-x86_64.exe#/sl-h.exe",
-            "hash": "525c9f288eca32bb39e8d526a45e4a74ed5ebc566166b0fab7ab88dc9012833d"
-        },
-        "32bit": {
-            "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-h-3.03-i686.exe#/sl-h.exe",
-            "hash": "f1fbe0255d9e6eff26933e7ee141bd640f8e587085558b33d4849ca5573161a4"
+            "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/plutil-affa752-x86_64.zip",
+            "hash": "93a70fd097db0d1e2ca1dbe4d5c14f5784aaa8295aff27c2faa224f0e3cb048a"
         }
     },
-    "bin": "sl-h.exe"
+    "bin": [
+        "plutil.exe",
+        "PlistBuddy.exe"
+    ]
 }
