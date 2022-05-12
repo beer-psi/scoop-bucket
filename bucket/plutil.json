@@ -9,7 +9,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/plutil-affa752-x86_64.zip",
-            "hash": "748896b5e32dc54bbe583bb4631b5b8f659379a529abeb474e6f74721aa26481"
+            "hash": "7134bb7ca89284733456407664861ba7fca2eda588e81138be7ab4d40d058af6"
         }
     },
     "bin": [
