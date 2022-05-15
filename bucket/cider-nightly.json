@@ -5,7 +5,7 @@
     "homepage": "https://cider.sh",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.6.2497/Cider-Setup-winget-1.4.6-alpha.2497.exe#/dl.7z",
+            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.6.2497/Cider-Setup-winget-1.4.6-alpha.exe#/dl.7z",
             "hash": "sha512:718d9ba66b4d5112d4bc9c4177b0e31238e0b34e96111957b8685e25c86f72570b1a951f1956a3f982654282eeb5933faaa09a9ef9ebdf489827357499d81158",
             "installer": {
                 "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
@@ -40,7 +40,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ciderapp/cider-releases/releases/download/v$version/Cider-Setup-winget-$matchStem-$matchType.$matchBuild.exe#/dl.7z",
+                "url": "https://github.com/ciderapp/cider-releases/releases/download/v$version/Cider-Setup-winget-$matchStem-$matchType.exe#/dl.7z",
                 "hash": {
                     "url": "$baseurl/latest.yml",
                     "regex": "sha512:\\s+$base64"
