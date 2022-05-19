@@ -1,5 +1,5 @@
 {
-    "version": "12.12.3.5",
+    "version": "12.12.4.1",
     "description": "iTunes is the easiest way to enjoy everything you need to be entertained - music, movies, and TV shows - and keep it all easily organized. Rent or buy movies, download your favorite TV shows, and more.",
     "notes": [
         "Currently, you will need to manually stop services before uninstalling/updating:",
@@ -9,8 +9,8 @@
     ],
     "license": "Proprietary",
     "homepage": "https://www.apple.com/itunes/",
-    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=12.12.3.5#/dl.7z",
-    "hash": "sha1:678f3336e6acde79580e885e2716b49b23bf265e",
+    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=12.12.4.1#/dl.7z",
+    "hash": "sha1:a4343b76aabe50c9f41be786cf1b6a076460fc63",
     "pre_install": [
         "if (-not $global) {",
         "   throw 'This package must be installed globally.'",
