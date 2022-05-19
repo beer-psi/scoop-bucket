@@ -3,7 +3,7 @@
     "description": "The version of awk as described in \"The AWK Programming Language\"",
     "license": {
         "identifier": "MIT-like",
-        "url": "https://github.com/onetrueawk/awk/blob/master/LICENSE"   
+        "url": "https://github.com/onetrueawk/awk/blob/master/LICENSE"
     },
     "homepage": "https://github.com/onetrueawk/awk",
     "architecture": {
