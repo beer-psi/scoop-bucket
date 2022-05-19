@@ -1,19 +1,19 @@
 {
-    "version": "0.2.1",
+    "version": "0.2.2",
     "architecture": {
         "32bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.2.1/aidoku_0.2.1_windows_i386.zip",
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.2.2/aidoku_0.2.2_windows_i386.zip",
             "bin": [
                 "aidoku.exe"
             ],
-            "hash": "c6cac010c189fc1fecdc25889399170af1e3fd7bc73f21149898bb9d4a0aee15"
+            "hash": "3a13d6a7ccd20a017bd68ec65b28266e041d5467f5b9b648fbe870a7aac49183"
         },
         "64bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.2.1/aidoku_0.2.1_windows_x86_64.zip",
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.2.2/aidoku_0.2.2_windows_x86_64.zip",
             "bin": [
                 "aidoku.exe"
             ],
-            "hash": "eaaddf348fb810b1567c6b5306e638689a7178a065087c86bb6df9c3880d9947"
+            "hash": "944a51c7248b3b8087256eb0a6879b8a906cc0b7df094336313c7c4a51cc2592"
         }
     },
     "homepage": "https://github.com/beerpiss/aidoku-cli",
