@@ -1,5 +1,5 @@
 {
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Development tools for Aidoku, a manga reader app.",
     "license": {
         "identifier": "0BSD",
@@ -8,12 +8,12 @@
     "homepage": "https://github.com/beerpiss/aidoku-cli",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.0/aidoku_0.3.0_windows_x86_64.zip",
-            "hash": "469b30e8bed3e119ffc053b57fdcbbc2e58389019838f9b8b50e128450e20b60"
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.1/aidoku-cli_0.3.1_windows_x86_64.zip",
+            "hash": "51e3f69ccdc50c381b1e3fecb7c4cc8d78e16630a56acae3a32f170932372e13"
         },
         "32bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.0/aidoku_0.3.0_windows_i386.zip",
-            "hash": "f2493189cb919868f39877897a276ce166f4d59df9e724b365537137001dcb98"
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.1/aidoku-cli_0.3.1_windows_i386.zip",
+            "hash": "433d6ad909732fa2098975f6b333b93f86301a00adb9223f356576833e4179b3"
         }
     },
     "bin": "aidoku.exe",
@@ -21,13 +21,13 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku_$version_windows_x86_64.zip",
+                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_x86_64.zip",
                 "hash": {
                     "url": "$baseurl/checksums.txt"
                 }
             },
             "32bit": {
-                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku_$version_windows_i386.zip",
+                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_i386.zip",
                 "hash": {
                     "url": "$baseurl/checksums.txt"
                 }
