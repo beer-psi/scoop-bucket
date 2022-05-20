@@ -1,5 +1,5 @@
 {
-    "version": "0.3.1",
+    "version": "0.3.7",
     "description": "Development tools for Aidoku, a manga reader app.",
     "license": {
         "identifier": "0BSD",
@@ -8,12 +8,12 @@
     "homepage": "https://github.com/beerpiss/aidoku-cli",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.1/aidoku-cli_0.3.1_windows_x86_64.zip",
-            "hash": "51e3f69ccdc50c381b1e3fecb7c4cc8d78e16630a56acae3a32f170932372e13"
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.7/aidoku-cli_0.3.7_windows_x86_64.zip",
+            "hash": "be97b55de4e07dcf39a4863ef3146a56ac3243d338c765863f03d217771b456a"
         },
         "32bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.1/aidoku-cli_0.3.1_windows_i386.zip",
-            "hash": "433d6ad909732fa2098975f6b333b93f86301a00adb9223f356576833e4179b3"
+            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.7/aidoku-cli_0.3.7_windows_i386.zip",
+            "hash": "0273de5aa2533e659f00d944314d93fdb98967272adc90f6f27d0379bc892fcb"
         }
     },
     "bin": "aidoku.exe",
