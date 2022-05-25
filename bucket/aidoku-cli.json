@@ -1,33 +1,34 @@
 {
-    "version": "0.3.7",
+    "version": "0.4.2",
     "description": "Development tools for Aidoku, a manga reader app.",
     "license": {
         "identifier": "0BSD",
-        "url": "https://github.com/beerpiss/aidoku-cli/blob/trunk/LICENSE"
+        "url": "https://github.com/Aidoku/aidoku-cli/blob/trunk/LICENSE"
     },
-    "homepage": "https://github.com/beerpiss/aidoku-cli",
+    "homepage": "https://github.com/Aidoku/aidoku-cli",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.7/aidoku-cli_0.3.7_windows_x86_64.zip",
-            "hash": "be97b55de4e07dcf39a4863ef3146a56ac3243d338c765863f03d217771b456a"
+            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.2/aidoku-cli_0.4.2_windows_x86_64.zip",
+            "hash": "b1f4694f2d318b0a5b3e5fc4cd89b97d7a76c52ba457c8e9418e82ca4167faa9"
         },
         "32bit": {
-            "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v0.3.7/aidoku-cli_0.3.7_windows_i386.zip",
-            "hash": "0273de5aa2533e659f00d944314d93fdb98967272adc90f6f27d0379bc892fcb"
+            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.2/aidoku-cli_0.4.2_windows_i386.zip",
+            "hash": "53d35ddb286ec55085e37b2497b13b53533d4029f8ec4e6a95764e18a0e10ea3"
         }
     },
+    "post_install": "$dir\\aidoku.exe completion powershell > aidoku-completions.ps1",
     "bin": "aidoku.exe",
     "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_x86_64.zip",
+                "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_x86_64.zip",
                 "hash": {
                     "url": "$baseurl/checksums.txt"
                 }
             },
             "32bit": {
-                "url": "https://github.com/beerpiss/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_i386.zip",
+                "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v$version/aidoku-cli_$version_windows_i386.zip",
                 "hash": {
                     "url": "$baseurl/checksums.txt"
                 }
