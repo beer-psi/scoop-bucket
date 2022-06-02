@@ -136,7 +136,10 @@ function validateParams(sp: URLSearchParams): string[] {
     res.push("invalid ring parameter");
   }
 
-  if (sp.has("lang") && !Object.prototype.hasOwnProperty.call(WindowsLocale, sp.get("lang")!)) {
+  if (
+    sp.has("lang") &&
+    !Object.prototype.hasOwnProperty.call(WindowsLocale, sp.get("lang")!)
+  ) {
     res.push("invalid language");
   }
 
@@ -233,13 +236,13 @@ export default async function handleRequest(
     const arch = sp.get("arch");
     const name = sp.get("name");
     const extension = sp.get("extension");
-    const ret = data.filter((value) => id === null || value.id === id)
-      .filter((value) => version === null || value.version === version)
-      .filter((value) => arch === null || value.arch === arch)
-      .filter((value) => name === null || value.file.name === name)
-      .filter((value) =>
-        extension === null || value.file.extension === extension
-      );
+    const ret = data.filter((value) =>
+      (id === null || value.id === id) &&
+      (version === null || value.version === version) &&
+      (arch === null || value.arch === arch) &&
+      (name === null || value.file.name === name) &&
+      (extension === null || value.file.extension === extension)
+    );
     if (sp.get("dl") === "true") {
       if (ret.length > 1) {
         return new Response(
