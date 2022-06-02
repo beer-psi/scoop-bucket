@@ -15,7 +15,7 @@ const UPSTREAM_API = "https://store.rg-adguard.net/api/GetFiles";
 /**
  * Headers used for all responses throughout the API
  */
-const CommonHeaders = {
+const COMMON_HEADERS = {
   "content-type": "application/json; charset=UTF-8",
   "access-control-allow-origin": "*",
 };
@@ -23,11 +23,13 @@ const CommonHeaders = {
 /**
  * Regexes of valid Microsoft Store links
  */
-const StoreRegexes = [
+const STORE_REGEXES = [
   /^(https:\/\/)?apps\.microsoft\.com\/store\/detail\/.+\/[a-zA-Z0-9]+$/,
   /^(https:\/\/)?microsoft\.com\/[a-zA-Z\-]+\/p\/.+\/[a-zA-Z0-9]+$/,
   /^(https:\/\/)?microsoft\.com\/store\/productId\/[a-zA-Z0-9]+$/,
 ];
+
+type QueryType = "ProductId" | "CategoryId" | "url" | "PackageFamilyName";
 
 /**
  * Describes a Microsoft Store download as parsed from UPSTREAM_API.
@@ -125,26 +127,21 @@ function validateParams(sp: URLSearchParams): string[] {
   }
   if (
     !["ProductId", "CategoryId", "url", "PackageFamilyName"].includes(
-      // @ts-ignore: Already validated
-      sp.get("type"),
+      sp.get("type")!,
     )
   ) {
     res.push("invalid type parameter");
   }
-  // @ts-ignore: Already validated
-  if (!["Fast", "Slow", "RP", "Retail"].includes(sp.get("ring"))) {
+  if (!["Fast", "Slow", "RP", "Retail"].includes(sp.get("ring")!)) {
     res.push("invalid ring parameter");
   }
 
-  // @ts-ignore: sp.has("lang") confirms the existence
-  if (sp.has("lang") && !WindowsLocale[sp.get("lang")?.toLowerCase()]) {
+  if (sp.has("lang") && !WindowsLocale[sp.get("lang")?.toLowerCase()! as keyof typeof WindowsLocale]) {
     res.push("invalid language");
   }
 
-  // @ts-ignore: already validated
-  if (validateUrl(sp.get("url"), sp.get("type"))) {
-    // @ts-ignore: shut the fuck up
-    res.push(validateUrl(sp.get("url"), sp.get("type")));
+  if (validateUrl(sp.get("url")!, sp.get("type")! as QueryType)) {
+    res.push(validateUrl(sp.get("url")!, sp.get("type")! as QueryType));
   }
 
   return res;
@@ -158,12 +155,12 @@ function validateParams(sp: URLSearchParams): string[] {
  */
 function validateUrl(
   url: string,
-  type: "ProductId" | "CategoryId" | "url" | "PackageFamilyName",
+  type: QueryType,
 ): string {
   if (type === "CategoryId") {
     return validator.isUUID(url) ? "" : "CategoryId not a UUID";
   } else if (type === "url") {
-    return StoreRegexes.some((value: RegExp) => value.test(url))
+    return STORE_REGEXES.some((value: RegExp) => value.test(url))
       ? ""
       : "URL not valid. All URLs must be a Microsoft Store entry, with no query parameters";
   } else if (type === "ProductId") {
@@ -201,7 +198,7 @@ export default async function handleRequest(
       {
         status: StatusCodes.BAD_REQUEST,
         statusText: ReasonPhrases.BAD_REQUEST,
-        headers: CommonHeaders,
+        headers: COMMON_HEADERS,
       },
     );
   }
@@ -226,7 +223,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.NOT_FOUND,
           statusText: ReasonPhrases.NOT_FOUND,
-          headers: CommonHeaders,
+          headers: COMMON_HEADERS,
         },
       );
     }
@@ -258,7 +255,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.MULTIPLE_CHOICES,
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
-            headers: CommonHeaders,
+            headers: COMMON_HEADERS,
           },
         );
       }
@@ -268,7 +265,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.NOT_FOUND,
             statusText: ReasonPhrases.NOT_FOUND,
-            headers: CommonHeaders,
+            headers: COMMON_HEADERS,
           },
         );
       }
@@ -277,7 +274,7 @@ export default async function handleRequest(
     return new Response(
       JSON.stringify(ret),
       {
-        headers: CommonHeaders,
+        headers: COMMON_HEADERS,
       },
     );
   }
@@ -286,7 +283,7 @@ export default async function handleRequest(
     {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      headers: CommonHeaders,
+      headers: COMMON_HEADERS,
     },
   );
 }

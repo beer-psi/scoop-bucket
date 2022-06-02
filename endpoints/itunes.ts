@@ -10,11 +10,11 @@ import {
   StatusCodes,
 } from "https://esm.sh/http-status-codes@2.2.0";
 
-const lru = new LRU(1);
-const lruJSON = new LRU(1);
+const CACHE = new LRU(1);
+const CACHE_JSON = new LRU(1);
 
 const ITUNES_VERSIONS_TABLE = "https://www.theiphonewiki.com/wiki/ITunes";
-const CommonHeaders = {
+const COMMON_HEADERS = {
   "content-type": "application/json; encoding=UTF-8",
   "access-control-allow-origin": "*",
 };
@@ -146,20 +146,19 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
   });
   if (respHead.ok && respHead.headers.get("last-modified")) {
     const lastModified = String(
-      // @ts-ignore: Already checked for nullness
-      new Date(respHead.headers.get("last-modified")).getTime(),
+      new Date(respHead.headers.get("last-modified")!).getTime(),
     );
-    if (!lru.has(lastModified)) {
+    if (!CACHE.has(lastModified)) {
       const resp = await fetch(url, {
         method: "GET",
         headers: {
           "user-agent": "Deno/1.0 (Deno Deploy)",
         },
       });
-      lru.set(lastModified, await resp.text());
+      CACHE.set(lastModified, await resp.text());
     }
     return new Response(
-      <string> lru.get(lastModified),
+      <string> CACHE.get(lastModified),
       {
         status: StatusCodes.OK,
         statusText: ReasonPhrases.OK,
@@ -178,7 +177,7 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
 }
 
 function fetchTableWithCache(text: string, lastModified: string): ITunesData {
-  if (!lruJSON.has(lastModified)) {
+  if (!CACHE_JSON.has(lastModified)) {
     const document = new DOMParser().parseFromString(text, "text/html");
     const response = {
       windows: {
@@ -191,9 +190,9 @@ function fetchTableWithCache(text: string, lastModified: string): ITunesData {
       },
       macos: getVersionsMacOS(document, Tables.MACOS),
     };
-    lruJSON.set(lastModified, response);
+    CACHE_JSON.set(lastModified, response);
   }
-  return <ITunesData> lruJSON.get(lastModified);
+  return <ITunesData> CACHE_JSON.get(lastModified);
 }
 
 export default async function handleRequest(
@@ -204,8 +203,7 @@ export default async function handleRequest(
   if (resp.ok && resp.headers.get("last-modified")) {
     const allVersions = fetchTableWithCache(
       (await resp.text()).replaceAll(/\n/gm, ""),
-      // @ts-ignore: Already checked for nullness
-      String(new Date(resp.headers.get("last-modified")).getTime()),
+      String(new Date(resp.headers.get("last-modified")!).getTime()),
     );
     if (Array.from(sp.keys()).length === 0) {
       return new Response(
@@ -213,7 +211,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.OK,
           statusText: ReasonPhrases.OK,
-          headers: CommonHeaders,
+          headers: COMMON_HEADERS,
         },
       );
     }
@@ -237,7 +235,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.BAD_REQUEST,
             statusText: ReasonPhrases.BAD_REQUEST,
-            headers: CommonHeaders,
+            headers: COMMON_HEADERS,
           },
         );
       }
@@ -247,7 +245,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.BAD_REQUEST,
           statusText: ReasonPhrases.BAD_REQUEST,
-          headers: CommonHeaders,
+          headers: COMMON_HEADERS,
         },
       );
     }
@@ -261,7 +259,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.MULTIPLE_CHOICES,
             statusText: ReasonPhrases.MULTIPLE_CHOICES,
-            headers: CommonHeaders,
+            headers: COMMON_HEADERS,
           },
         );
       }
@@ -278,7 +276,7 @@ export default async function handleRequest(
           {
             status: StatusCodes.NOT_FOUND,
             statusText: ReasonPhrases.NOT_FOUND,
-            headers: CommonHeaders,
+            headers: COMMON_HEADERS,
           },
         );
       }
@@ -288,7 +286,7 @@ export default async function handleRequest(
         {
           status: StatusCodes.OK,
           statusText: ReasonPhrases.OK,
-          headers: CommonHeaders,
+          headers: COMMON_HEADERS,
         },
       );
     }
@@ -298,7 +296,7 @@ export default async function handleRequest(
     {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
       statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      headers: CommonHeaders,
+      headers: COMMON_HEADERS,
     },
   );
 }
