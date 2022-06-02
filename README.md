@@ -1,6 +1,20 @@
 # scoop-bucket
 
-My personal scoop bucket that includes some (non-)portable tools not available in recognized buckets.
+My personal [Scoop](https://github.com/ScoopInstaller/Scoop) [bucket](https://github.com/lukesampson/scoop/wiki/Buckets) that includes some (non-)portable tools not available in other buckets.
+
+## Usage
+Add this bucket:
+```powershell
+scoop bucket add beerpiss https://github.com/beerpiss/scoop-bucket
+```
+
+Install an app from this bucket:
+```powershell
+scoop install beerpiss/<app>
+```
+
+## Contribution
+Contributions are welcome for any reason, let it be adding a new app, updating an outdated one, or whatever else. However, consider submitting app requests to official buckets if they match the criteria.
 
 ## Apps
 <!-- <apps> -->
