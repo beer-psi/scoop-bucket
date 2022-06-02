@@ -1,12 +1,6 @@
 {
     "version": "12.4.3.1",
     "description": "A 64-bit version of iTunes with 32-bit libraries (https://support.apple.com/kb/DL1816)",
-    "notes": [
-        "Currently, you will need to manually stop services before uninstalling/updating:",
-        "# Stop-Service 'Apple Mobile Device Service'",
-        "# Stop-Service 'Bonjour Service'",
-        "This is a known issue that will be fixed when ScoopInstaller/Scoop#4218 merges."
-    ],
     "license": "Proprietary",
     "homepage": "https://www.apple.com/itunes/",
     "architecture": {
@@ -41,10 +35,12 @@
                 "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\iTunes\"",
                 "Remove-Item -Recurse \"$([Environment]::GetFolderPath('CommonDesktopDirectory'))\\iTunes.lnk\""
             ],
+            "pre_uninstall": [
+                "Stop-Service 'Apple Mobile Device Service'",
+                "Stop-Service 'Bonjour Service'"
+            ],
             "uninstaller": {
                 "script": [
-                    "Stop-Service 'Apple Mobile Device Service'",
-                    "Stop-Service 'Bonjour Service'",
                     "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\iTunes64.msi\", '/qn', '/norestart') -RunAs | Out-Null",
                     "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\AppleMobileDeviceSupport64.msi\", '/qn', '/norestart') -RunAs | Out-Null",
                     "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\Bonjour64.msi\", '/qn', '/norestart') -RunAs | Out-Null",
