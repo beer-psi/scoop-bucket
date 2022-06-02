@@ -1,12 +1,12 @@
 {
-    "version": "1.4.7.2664",
+    "version": "1.5.0-beta.340",
     "description": "Cross-platform Apple Music client",
     "license": "AGPL-3.0-or-later",
     "homepage": "https://cider.sh",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.4.7.2664/Cider-Setup-winget-1.4.7-beta.exe#/dl.7z",
-            "hash": "sha512:c2d7f3599162517bf0f1fba756c1346c801b2c2d15b463e7383f111acad1ebd12309c47df268baa1384f0ee9c6a06a9de7013daa5c3ca9aac989cd6a3bc3e9a7",
+            "url": "https://github.com/ciderapp/cider-releases/releases/download/v1.5.0-beta.340/Cider-Setup-winget-1.5.0-beta.340.exe#/dl.7z",
+            "hash": "sha512:7f0d6c8a42d31c225c448d65569b0f74a037cdba946f611e5a2a353df75f65159cc7c0e417b5e161a39e319855a853c792cd534284133a54d7c24d337700761d",
             "installer": {
                 "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
             }
@@ -20,21 +20,13 @@
         ]
     ],
     "checkver": {
-        "script": [
-            "$url = 'https://api.github.com/repos/ciderapp/cider-releases/releases'",
-            "$content = (Invoke-WebRequest $url).Content",
-            "if (!($content -match 'Cider Version (?<stem>[\\d.]+) - Build (?<build>\\d+) \\(main\\)')) {",
-            "   break",
-            "}",
-            "$vermatches = $matches",
-            "Write-Output \"Version: $($vermatches.stem).$($vermatches.build) | Type: beta\""
-        ],
-        "regex": "Version: ((?<stem>[\\d\\.]{5})\\.(?<build>\\d+)) \\| Type: (?<type>.+)"
+        "url": "https://github.com/ciderapp/cider-releases/releases",
+        "regex": "Cider Version ([\\d\\.]+-beta\\.\\d+)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ciderapp/cider-releases/releases/download/v$version/Cider-Setup-winget-$matchStem-$matchType.exe#/dl.7z",
+                "url": "https://github.com/ciderapp/cider-releases/releases/download/v$version/Cider-Setup-winget-$version.exe#/dl.7z",
                 "hash": {
                     "url": "$baseurl/latest.yml",
                     "regex": "sha512:\\s+$base64"
