@@ -136,7 +136,7 @@ function validateParams(sp: URLSearchParams): string[] {
     res.push("invalid ring parameter");
   }
 
-  if (sp.has("lang") && !WindowsLocale[sp.get("lang")?.toLowerCase()! as keyof typeof WindowsLocale]) {
+  if (sp.has("lang") && !Object.prototype.hasOwnProperty.call(WindowsLocale, sp.get("lang")!)) {
     res.push("invalid language");
   }
 
