@@ -14,7 +14,7 @@
     "bin": "stash-win.exe",
     "checkver": {
         "url": "https://github.com/stashapp/stash/releases/tag/latest_develop",
-        "regex": "(?:v|V)?([\\d\\-.]+\\-g[0-9a-f]+)"
+        "regex": "v([\\d\\-.]+\\-g[0-9a-f]{6,})"
     },
     "autoupdate": {
         "url": "https://github.com/stashapp/stash/releases/download/latest_develop/stash-win.exe",
