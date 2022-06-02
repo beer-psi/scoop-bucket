@@ -76,7 +76,7 @@ interface StoreData {
      * SHA1 checksum of the download
      */
     sha1sum: string;
-    
+
     /**
      * The time when the download link expires
      */
@@ -243,7 +243,7 @@ export default async function handleRequest(
       .filter((value) =>
         extension === null || value.file.extension === extension
       );
-    if (sp.get("dl") === 'true') {
+    if (sp.get("dl") === "true") {
       if (ret.length > 1) {
         return new Response(
           JSON.stringify(
