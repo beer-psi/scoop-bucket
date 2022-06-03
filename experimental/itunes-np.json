@@ -1,15 +1,15 @@
 {
     "version": "12.12.4.1",
-    "description": "iTunes is the easiest way to enjoy everything you need to be entertained - music, movies, and TV shows - and keep it all easily organized. Rent or buy movies, download your favorite TV shows, and more.",
+    "description": "Media player, mobile device management utility, iTunes Store client",
     "license": "Proprietary",
     "homepage": "https://www.apple.com/itunes/",
     "architecture": {
         "64bit": {
-            "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=12.12.4.1#/dl.7z",
+            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64&dl=12.12.4.1#/dl.7z",
             "hash": "sha1:f5f16da41921dfa1b990623aa953c181eb919a9e"
         },
         "32bit": {
-            "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=12.12.4.1#/dl.7z",
+            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x86&dl=12.12.4.1#/dl.7z",
             "hash": "sha1:a4343b76aabe50c9f41be786cf1b6a076460fc63"
         }
     },
@@ -76,22 +76,22 @@
         ]
     ],
     "checkver": {
-        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64",
+        "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64",
         "jsonpath": "$[-1:].version"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=$version#/dl.7z",
+                "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64&dl=$version#/dl.7z",
                 "hash": {
-                    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64",
+                    "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64",
                     "jsonpath": "$[?(@.version=='$version')].sha1sum"
                 }
             },
             "32bit": {
-                "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=$version#/dl.7z",
+                "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x86&dl=$version#/dl.7z",
                 "hash": {
-                    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86",
+                    "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x86",
                     "jsonpath": "$[?(@.version=='$version')].sha1sum"
                 }
             }
