@@ -19,6 +19,7 @@
 		]
 	],
 	"persist": [
+        "Game.ini",
         "PublicData.rvdata",
         "Save1.rvdata",
         "Save2.rvdata",
