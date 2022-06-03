@@ -1,0 +1,54 @@
+{
+    "version": "1.09",
+    "homepage": "http://majonoie.karou.jp",
+    "description": "壁紙やメモを手がかりに謎を解いていく、ホラーテイストなゲームです。",
+    "license": "Freeware",
+    "url": "https://dl.fgamearchives.com/archives/win/2351/majonoie1_09a.zip",
+    "hash": "189d986515c98a61c95f3d07b97c6af0d7afb273c2a5f72c282e7129654282f4",
+    "pre_install": [
+        "$manifest.persist | ForEach-Object {",
+        "   if (!(Test-Path \"$(Join-Path $persist_dir $_)\")) {",
+        "       New-Item \"$(Join-Path $dir $_)\"  | Out-Null",
+        "   }",
+        "}"
+    ],
+    "shortcuts": [
+        [
+            "Game.exe",
+            "魔女の家"
+        ]
+    ],
+    "persist": [
+        "Game.ini",
+        "PublicData.rvdata",
+        "Save1.rvdata",
+        "Save2.rvdata",
+        "Save3.rvdata",
+        "Save4.rvdata"
+    ],
+    "checkver": {
+        "script": [
+            "$wc = New-Object Net.Webclient",
+            "$wc.Headers.Add('User-Agent', (Get-UserAgent))",
+            "$wc.Headers.Set('Referer', 'http://majonoie.karou.jp/a2.html')",
+            "$webpage = $wc.DownloadString('https://www.freem.ne.jp/dl/win/4149')",
+            "$regex = New-Object System.Text.RegularExpressions.Regex('href=\"(.+)\" id=\"dlLink\"')",
+            "$jumpLink = ($regex.Matches($webpage) | Select-Object -First 1).Groups[1].Value",
+            "$request = [System.Net.WebRequest]::Create(\"https://www.freem.ne.jp$jumpLink/?sw=1536&sh=864&scd=24&j=0\")",
+            "$request.AllowAutoRedirect = $false",
+            "$response = $request.GetResponse()",
+            "if ($response.StatusCode -eq 'Redirect') {",
+            "   $dlLink = $response.GetResponseHeader(\"Location\")",
+            "   $regex = New-Object System.Text.RegularExpressions.Regex('[\\d_]+')",
+            "   $ver = ($regex.Matches(\"$(Split-Path -Leaf $dlLink)\") | Select-Object -First 1).Groups[0].Value -replace '_', '.'",
+            "   Write-Output \"$ver,$dlLink\"",
+            "} else {",
+            "   break",
+            "}"
+        ],
+        "regex": "([\\d\\.]+),(?<url>.+)"
+    },
+    "autoupdate": {
+        "url": "$matchUrl"
+    }
+}
