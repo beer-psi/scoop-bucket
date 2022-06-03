@@ -25,6 +25,13 @@
         "github": "https://github.com/mtoyoda/sl"
     },
     "autoupdate": {
-        "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-$version.exe#/sl.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-$version-x86_64.exe#/sl.exe"
+            },
+            "32bit": {
+                "url": "https://github.com/beerpiss/scoop-bucket/raw/bin/sl-$version-i686.exe#/sl.exe"
+            }
+        }
     }
 }
