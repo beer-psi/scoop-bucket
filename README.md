@@ -17,6 +17,8 @@ scoop install beerpiss/<app>
 Contributions are welcome for any reason, let it be adding a new app, updating an outdated one, or whatever else. However, consider submitting app requests to official buckets if they match the criteria.
 
 ## Apps
+Manifests in the `experimental/` folder are relatively complete, though they may require features in Scoop's `develop` branch. As such, they are not listed.
+
 <!-- <apps> -->
 <!-- The following table was inserted by makeindex.py -->
 <!-- Your edits will be lost the next time makeindex.py is run -->
