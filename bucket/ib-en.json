@@ -7,7 +7,7 @@
 	"hash": "fa4868e243e1be661bb81e084d08a5bd1b8258727fc878e8c0c7988031237518",
     "installer": {
         "script": [
-            "1..14 | ForEach-Object {",
+            "1..15 | ForEach-Object {",
             "   $save_index = ([string]$_).PadLeft(2, '0')",
             "   if (!(Test-Path \"$persist_dir\\Data\\Save$save_index.lsd\")) {",
             "       New-Item \"$dir\\Data\\Save$save_index.lsd\" | Out-Null",
@@ -39,7 +39,8 @@
         "Data\\Save11.lsd",
         "Data\\Save12.lsd",
         "Data\\Save13.lsd",
-        "Data\\Save14.lsd"
+        "Data\\Save14.lsd",
+        "Data\\Save15.lsd"
 	],
 	"checkver": {
 		"url": "https://vgperson.com/games/ib.htm",
