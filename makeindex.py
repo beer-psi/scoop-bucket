@@ -572,7 +572,7 @@ def main():
             # print("skipping %s: not matched" % file)
             continue
 
-        with open(file, "r") as f:
+        with open(file, "r", encoding='utf-8') as f:
             j = json.load(f)
             row = {}
             (name, _) = os.path.splitext(os.path.basename(file))
