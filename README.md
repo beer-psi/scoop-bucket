@@ -1,6 +1,6 @@
 # scoop-bucket
 
-My personal [Scoop](https://github.com/ScoopInstaller/Scoop) [bucket](https://github.com/lukesampson/scoop/wiki/Buckets) that includes some (non-)portable tools not available in other buckets.
+My personal [Scoop](https://github.com/ScoopInstaller/Scoop) [bucket](https://github.com/lukesampson/scoop/wiki/Buckets) that includes an assortment of tools, apps and games not found in other buckets.
 
 ## Usage
 Add this bucket:
