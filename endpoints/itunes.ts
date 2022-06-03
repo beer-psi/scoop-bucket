@@ -26,17 +26,17 @@ interface ITunesData {
 }
 
 interface Table {
-	index: number,
-	numberOfCells: number,
+	index: number;
+	numberOfCells: number;
 	cellIndex: {
-		version: number,
-		qt_version?: number,
-		amds_version: number,
-		aas_version?: number,
-		url: number,
-		sha1sum: number,
-		size: number,
-	},
+		version: number;
+		qt_version?: number;
+		amds_version: number;
+		aas_version?: number;
+		url: number;
+		sha1sum: number;
+		size: number;
+	};
 }
 
 const CACHE = new LRU(1);
@@ -96,15 +96,15 @@ const Tables: Record<string, Table> = {
 			url: 3,
 			sha1sum: 4,
 			size: 5,
-		}
-	}
-}
+		},
+	},
+};
 
 function handleNullishString(value: string): string | null {
 	if (value === "—" || value === "N/A") {
-		return null
+		return null;
 	}
-	return value
+	return value;
 }
 
 function getVersions(
@@ -120,25 +120,28 @@ function getVersions(
 		return {
 			version: cells.length < table.numberOfCells
 				? array[index - 1]
-						.querySelectorAll("td")[table.cellIndex.version]
-						.textContent
-						.replaceAll(/\[\d+\]/g, "")
+					.querySelectorAll("td")[table.cellIndex.version]
+					.textContent
+					.replaceAll(/\[\d+\]/g, "")
 				: cells[table.cellIndex.version].textContent.replaceAll(/\[\d+\]/g, ""),
-			qt_version: table.cellIndex.qt_version 
+			qt_version: table.cellIndex.qt_version
 				? handleNullishString(cells[table.cellIndex.qt_version].textContent)
 				: null,
 			amds_version: cells[table.cellIndex.amds_version].textContent,
-			aas_version: table.cellIndex.aas_version 
+			aas_version: table.cellIndex.aas_version
 				? handleNullishString(cells[table.cellIndex.aas_version].textContent)
 				: null,
 			url: handleNullishString(cells[table.cellIndex.url].textContent)
 				? cells[table.cellIndex.url].querySelector("a")?.href
 				: null,
 			sha1sum: handleNullishString(cells[table.cellIndex.sha1sum].textContent),
-			size: handleNullishString(cells[table.cellIndex.size].textContent) 
-				? Number(handleNullishString(cells[table.cellIndex.size].textContent)?.replaceAll(",", ""))
+			size: handleNullishString(cells[table.cellIndex.size].textContent)
+				? Number(
+					handleNullishString(cells[table.cellIndex.size].textContent)
+						?.replaceAll(",", ""),
+				)
 				: null,
-		}
+		};
 	});
 }
 

@@ -1,8 +1,8 @@
 {
-  "deno.enable": true,
-  "deno.lint": true,
-  "deno.unstable": true,
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/beerpiss/Documents/code/scoop-bucket/.github/workflows/deploy.yaml"
-  }
+	"deno.enable": true,
+	"deno.lint": true,
+	"deno.unstable": true,
+	"yaml.schemas": {
+		"https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/beerpiss/Documents/code/scoop-bucket/.github/workflows/deploy.yaml"
+	}
 }
