@@ -3,8 +3,9 @@
     "homepage": "http://majonoie.karou.jp",
     "description": "壁紙やメモを手がかりに謎を解いていく、ホラーテイストなゲームです。",
     "license": "Freeware",
-    "url": "https://dl.fgamearchives.com/archives/win/2351/majonoie1_09a.zip",
+    "url": "https://dlt1.fgamearchives.com/archives/win/2351/majonoie1_09a.zip",
     "hash": "189d986515c98a61c95f3d07b97c6af0d7afb273c2a5f72c282e7129654282f4",
+    "extract_dir": "majonoie1_09a",
     "pre_install": [
         "$manifest.persist | ForEach-Object {",
         "   if (!(Test-Path \"$(Join-Path $persist_dir $_)\")) {",
@@ -40,15 +41,17 @@
             "if ($response.StatusCode -eq 'Redirect') {",
             "   $dlLink = $response.GetResponseHeader(\"Location\")",
             "   $regex = New-Object System.Text.RegularExpressions.Regex('[\\d_]+')",
-            "   $ver = ($regex.Matches(\"$(Split-Path -Leaf $dlLink)\") | Select-Object -First 1).Groups[0].Value -replace '_', '.'",
-            "   Write-Output \"$ver,$dlLink\"",
+            "   $filename = [System.IO.Path]::GetFileNameWithoutExtension((Split-Path -Leaf $dlLink))",
+            "   $ver = ($regex.Matches($filename) | Select-Object -First 1).Groups[0].Value -replace '_', '.'",
+            "   Write-Output \"$ver,$filename,$dlLink\"",
             "} else {",
             "   break",
             "}"
         ],
-        "regex": "([\\d\\.]+),(?<url>.+)"
+        "regex": "([\\d\\.]+),(?<filename>.+),(?<url>.+)"
     },
     "autoupdate": {
-        "url": "$matchUrl"
+        "url": "$matchUrl",
+        "extract_dir": "$matchFilename"
     }
 }
