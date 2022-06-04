@@ -36,7 +36,7 @@
         "script": [
             "$wc = New-Object Net.Webclient",
             "$wc.Headers.Add('User-Agent', (Get-UserAgent))",
-            "$wc.Headers.Set('Referer', 'http://majonoie.karou.jp/a2.html')",
+            "$wc.Headers.Add('Referer', 'http://majonoie.karou.jp/a2.html')",
             "$webpage = $wc.DownloadString('https://www.freem.ne.jp/dl/win/4149')",
             "$regex = New-Object System.Text.RegularExpressions.Regex('href=\"(.+)\" id=\"dlLink\"')",
             "$jumpLink = ($regex.Matches($webpage) | Select-Object -First 1).Groups[1].Value",
