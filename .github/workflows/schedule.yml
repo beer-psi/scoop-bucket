@@ -43,4 +43,9 @@ jobs:
       run: |
         .\bin\auto-pr.ps1 -Upstream "$env:GITHUB_REPOSITORY`:main" -OriginBranch main -Dir bucket -Push -SkipUpdated
         .\bin\auto-pr.ps1 -Upstream "$env:GITHUB_REPOSITORY`:main" -OriginBranch main -Dir experimental -Push -SkipUpdated
+    -
+      name: Print error trace
+      if: failure()
+      run: |
+        $Error[0] | Select-Object -Property *
 

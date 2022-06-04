@@ -15,7 +15,9 @@
     },
     "checkver": {
         "script": [
-            "$unikey_xml = [xml]([regex]::replace((Invoke-WebRequest -UseBasicParsing 'https://www.unikey.org/download.html').Content, '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
+            "$wc = New-Object Net.Webclient",
+            "$wc.Headers.Add('User-Agent', (Get-UserAgent))",
+            "$unikey_xml = [xml]([regex]::replace($wc.DownloadString('https://www.unikey.org/download.html'), '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
             "$unikey_nsList = $unikey_xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
             "$unikey_nsmgr = New-Object System.Xml.XmlNamespaceManager($unikey_xml.NameTable)",
             "$unikey_nsList | ForEach-Object { $unikey_nsmgr.AddNamespace($_.LocalName, $_.Value) }",
