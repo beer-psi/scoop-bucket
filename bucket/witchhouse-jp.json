@@ -2,6 +2,11 @@
     "version": "1.09",
     "homepage": "http://majonoie.karou.jp",
     "description": "壁紙やメモを手がかりに謎を解いていく、ホラーテイストなゲームです。",
+    "notes": [
+        "ショートカットの作成に失敗する場合は、UTF-8エンコードを有効にしてください",
+        "$ chcp 65001",
+        "その後、コンピュータを再起動し、アプリを再インストールしてください。"
+    ],
     "license": "Freeware",
     "url": "https://dlt1.fgamearchives.com/archives/win/2351/majonoie1_09a.zip",
     "hash": "189d986515c98a61c95f3d07b97c6af0d7afb273c2a5f72c282e7129654282f4",
