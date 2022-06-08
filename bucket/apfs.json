@@ -1,5 +1,5 @@
 {
-    "version": "1.0.16",
+    "version": "1.0.17",
     "description": "APFS parser written in pure Go",
     "homepage": "https://github.com/blacktop/go-apfs",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/blacktop/go-apfs/releases/download/v1.0.16/apfs_1.0.16_windows_x86_64.zip",
-            "hash": "1690b510a91cdda2ec9a68419bfe29ae0dcc5903a19e44fb4f7610fcf69271fb"
+            "url": "https://github.com/blacktop/go-apfs/releases/download/v1.0.17/apfs_1.0.17_windows_x86_64.zip",
+            "hash": "18b3dc2584d1cb15749fd07f44d2da1042036adc6b98e81e03716e891ae28e45"
         }
     },
     "bin": "apfs.exe",
