@@ -2,9 +2,9 @@
     "homepage": "https://www.ntlite.com/",
     "description": "Cutting-edge Windows configuration tool",
     "license": "Proprietary",
-    "version": "2.3.6.8775",
+    "version": "2.3.6.8777",
     "url": "http://downloads.ntlite.com/files/NTLite_setup_x64.exe",
-    "hash": "08a6991d4b049c870a2a60c8e7fd2e4946c645e3d3279b7464380e4972361a3c",
+    "hash": "b9b034e6252f7ebaf8ff77b33fb149b0085b650478fe37d842f77def50b2a51c",
     "shortcuts": [
         [
             "NTLite.exe",
