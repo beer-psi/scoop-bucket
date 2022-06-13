@@ -3,7 +3,7 @@
     "description": "Development tools for Aidoku, a manga reader app.",
     "notes": [
         "Add the line below to aidoku-cli to get tab completion in PowerShell:",
-        ". ~\\scoop\\apps\\aidoku-cli\\current\\aidoku-completions.ps1"
+        ". $dir\\aidoku-completions.ps1"
     ],
     "license": {
         "identifier": "0BSD",
