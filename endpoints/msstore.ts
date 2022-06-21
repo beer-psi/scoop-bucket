@@ -25,8 +25,8 @@ const COMMON_HEADERS = {
  */
 const STORE_REGEXES = [
 	/^(https:\/\/)?apps\.microsoft\.com\/store\/detail\/.+\/[a-zA-Z0-9]+$/,
-	/^(https:\/\/)?microsoft\.com\/[a-zA-Z\-]+\/p\/.+\/[a-zA-Z0-9]+$/,
-	/^(https:\/\/)?microsoft\.com\/store\/productId\/[a-zA-Z0-9]+$/,
+	/^(https:\/\/)?(www\.)?microsoft\.com\/[a-zA-Z\-]+\/p\/.+\/[a-zA-Z0-9]+$/,
+	/^(https:\/\/)?(www\.)?microsoft\.com\/store\/productId\/[a-zA-Z0-9]+$/,
 ];
 
 type QueryType = "ProductId" | "CategoryId" | "url" | "PackageFamilyName";
