@@ -138,7 +138,7 @@ function validateParams(sp: URLSearchParams): string[] {
 
 	if (
 		sp.has("lang") &&
-		!Object.prototype.hasOwnProperty.call(WindowsLocale, sp.get("lang")!)
+		!Object.prototype.hasOwnProperty.call(WindowsLocale, sp.get("lang")!.toLowerCase())
 	) {
 		res.push("invalid language");
 	}
