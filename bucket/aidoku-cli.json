@@ -1,5 +1,5 @@
 {
-    "version": "0.4.8",
+    "version": "0.4.9",
     "description": "Development tools for Aidoku, a manga reader app.",
     "notes": [
         "Add the line below to aidoku-cli to get tab completion in PowerShell:",
@@ -12,12 +12,12 @@
     "homepage": "https://github.com/Aidoku/aidoku-cli",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.8/aidoku-cli_0.4.8_windows_x86_64.zip",
-            "hash": "37775fece450d5abd89aa0e097238765aa59d44cf4566d46faa21fdb1f7beacd"
+            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.9/aidoku-cli_0.4.9_windows_x86_64.zip",
+            "hash": "0f56c555ab2ad7805312a269684c865f3e818bf4d5033c27ee3c7ae01e249933"
         },
         "32bit": {
-            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.8/aidoku-cli_0.4.8_windows_i386.zip",
-            "hash": "20222b58b45dc0c0345a9a765bf168128259dad74efe2358f94a341d313ca53b"
+            "url": "https://github.com/Aidoku/aidoku-cli/releases/download/v0.4.9/aidoku-cli_0.4.9_windows_i386.zip",
+            "hash": "f6874d98546252d32f40fce0c5768b8e56b4ae392bee35662c34cd52525b4001"
         }
     },
     "post_install": "aidoku.exe completion powershell > (Join-Path $dir aidoku-completions.ps1)",
