@@ -1,12 +1,12 @@
 {
-    "version": "2.9.3",
+    "version": "2.9.5",
     "description": "Stream anime torrents, real-time with no waiting for downloads",
     "homepage": "https://github.com/ThaUnknown/miru",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ThaUnknown/miru/releases/download/v2.9.3/win-Miru-2.9.3.exe#/dl.7z",
-            "hash": "sha512:7a52441b25304f2a0e7d375974c8f94cad66a59cfc5f33c4abc2b41042abd74a9a259ef68d387a96516d2097ef2d817c3c1f36ff2c6a74112fa820c4d224c45e",
+            "url": "https://github.com/ThaUnknown/miru/releases/download/v2.9.5/win-Miru-2.9.5.exe#/dl.7z",
+            "hash": "sha512:f308f289a89f2d4c0009102458506209d39c872633f21281ef06a331fa9d27804f88c93d5a8505fdf4446a590fdd8141d7c6ff1000924eb3d6d38c1aab7f2de0",
             "installer": {
                 "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
             }
