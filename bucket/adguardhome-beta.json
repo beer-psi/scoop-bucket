@@ -1,17 +1,17 @@
 {
-    "version": "0.108.0-b.10",
+    "version": "0.108.0-b.11",
     "description": "Network-wide ads & trackers blocking DNS server (beta version)",
     "homepage": "https://github.com/AdguardTeam/AdGuardHome",
     "license": "GPL-3.0-or-later",
     "extract_dir": "AdGuardHome",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.10/AdGuardHome_windows_amd64.zip",
-            "hash": "36b5d5ab4da6d017038c57886151c51d3f13936f8121f1b9a0298ef5b26188b0"
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.11/AdGuardHome_windows_amd64.zip",
+            "hash": "239a9aaf61aeeeffd905726fbc10fd92dfc4233ebba4182b26c4af9fd86a9fa3"
         },
         "32bit": {
-            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.10/AdGuardHome_windows_386.zip",
-            "hash": "cdc1c60b8cd92601bd02911b4e9ee564b04ec4af46f29c4bd8300f16ad13b71e"
+            "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.108.0-b.11/AdGuardHome_windows_386.zip",
+            "hash": "24dd2c5b5dffffdb5c3a5e41ec242311d708e38b67a964f8170e11a9575f1ef4"
         }
     },
     "bin": "AdGuardHome.exe",
