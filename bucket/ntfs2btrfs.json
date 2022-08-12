@@ -2,11 +2,11 @@
     "license": "GPL-2.0-or-later",
     "description": "A tool that converts Microsoft's NTFS filesystem to the open-source filesystem Btrfs in-place",
     "extract_to": "",
-    "version": "20210923",
+    "version": "20220812",
     "bin": "ntfs2btrfs.exe",
     "homepage": "https://github.com/maharmstone/ntfs2btrfs",
-    "url": "https://github.com/maharmstone/ntfs2btrfs/releases/download/20210923/ntfs2btrfs-20210923.zip",
-    "hash": "0a9e21139d473aaf50152a9cc4eba230d639e3eb04d582f615c61534acd2822c",
+    "url": "https://github.com/maharmstone/ntfs2btrfs/releases/download/20220812/ntfs2btrfs-20220812.zip",
+    "hash": "6872c30247fe557077653c6cc2b6406d2ebc6633caba49d93b74a231ff412c0f",
     "checkver": {
         "github": "https://github.com/maharmstone/ntfs2btrfs"
     },
