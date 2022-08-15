@@ -1,11 +1,11 @@
 {
-    "version": "a015eb796b747c535f534e97fe1cee18bbc9bb47",
+    "version": "898b30f7df85620b38d793e970acc21cc953daae",
     "description": "A powerful but simple, easy to use toolbox for Windows 10/11 (HEAD version)",
     "homepage": "https://github.com/WinTweakers/WindowsToolbox",
     "license": "MIT,Beerware",
-    "url": "https://github.com/WinTweakers/WindowsToolbox/archive/a015eb796b747c535f534e97fe1cee18bbc9bb47.zip",
-    "hash": "b9b09bd042b08af8ef1cfaa0a1a8eebf224f3964515c8cf72985f823f42e7ff7",
-    "extract_dir": "WindowsToolbox-a015eb796b747c535f534e97fe1cee18bbc9bb47",
+    "url": "https://github.com/WinTweakers/WindowsToolbox/archive/898b30f7df85620b38d793e970acc21cc953daae.zip",
+    "hash": "0403af8648c077c51d1dfed413f419260b4c570bfad476e4cb5dbbcec3d8516d",
+    "extract_dir": "WindowsToolbox-898b30f7df85620b38d793e970acc21cc953daae",
     "bin": [
         [
             "WindowsToolbox.cmd",
