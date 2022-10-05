@@ -1,0 +1,30 @@
+{
+    "version": "4.0-SNAPSHOT.3",
+    "description": "Chart editor for the rhythm game maimai",
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://github.com/LingFeng-bbben/MajdataView",
+    "url": "https://github.com/LingFeng-bbben/MajdataView/releases/download/v4.0-SNAPSHOT.3/Majdata_v4.0-SNAPSHOT.3.zip",
+    "hash": "a19f1e989f682491554a742c5a2940feca0209032c8d4a27202db836de8350a9",
+    "shortcuts": [
+        [
+            "MajdataEdit.exe",
+            "MajdataEdit"
+        ],
+        [
+            "MajdataView.exe",
+            "MajdataView"
+        ]
+    ],
+    "persist": [
+        "SFX",
+        "Skin",
+        "EditorSetting.json"
+    ],
+    "checkver": {
+        "url": "https://github.com/LingFeng-bbben/MajdataView/releases",
+        "regex": "/releases/tag/(?:v|V)?([\\d\\-a-zA-Z.]+)"
+    },
+    "autoupdate": {
+        "url": "https://github.com/LingFeng-bbben/MajdataView/releases/download/v$version/Majdata_v$version.zip"
+    }
+}
