@@ -1,5 +1,5 @@
 {
-    "version": "0.16.1-112-gbd44571a",
+    "version": "0.16.1-113-g4c286d7a",
     "description": "An organizer for your porn.",
     "homepage": "https://stashapp.cc",
     "license": "AGPL-3.0-only",
@@ -10,7 +10,7 @@
         ]
     },
     "url": "https://github.com/stashapp/stash/releases/download/latest_develop/stash-win.exe",
-    "hash": "sha1:d8745089650cf776b25ccdb125b94b472d43f69b",
+    "hash": "sha1:978a79edd0fd451f2ab2c17e9a738816e68ac1d1",
     "bin": "stash-win.exe",
     "checkver": {
         "url": "https://github.com/stashapp/stash/releases/tag/latest_develop",
