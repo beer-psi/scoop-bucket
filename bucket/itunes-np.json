@@ -1,16 +1,16 @@
 {
-    "version": "12.12.5.8",
+    "version": "12.12.6.1",
     "description": "Media player, mobile device management utility, iTunes Store client",
     "license": "Proprietary",
     "homepage": "https://www.apple.com/itunes/",
     "architecture": {
         "64bit": {
-            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64&dl=12.12.5.8#/dl.7z",
-            "hash": "sha1:6a0d01bfe12f650f294e3090bab7cc1cab892576"
+            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x64&dl=12.12.6.1#/dl.7z",
+            "hash": "sha1:3883de0be7f68918daf36855faa30786883f54f9"
         },
         "32bit": {
-            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x86&dl=12.12.5.8#/dl.7z",
-            "hash": "sha1:a14bd3ed0dbdb6737acbd1244c143d37d4773fa2"
+            "url": "https://scoop.beerpsi.me/itunes?os=windows&type=x86&dl=12.12.6.1#/dl.7z",
+            "hash": "sha1:b9531346a761cdb9dff41bc41474e3de084f5682"
         }
     },
     "pre_install": [
