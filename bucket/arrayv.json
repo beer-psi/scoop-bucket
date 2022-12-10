@@ -1,5 +1,5 @@
 {
-    "version": "5.0",
+    "version": "5.1",
     "description": "Sorting Visualizer/Audiolizer",
     "homepage": "https://github.com/Gaming32/ArrayV",
     "license": {
@@ -9,8 +9,8 @@
     "suggest": {
         "JRE": "zulu-jre"
     },
-    "url": "https://github.com/Gaming32/ArrayV/releases/download/v5.0/ArrayV-5.0.jar#/ArrayV.jar",
-    "hash": "6c340376593734d367a9358abf4f5644b7a920b86174d86066fd8ee22bf2d038",
+    "url": "https://github.com/Gaming32/ArrayV/releases/download/v5.1/ArrayV-5.1.jar#/ArrayV.jar",
+    "hash": "d3ac15ee741d3e11639b312b40d432a96bff60d15b1cdb4f1afe36a887746852",
     "bin": [
         [
             "ArrayV.jar",
