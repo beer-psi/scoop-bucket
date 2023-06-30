@@ -477,7 +477,7 @@ def do_license(v):
     if re.search("^(http|ftp)", url):
         if not identifier:
             identifier = "Link"
-        v = '[%s](%s "%s")' % (identifier, url, url)
+        v = '[%s](%s)' % (identifier, url)
         return v
 
     if not identifier:
@@ -495,7 +495,7 @@ def do_license(v):
         elif lmap.get(k):
             url = lmap[k]
         if url > "":
-            v += '[%s](%s "%s")' % (part, url, url)
+            v += '[%s](%s)' % (part, url)
         else:
             v += part
     return v
@@ -519,7 +519,7 @@ def do_version(js):
         version = "%s ⚠" % version
     if url == "":
         return version
-    return '[%s](%s "%s")' % (version[0:21], url, url)
+    return '[%s](%s)' % (version[0:21], url)
 
 
 # pylint: disable=R0912 # Too many branches (22/12) (too-many-branches)
@@ -607,8 +607,8 @@ def main():
 
     for (name, row) in newlist:
         table.append(
-            '|[%s](%s "%s")|%s|%s|%s|'
-            % (name, row["homepage"], row["homepage"], row["version"], row["description"], row["license"])
+            '|[%s](%s)|%s|%s|%s|'
+            % (name, row["homepage"], row["version"], row["description"], row["license"])
         )
 
     out = []
