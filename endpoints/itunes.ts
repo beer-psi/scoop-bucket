@@ -5,15 +5,12 @@ import {
 } from "https://esm.sh/linkedom@0.14.7";
 import { HTMLDocument } from "https://cdn.esm.sh/v78/linkedom@0.14.7/types/html/document.d.ts";
 import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
-import {
-	ReasonPhrases,
-	StatusCodes,
-} from "https://esm.sh/http-status-codes@2.2.0";
+import { Context, Status } from "https://deno.land/x/oak@v12.6.0/mod.ts";
 
 interface ITunesVersion {
 	version: string;
 	qt_version: string | null;
-	amds_version: string;
+	amds_version: string | null;
 	aas_version: string | null;
 	url: string | null;
 	sha1sum: string | null;
@@ -127,7 +124,7 @@ function getVersions(
 			qt_version: table.cellIndex.qt_version
 				? handleNullishString(cells[table.cellIndex.qt_version].textContent)
 				: null,
-			amds_version: cells[table.cellIndex.amds_version].textContent,
+			amds_version: handleNullishString(cells[table.cellIndex.amds_version].textContent),
 			aas_version: table.cellIndex.aas_version
 				? handleNullishString(cells[table.cellIndex.aas_version].textContent)
 				: null,
@@ -168,8 +165,6 @@ async function fetchWikiWithCache(url: string): Promise<Response> {
 		return new Response(
 			<string> CACHE.get(lastModified),
 			{
-				status: StatusCodes.OK,
-				statusText: ReasonPhrases.OK,
 				headers: new Headers({
 					"last-modified": new Date(Number(lastModified)).toISOString(),
 				}),
@@ -204,24 +199,20 @@ function fetchTableWithCache(text: string, lastModified: string): ITunesData {
 }
 
 export default async function handleRequest(
-	request: Request,
-): Promise<Response> {
+	ctx: Context
+) {
+	ctx.response.headers = new Headers(COMMON_HEADERS);
+
 	const resp = await fetchWikiWithCache(ITUNES_VERSIONS_TABLE);
-	const sp = new URL(request.url).searchParams;
+	const sp = ctx.request.url.searchParams;
 	if (resp.ok && resp.headers.get("last-modified")) {
 		const allVersions = fetchTableWithCache(
 			(await resp.text()).replaceAll(/\n/gm, ""),
 			String(new Date(resp.headers.get("last-modified")!).getTime()),
 		);
 		if (Array.from(sp.keys()).length === 0) {
-			return new Response(
-				JSON.stringify(allVersions),
-				{
-					status: StatusCodes.OK,
-					statusText: ReasonPhrases.OK,
-					headers: COMMON_HEADERS,
-				},
-			);
+			ctx.response.body = JSON.stringify(allVersions);
+			return;
 		}
 		const os: string | null = sp.get("os");
 		const type: string | null = sp.get("type");
@@ -235,41 +226,28 @@ export default async function handleRequest(
 			) {
 				data = allVersions[os][type];
 			} else {
-				return new Response(
-					JSON.stringify({
-						message: "invalid type for os",
-						valid: os === "windows" ? ["x86", "x64", "older_video_cards"] : [],
-					}),
-					{
-						status: StatusCodes.BAD_REQUEST,
-						statusText: ReasonPhrases.BAD_REQUEST,
-						headers: COMMON_HEADERS,
-					},
-				);
+				ctx.response.status = Status.BadRequest;
+				ctx.response.body = JSON.stringify({
+					message: "invalid type for os",
+					valid: os === "windows" ? ["x86", "x64", "older_video_cards"] : [],
+				});
+				return;
 			}
 		} else {
-			return new Response(
-				JSON.stringify({ message: "invalid os", valid: ["windows", "macos"] }),
-				{
-					status: StatusCodes.BAD_REQUEST,
-					statusText: ReasonPhrases.BAD_REQUEST,
-					headers: COMMON_HEADERS,
-				},
-			);
+			ctx.response.status = Status.BadRequest;
+			ctx.response.body = JSON.stringify({
+				message: "invalid os",
+				valid: ["windows", "macos"],
+			});
+			return;
 		}
 		if (sp.has("dl")) {
 			if (os === "windows" && !sp.has("type")) {
-				return new Response(
-					JSON.stringify({
-						message: "Need to specify a build type",
-						valid: ["x86", "x64", "older_video_cards"],
-					}),
-					{
-						status: StatusCodes.MULTIPLE_CHOICES,
-						statusText: ReasonPhrases.MULTIPLE_CHOICES,
-						headers: COMMON_HEADERS,
-					},
-				);
+				ctx.response.status = Status.MultipleChoices;
+				ctx.response.body = JSON.stringify({
+					message: "Need to specify a build type",
+					valid: ["x86", "x64", "older_video_cards"],
+				});
 			}
 			const version = sp.get("dl");
 			const versions = <ITunesVersion[]> data;
@@ -277,34 +255,18 @@ export default async function handleRequest(
 				? versions.filter((value) => value.version === version)[0].url
 				: versions.map((value) => value.url).filter((value) => value).at(-1);
 			if (url) {
-				return Response.redirect(url, StatusCodes.TEMPORARY_REDIRECT);
+				ctx.response.redirect(url);
 			} else {
-				return new Response(
-					JSON.stringify({ message: "download link not found" }),
-					{
-						status: StatusCodes.NOT_FOUND,
-						statusText: ReasonPhrases.NOT_FOUND,
-						headers: COMMON_HEADERS,
-					},
-				);
+				ctx.response.status = Status.NotFound;
+				ctx.response.body = JSON.stringify({ message: "download link not found" });
+				return;
 			}
 		} else {
-			return new Response(
-				JSON.stringify(data),
-				{
-					status: StatusCodes.OK,
-					statusText: ReasonPhrases.OK,
-					headers: COMMON_HEADERS,
-				},
-			);
+			ctx.response.body = JSON.stringify(data);
+			return;
 		}
 	}
-	return new Response(
-		JSON.stringify({ message: "couldn't process your request" }),
-		{
-			status: StatusCodes.INTERNAL_SERVER_ERROR,
-			statusText: ReasonPhrases.INTERNAL_SERVER_ERROR,
-			headers: COMMON_HEADERS,
-		},
-	);
+
+	ctx.response.status = Status.InternalServerError;
+	ctx.response.body = JSON.stringify({ message: "couldn't process your request" });
 }
