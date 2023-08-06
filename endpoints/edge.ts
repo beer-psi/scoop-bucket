@@ -7,6 +7,23 @@ import {
 } from "https://deno.land/std@0.196.0/io/mod.ts";
 import { TextProtoReader } from "https://deno.land/std@0.158.0/textproto/mod.ts";
 
+const ALLOWED_ARCHITECTURES = [
+    "86",
+    "64",
+    "arm64",
+    "aarch64",
+    "amd64",
+    "ia32",
+    "x86",
+    "x64"
+]
+const ALLOWED_CHANNELS = [
+    "stable",
+    "beta",
+    "dev",
+    "canary",
+]
+
 const COMMON_HEADERS = new Headers({
 	"content-type": "application/json; encoding=UTF-8",
 	"access-control-allow-origin": "*",
@@ -24,7 +41,7 @@ interface DownloadInfo {
     };
 }
 
-async function fetchVersion(channel: string, arch: string, version?: string): Promise<Response> {
+export async function fetchVersion(channel: string, arch: string, version?: string | null): Promise<Response> {
     const conn = await Deno.connectTls({
         hostname: "msedge.api.cdp.microsoft.com",
         port: 443,
@@ -33,8 +50,8 @@ async function fetchVersion(channel: string, arch: string, version?: string): Pr
     const writer = new BufWriter(conn);
     const encoder = new TextEncoder();
 
-    const path = version === undefined 
-        ? "/latest?action=select" 
+    const path = version === undefined || version === null
+        ? "/latest?action=select"
         : `/${version}/files?action=GenerateDownloadInfo`;
 
     const lines = [
@@ -83,67 +100,73 @@ export default async function handleEdge(ctx: Context) {
         ctx.response.headers = COMMON_HEADERS;
         ctx.response.status = Status.BadRequest;
         ctx.response.body = JSON.stringify({
+            code: "-1",
             error: "arch and channel parameter are required",
+            allowedArchitecture: ALLOWED_ARCHITECTURES,
+            allowedChannel: ALLOWED_CHANNELS,
         });
         return;
     }
 
-    const arch = params.get("arch")!.toLowerCase();
+    let arch = params.get("arch")!.toLowerCase();
+    if (arch === "86" || arch === "64") {
+        arch = "x" + arch;
+    }
+
     const channel = params.get("channel")!.toLowerCase();
     const version = params.get("version");
 
-    if (version === null) {
-        const resp = await fetchVersion(channel, arch);
-        if (!resp.ok) {
-            ctx.response.status = resp.status;
-    
-            if (resp.status == 404) {
-                ctx.response.body = JSON.stringify({
-                    error: "channel not found",
-                });
-            } else {
-                const text = await resp.text();
-                if (text.startsWith("[") || text.startsWith("{")) {
-                    ctx.response.body = text;
-                } else {
-                    ctx.response.body = JSON.stringify({
-                        error: text,
-                    })
-                }
-            }
-            return;
-        }
-        const data = await resp.json();
-        
-        ctx.response.body = JSON.stringify(data.ContentId);
-        return;
-    } else {
-        const resp = await fetchVersion(channel, arch, version);
-        if (!resp.ok) {
-            ctx.response.status = resp.status;
-            if (resp.status == 404) {
-                ctx.response.body = JSON.stringify({
-                    error: "not found",
-                });
-            } else {
-                ctx.response.body = JSON.stringify({
-                    error: "an unknown error occured",
-                })
-            }
-            return;
-        }
-        const data = await resp.json();
-    
-        const item = data.find((item: DownloadInfo) => item.FileId.split("_").length == 3);
-        if (params.has("dl")) {
-            ctx.response.redirect(item.Url);
-            return;
-        }
-
-        item.Hashes.Sha1 = bufferToHex(decode(item.Hashes.Sha1));
-        item.Hashes.Sha256 = bufferToHex(decode(item.Hashes.Sha256));
-        
-        ctx.response.body = JSON.stringify(item);
+    if (!ALLOWED_ARCHITECTURES.includes(arch)) {
+        ctx.response.status = Status.BadRequest;
+        ctx.response.body = JSON.stringify({
+            code: "-1",
+            message: "invalid architecture",
+            allowedArchitecture: ALLOWED_ARCHITECTURES,
+        });
         return;
     }
+    if (!ALLOWED_CHANNELS.includes(channel)) {
+        ctx.response.status = Status.BadRequest;
+        ctx.response.body = JSON.stringify({
+            code: "-1",
+            message: "invalid channel",
+            allowedChannel: ALLOWED_CHANNELS,
+        });
+        return;
+    }
+
+    const resp = await fetchVersion(channel, arch, version);
+    if (!resp.ok) {
+        ctx.response.status = resp.status;
+        if (resp.status == 404) {
+            ctx.response.body = JSON.stringify({
+                code: "2001",
+                error: "not found",
+            });
+        } else {
+            ctx.response.body = JSON.stringify({
+                error: "an unknown error occured",
+            })
+        }
+        return;
+    }
+
+    const data = await resp.json();
+    if (!version) {
+        ctx.response.body = JSON.stringify(data.ContentId);
+        return;
+    }
+
+    const item = data.find((item: DownloadInfo) => item.FileId.split("_").length == 3);
+    if (params.has("dl")) {
+        ctx.response.redirect(item.Url);
+        return;
+    }
+
+    item.Hashes.Sha1 = bufferToHex(decode(item.Hashes.Sha1));
+    item.Hashes.Sha256 = bufferToHex(decode(item.Hashes.Sha256));
+    item.Version = version;
+    delete item.DeliveryOptimization;
+
+    ctx.response.body = JSON.stringify(item);
 }
