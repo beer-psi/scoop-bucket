@@ -112,6 +112,12 @@ export default async function handleEdge(ctx: Context) {
     if (arch === "86" || arch === "64") {
         arch = "x" + arch;
     }
+    if (arch === "amd64" || arch === "aarch64") {
+        arch = "x64";
+    }
+    if (arch === "ia32") {
+        arch = "x86";
+    }
 
     const channel = params.get("channel")!.toLowerCase();
     const version = params.get("version");
