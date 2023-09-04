@@ -33,7 +33,6 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[ariang-native](https://github.com/mayswind/AriaNg-Native)|[1.3.6](https://github.com/mayswind/AriaNg-Native)|A better aria2 desktop frontend than AriaNg, containing all features of AriaNg and more features for desktop.|[MIT](https://spdx.org/licenses/MIT)|
 |[arrayv](https://github.com/Gaming32/ArrayV)|[5.1](https://github.com/Gaming32/ArrayV)|Sorting Visualizer/Audiolizer|[MIT](https://github.com/Gaming32/ArrayV/blob/main/LICENSE)|
 |[cider](https://cider.sh)|[1.6.2](https://cider.sh)|Cross-platform Apple Music client|[AGPL-3.0-or-later](https://spdx.org/licenses/AGPL-3.0-or-later)|
-|[enmitydebugger](https://github.com/beerpiss/enmitydebugger)|[0.1.0-18-g2b69cd9 ⚠](https://github.com/beerpiss/enmitydebugger)|Debugger for Enmity, a Discord client mod for iOS (legacy version)|Unknown|
 |[evkey](https://evkeyvn.com/)|[5.0.1](https://evkeyvn.com/)|Vietnamese keyboard|Unknown|
 |[graboid](https://github.com/blacktop/graboid)|[0.15.8](https://github.com/blacktop/graboid)|Grab Docker images without installing Docker|[MIT](https://github.com/blacktop/graboid/blob/main/LICENSE)|
 |[ib-en](https://vgperson.com/games/ib.htm)|[1.07](https://vgperson.com/games/ib.htm)|Freeware horror adventure game set in a creepy, mysterious art gallery|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
@@ -66,7 +65,7 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[stash](https://stashapp.cc)|[0.22.1](https://stashapp.cc)|An organizer for your porn.|[AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only)|
 |[stash-dev](https://stashapp.cc)|[0.22.1-17-g7a921437](https://github.com/stashapp/stash/releases/tag/latest_develop)|An organizer for your porn.|[AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only)|
 |[susplayer](https://twitter.com/suspinfo)|[1.12 ⚠](https://twitter.com/suspinfo)|A certain rhythm game clone|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
-|[thewitchshouse-en](https://vgperson.com/games/witchhouse.htm)|[1.09](https://vgperson.com/games/witchhouse.htm)|Free the hellish halls of The Witch's House|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
+|[thewitchshouse-en](https://vgperson.com/games/witchhouse.htm)|[1.09a](https://vgperson.com/games/witchhouse.htm)|Free the hellish halls of The Witch's House|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[thewitchshouse-jp](http://majonoie.karou.jp)|[1.09](http://majonoie.karou.jp)|壁紙やメモを手がかりに謎を解いていく、ホラーテイストなゲームです。|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[unikey](https://unikey.org)|[4.5rc1](https://unikey.org)|Vietnamese keyboard|[GPL-2.0-only](https://spdx.org/licenses/GPL-2.0-only)|
 |[unxwb](http://aluigi.altervista.org/papers.htm#xbox)|[0.3.6 ⚠](http://aluigi.altervista.org/papers.htm#xbox)|XWB/ZWB files unpacker|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
