@@ -32,6 +32,7 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[apfs](https://github.com/blacktop/go-apfs)|[1.0.17](https://github.com/blacktop/go-apfs)|APFS parser written in pure Go|[Apache-2.0](https://github.com/blacktop/go-apfs/blob/main/LICENSE)|
 |[ariang-native](https://github.com/mayswind/AriaNg-Native)|[1.3.7](https://github.com/mayswind/AriaNg-Native)|A better aria2 desktop frontend than AriaNg, containing all features of AriaNg and more features for desktop.|[MIT](https://spdx.org/licenses/MIT)|
 |[arrayv](https://github.com/Gaming32/ArrayV)|[5.1](https://github.com/Gaming32/ArrayV)|Sorting Visualizer/Audiolizer|[MIT](https://github.com/Gaming32/ArrayV/blob/main/LICENSE)|
+|[beeper](https://beeper.com)|[3.103.36](https://beeper.com)|All your chats in one app|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[cider](https://cider.sh)|[1.6.2](https://cider.sh)|Cross-platform Apple Music client|[AGPL-3.0-or-later](https://spdx.org/licenses/AGPL-3.0-or-later)|
 |[evkey](https://evkeyvn.com/)|[5.0.1](https://evkeyvn.com/)|Vietnamese keyboard|Unknown|
 |[graboid](https://github.com/blacktop/graboid)|[0.15.8](https://github.com/blacktop/graboid)|Grab Docker images without installing Docker|[MIT](https://github.com/blacktop/graboid/blob/main/LICENSE)|
