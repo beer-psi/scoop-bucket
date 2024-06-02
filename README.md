@@ -26,14 +26,14 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |----|-------|-----------|-------|
 |[absolutetouch](https://github.com/apsun/AbsoluteTouch)|[1.4.1](https://github.com/apsun/AbsoluteTouch)|Synaptics "absolute mode" emulation in software|[MIT](https://spdx.org/licenses/MIT)|
 |[absolutetouchex](https://github.com/apsun/AbsoluteTouchEx)|[1.1.0](https://github.com/apsun/AbsoluteTouchEx)|Absolute cursor movements on precision touchpads|[MIT](https://spdx.org/licenses/MIT)|
-|[adguardhome](https://github.com/AdguardTeam/AdGuardHome)|[0.107.48](https://github.com/AdguardTeam/AdGuardHome)|Network-wide ads & trackers blocking DNS server|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
-|[adguardhome-beta](https://github.com/AdguardTeam/AdGuardHome)|[0.107.48](https://github.com/AdguardTeam/AdGuardHome/releases)|Network-wide ads & trackers blocking DNS server (beta version)|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
+|[adguardhome](https://github.com/AdguardTeam/AdGuardHome)|[0.107.50](https://github.com/AdguardTeam/AdGuardHome)|Network-wide ads & trackers blocking DNS server|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
+|[adguardhome-beta](https://github.com/AdguardTeam/AdGuardHome)|[0.108.0-b.56](https://github.com/AdguardTeam/AdGuardHome/releases)|Network-wide ads & trackers blocking DNS server (beta version)|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
 |[aidoku-cli](https://github.com/Aidoku/aidoku-cli)|[0.5.9](https://github.com/Aidoku/aidoku-cli)|Development tools for Aidoku, a manga reader app.|[0BSD](https://github.com/Aidoku/aidoku-cli/blob/trunk/LICENSE)|
 |[apfs](https://github.com/blacktop/go-apfs)|[1.0.17](https://github.com/blacktop/go-apfs)|APFS parser written in pure Go|[Apache-2.0](https://github.com/blacktop/go-apfs/blob/main/LICENSE)|
 |[ariang-native](https://github.com/mayswind/AriaNg-Native)|[1.3.7](https://github.com/mayswind/AriaNg-Native)|A better aria2 desktop frontend than AriaNg, containing all features of AriaNg and more features for desktop.|[MIT](https://spdx.org/licenses/MIT)|
 |[arrayv](https://github.com/Gaming32/ArrayV)|[5.1](https://github.com/Gaming32/ArrayV)|Sorting Visualizer/Audiolizer|[MIT](https://github.com/Gaming32/ArrayV/blob/main/LICENSE)|
-|[beeper](https://beeper.com)|[3.103.36](https://beeper.com)|All your chats in one app|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
-|[cider](https://cider.sh)|[1.6.2](https://cider.sh)|Cross-platform Apple Music client|[AGPL-3.0-or-later](https://spdx.org/licenses/AGPL-3.0-or-later)|
+|[beeper](https://www.beeper.com)|[3.105.2](https://www.beeper.com)|All your chats in one app|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
+|[cider](https://cider.sh)|[1.6.3](https://cider.sh)|Cross-platform Apple Music client|[AGPL-3.0-or-later](https://spdx.org/licenses/AGPL-3.0-or-later)|
 |[evkey](https://evkeyvn.com/)|[5.0.1](https://evkeyvn.com/)|Vietnamese keyboard|Unknown|
 |[graboid](https://github.com/blacktop/graboid)|[0.15.8](https://github.com/blacktop/graboid)|Grab Docker images without installing Docker|[MIT](https://github.com/blacktop/graboid/blob/main/LICENSE)|
 |[ib-en](https://vgperson.com/games/ib.htm)|[1.07](https://vgperson.com/games/ib.htm)|Freeware horror adventure game set in a creepy, mysterious art gallery|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
@@ -45,15 +45,15 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[justasplanned](https://github.com/Eimaen/JustAsPlanned)|[1.0.4.2 ⚠](https://github.com/Eimaen/JustAsPlanned)|Muse Dash DLC unlocking meme for Steam version|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
 |[libimobiledevice](https://github.com/libimobiledevice-win32/imobiledevice-net)|[1.3.17](https://github.com/libimobiledevice-win32/imobiledevice-net)|A cross-platform protocol library to communicate with iOS devices|[LGPL-2.1-or-later](https://spdx.org/licenses/LGPL-2.1-or-later)|
 |[libretta](https://vgperson.com/games/libretta.htm)|[1.0 ⚠](https://vgperson.com/games/libretta.htm)|A semi-horror puzzle-adventure game.|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
-|[majdata](https://github.com/LingFeng-bbben/MajdataView)|[4.2.1](https://github.com/LingFeng-bbben/MajdataView)|Chart editor for the rhythm game maimai|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
-|[microsoftedge](https://www.microsoft.com/en-us/edge)|[123.0.2420.97](https://beerpsi-scoop.deno.dev/edge?arch=x64&channel=stable)|The chromium based Microsoft Edge browser|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
-|[miru](https://github.com/ThaUnknown/miru)|[5.0.10](https://github.com/ThaUnknown/miru)|Stream anime torrents, real-time with no waiting for downloads|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
+|[majdata](https://github.com/LingFeng-bbben/MajdataView)|[4.3.1](https://github.com/LingFeng-bbben/MajdataView)|Chart editor for the rhythm game maimai|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
+|[microsoftedge](https://www.microsoft.com/en-us/edge)|[125.0.2535.79](https://beerpsi-scoop.deno.dev/edge?arch=x64&channel=stable)|The chromium based Microsoft Edge browser|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
+|[miru](https://github.com/ThaUnknown/miru)|[5.1.0](https://github.com/ThaUnknown/miru)|Stream anime torrents, real-time with no waiting for downloads|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
 |[ntfs2btrfs](https://github.com/maharmstone/ntfs2btrfs)|[20230501](https://github.com/maharmstone/ntfs2btrfs)|A tool that converts Microsoft's NTFS filesystem to the open-source filesystem Btrfs in-place|[GPL-2.0-or-later](https://spdx.org/licenses/GPL-2.0-or-later)|
-|[ntlite](https://www.ntlite.com/)|[2024.4.9879](https://www.ntlite.com/download/)|Cutting-edge Windows configuration tool|[Proprietary](https://en.m.wikipedia.org/wiki/Software_license#Proprietary_software_licenses)|
+|[ntlite](https://www.ntlite.com/)|[2024.5.9946](https://www.ntlite.com/download/)|Cutting-edge Windows configuration tool|[Proprietary](https://en.m.wikipedia.org/wiki/Software_license#Proprietary_software_licenses)|
 |[oneko](https://glreno.github.io/oneko/)|[2.0.1](https://api.github.com/repos/glreno/oneko/tags)|A cat that follows your mouse pointer|[Unlicense](https://spdx.org/licenses/Unlicense)|
 |[onetrueawk](https://github.com/onetrueawk/awk)|[20220122-2-g2402014 ⚠](https://github.com/onetrueawk/awk)|The version of awk as described in "The AWK Programming Language"|[MIT-like](https://github.com/onetrueawk/awk/blob/master/LICENSE)|
 |[peupdate](https://bytepointer.com/tools/index.htm#peupdate)|[1.51](https://bytepointer.com/tools/peupdate_changelist.htm)|Useful modification to PE executables|[Freeware](https://bytepointer.com/tools/index.htm)|
-|[pingo](https://css-ig.net/pingo)|[1.21](https://css-ig.net/pingo)|An experimental lossless and lossy image optimizer (PNG, JPEG, WebP, APNG) designed to be used for web context|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
+|[pingo](https://css-ig.net/pingo)|[1.23.6](https://css-ig.net/pingo)|An experimental lossless and lossy image optimizer (PNG, JPEG, WebP, APNG) designed to be used for web context|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[plutil](https://github.com/withgraphite/plutil)|[affa752 ⚠](https://github.com/withgraphite/plutil)|A cross-platform, drop-in replacement for Apple's plutil and PlistBuddy|[BSD-3-Clause](https://github.com/withgraphite/plutil/blob/master/LICENSE)|
 |[punzip](https://github.com/blacktop/partialzip)|[0.2.1](https://github.com/blacktop/partialzip)|download single files from inside online zip archives|[MIT](https://github.com/blacktop/partialzip/blob/master/LICENSE)|
 |[rawcap](https://www.netresec.com/?page=RawCap)|[0.2.1.0](https://www.netresec.com/?page=RawCap)|Free network sniffer for Windows that uses raw sockets|[Freeware](https://www.netresec.com/?page=RawCap#:~:text=License)|
@@ -64,7 +64,7 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[slidershim](https://github.com/4yn/slidershim)|[0.5.1](https://github.com/4yn/slidershim)|When you did fork out the $300 for a tasoller but need a saner way to use it|[MIT](https://spdx.org/licenses/MIT)|
 |[sound-of-sorting](https://panthema.net/2013/sound-of-sorting/)|[0.6.5 ⚠](https://panthema.net/2013/sound-of-sorting/)|Audibilization and visualization of sorting algorithms|[GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)|
 |[stash](https://stashapp.cc)|[0.25.1](https://stashapp.cc)|An organizer for your porn.|[AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only)|
-|[stash-dev](https://stashapp.cc)|[0.25.1-18-g911da872](https://github.com/stashapp/stash/releases/tag/latest_develop)|An organizer for your porn.|[AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only)|
+|[stash-dev](https://stashapp.cc)|[0.25.1-72-g540e80c8](https://github.com/stashapp/stash/releases/tag/latest_develop)|An organizer for your porn.|[AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only)|
 |[susplayer](https://twitter.com/suspinfo)|[1.12 ⚠](https://twitter.com/suspinfo)|A certain rhythm game clone|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[thewitchshouse-en](https://vgperson.com/games/witchhouse.htm)|[1.09a](https://vgperson.com/games/witchhouse.htm)|Free the hellish halls of The Witch's House|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[thewitchshouse-jp](http://majonoie.karou.jp)|[1.09](http://majonoie.karou.jp)|壁紙やメモを手がかりに謎を解いていく、ホラーテイストなゲームです。|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
@@ -74,7 +74,7 @@ Manifests in the `experimental/` folder are relatively complete, though they may
 |[windowstoolbox-head](https://github.com/WinTweakers/WindowsToolbox)|[c19300a171c691b22fc4e](https://api.github.com/repos/WinTweakers/WindowsToolbox/git/refs)|A powerful but simple, easy to use toolbox for Windows 10/11 (HEAD version)|[MIT](https://spdx.org/licenses/MIT)/[Beerware](https://spdx.org/licenses/Beerware)|
 |[wpd](https://wpd.app)|[1.5.2042](https://wpd.app)|Privacy dashboard for Windows|[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 |[xprop](https://bytepointer.com/tools/index.htm#xprop)|[1.0 ⚠](https://bytepointer.com/tools/index.htm#xprop)|Open Explorer's properties dialog from the command line|[Freeware](https://bytepointer.com/tools/index.htm)|
-|[zalo](https://zalo.me/pc)|[24.4.1](https://zalo.me/pc)|Messaging application providing fast, stable, convenient, and private connection for users anytime, anywhere. |[Freeware](https://en.wikipedia.org/wiki/Freeware)|
+|[zalo](https://zalo.me/pc)|[24.5.1](https://zalo.me/pc)|Messaging application providing fast, stable, convenient, and private connection for users anytime, anywhere. |[Freeware](https://en.wikipedia.org/wiki/Freeware)|
 <!-- </apps> -->
 
 ⚠: no checkver
