@@ -22,10 +22,13 @@
         "EditorSetting.json"
     ],
     "checkver": {
-        "url": "https://api.github.com/repos/LingFeng-bbben/MajdataView/releases/latest",
-        "regex": "v([\\d.]+)-(?<hash>[0-9a-f]+-[0-9a-f]+)"
+        "script": [
+            "$data = Invoke-RestMethod -Method Get https://api.github.com/repos/LingFeng-bbben/MajdataView/releases/latest",
+            "\"$($data.tag_name), $($data.assets[0].name)\""
+        ],
+        "regex": "v(?<version>[\\d.]+), Majdata-(?<hash>[0-9a-f]+-[0-9a-f]+)"
     },
     "autoupdate": {
-        "url": "https://github.com/LingFeng-bbben/MajdataView/releases/download/v$version/Majdata_v$version-$matchHash.zip"
+        "url": "https://github.com/LingFeng-bbben/MajdataView/releases/download/v$version/Majdata-$matchHash.zip"
     }
 }
