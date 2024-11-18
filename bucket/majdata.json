@@ -22,7 +22,8 @@
     ],
     "persist": [
         "SFX",
-        "Skin"    
+        "Skin",
+        "EditorSetting.json"
     ],
     "checkver": {
         "script": [
